@@ -1,0 +1,20 @@
+@mixin title($size: $h-2-font-size, $weight: $h-4-font-weight) {
+	font-size: $size;
+	font-weight: $weight;
+	font-family: $roboto;
+}
+.title-1 {
+	@include title($h-1-font-size, $h-1-font-weight);
+}
+.title-2 {
+	@include title($h-2-font-size, $h-2-font-weight);
+}
+.title-3 {
+	@include title($h-3-font-size, $h-3-font-weight);
+}
+.title-4 {
+	@include title($h-4-font-size, $h-4-font-weight);
+}
+.title-5 {
+	@include title($h-5-font-size, $h-5-font-weight);
+}

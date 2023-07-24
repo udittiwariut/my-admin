@@ -1,0 +1,14 @@
+@import "./../styles/scss/foundation/all";
+
+$theme-colors: map-merge(
+	$theme-colors,
+	(
+		"primary": $dark,
+		"secondary": $grey,
+	)
+);
+* {
+	box-sizing: border-box;
+}
+
+@import "./../node_modules/bootstrap/scss/bootstrap.scss";
