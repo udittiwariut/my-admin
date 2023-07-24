@@ -58,7 +58,7 @@ const data = {
 			fill: true,
 			label: "Dataset 2",
 			data: mockData.map((ele) => ele.Total),
-
+			borderColor: "black",
 			backgroundColor: "rgba(53, 162, 235, 0.5)",
 		},
 	],
