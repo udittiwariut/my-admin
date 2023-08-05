@@ -1,7 +1,7 @@
 const MAIN_SUB_ROUTE = [
 	{
 		text: "Users",
-		link: "/",
+		link: "/users",
 		iconName: "USER",
 	},
 
@@ -25,7 +25,6 @@ const ROUTES = [
 	},
 	{
 		text: "Main",
-		link: "/",
 		iconName: "JOURNALS",
 		subRoutes: MAIN_SUB_ROUTE,
 	},
@@ -49,7 +48,7 @@ const ROUTES = [
 
 export interface Route {
 	text: string;
-	link: string;
+	link?: string;
 	iconName: string;
 	subRoutes?: Route[];
 }

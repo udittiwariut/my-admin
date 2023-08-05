@@ -99,4 +99,18 @@ $form-box-shadow: 1px 1px 1px $grey;
 @import "./../../../node_modules/bootstrap/scss/variables";
 
 :export {
+	$purple: #6650f2;
+
+	/* neutral color */
+
+	$white: #ffff;
+	$grey: #aeadad;
+	$dark: #0d0d0d;
+
+	/* utility */
+
+	$light-purple: #b3b0e7;
+	$violet: #b3b0e7;
+	$sky-blue: #3b9abf;
+	$red: #ff3333;
 }

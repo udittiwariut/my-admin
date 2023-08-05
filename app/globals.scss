@@ -1,14 +1,22 @@
 @import "./../styles/scss/foundation/all";
+@import "./../node_modules/bootstrap/scss/functions";
+@import "./../node_modules/bootstrap/scss/variables";
 
-$theme-colors: map-merge(
-	$theme-colors,
-	(
-		"primary": $dark,
-		"secondary": $grey,
-	)
+$primary: $dark;
+$secondary: $grey;
+
+$custom-theme-color: (
+	"primary": $primary,
+	"secondary": $secondary,
 );
+
+$theme-colors: map-merge($theme-colors, $custom-theme-color);
+
 * {
 	box-sizing: border-box;
 }
+body {
+	// overflow-x: hidden;
+}
 
-@import "./../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./../node_modules/bootstrap/scss/bootstrap";

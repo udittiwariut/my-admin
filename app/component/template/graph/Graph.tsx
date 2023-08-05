@@ -10,6 +10,8 @@ import {
 	Tooltip,
 	Filler,
 	Legend,
+	ScriptableContext,
+	TooltipItem,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -37,11 +39,7 @@ const options = {
 	responsive: true,
 	plugins: {
 		legend: {
-			position: "top" as const,
-		},
-		title: {
-			display: true,
-			text: "Chart.js Line Chart",
+			display: false,
 		},
 	},
 	elements: {
@@ -58,22 +56,28 @@ const data = {
 			fill: true,
 			label: "Dataset 2",
 			data: mockData.map((ele) => ele.Total),
-			borderColor: "black",
-			backgroundColor: "rgba(53, 162, 235, 0.5)",
+			borderColor: "#b3b0e7",
+			backgroundColor: (context: ScriptableContext<"line">) => {
+				const area = context.chart.chartArea;
+				if (area) {
+					const ctx = context.chart.ctx;
+					const gradient = ctx.createLinearGradient(
+						0,
+						area.top,
+						0,
+						area.bottom
+					);
+					gradient.addColorStop(0, "#b3b0e7");
+					gradient.addColorStop(1, "#fff");
+					return gradient;
+				}
+			},
 		},
 	],
 };
 
 const Graph = () => {
-	return (
-		<div>
-			<Line
-				options={options}
-				data={data}
-				style={{ borderColor: "Highlight" }}
-			></Line>
-		</div>
-	);
+	return <Line options={options} data={data}></Line>;
 };
 
 export default Graph;

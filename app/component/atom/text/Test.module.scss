@@ -1,6 +1,5 @@
 @mixin text($size: var(--body-font-size), $weight: var(--body-font-weight)) {
 	color: var(--body-text-color);
-	white-space: nowrap;
 	font-size: $size;
 	font-weight: $weight;
 	font-family: var(--font-family-notoSans);

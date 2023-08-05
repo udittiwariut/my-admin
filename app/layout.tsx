@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.scss";
-import style from "./page.module.scss";
+import style from "./layout.module.scss";
 import SideBar from "./component/template/side-bar/SideBar";
 import VerticalDivider from "./component/atom/verticalDivider/VerticalDivider";
 import NavBar from "./component/template/nav-bar/NavBar";
 import HorizontalDivider from "./component/atom/horizontalDivider/HorizontalDivider";
+import "./globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +28,6 @@ export default function RootLayout({
 							<SideBar />
 							<VerticalDivider className={style.vertical_divider} />
 						</div>
-
 						<div className={style.layout_right}>
 							<NavBar />
 							<HorizontalDivider className={style.horizontal_divider} />
@@ -36,6 +35,7 @@ export default function RootLayout({
 						</div>
 					</div>
 				</div>
+				<div id="portal"></div>
 			</body>
 		</html>
 	);

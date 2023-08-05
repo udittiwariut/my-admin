@@ -15,13 +15,15 @@ const data = [
 const ProgressCard = () => {
 	return (
 		<div className={styles.base}>
-			<Title className="title-2 text-secondary fw-bold">Total Revenue</Title>
+			<Title className="title-2 text-secondary fw-bold pb-2 pt-1">
+				Total Revenue
+			</Title>
 			<Progress progress={70} />
 			<Title className="title-3 text-secondary fw-normal">
 				Total sale made today
 			</Title>
 			<Text className="text-xl text-bold mb-2 mt-2">$420</Text>
-			<Text className="text-secondary text-sm">
+			<Text className="text-secondary text-sm  ">
 				Previous transaction is processing. Last payment may not be Included{" "}
 			</Text>
 			<div className={`${styles.grid} pt-4`}>
