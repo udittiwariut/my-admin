@@ -1,0 +1,45 @@
+{
+	"admins": [
+		{
+			"username": "admin_user",
+			"email": "admin@example.com",
+			"privileges": ["manage_products", "manage_orders", "view_reports"]
+		},
+		{
+			"username": "super_admin",
+			"email": "superadmin@example.com",
+			"privileges": [
+				"manage_products",
+				"manage_orders",
+				"view_reports",
+				"manage_customers",
+				"manage_admins"
+			]
+		},
+		{
+			"username": "inventory_admin",
+			"email": "inventoryadmin@example.com",
+			"privileges": ["manage_products", "view_reports"]
+		},
+		{
+			"username": "sales_admin",
+			"email": "salesadmin@example.com",
+			"privileges": ["view_orders", "view_reports"]
+		},
+		{
+			"username": "finance_admin",
+			"email": "financeadmin@example.com",
+			"privileges": ["view_orders", "view_reports", "financial_reports"]
+		},
+		{
+			"username": "customer_support",
+			"email": "support@example.com",
+			"privileges": ["manage_customers", "view_orders"]
+		},
+		{
+			"username": "marketing_admin",
+			"email": "marketing@example.com",
+			"privileges": ["view_reports", "create_marketing_campaigns"]
+		}
+	]
+}

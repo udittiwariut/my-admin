@@ -1,0 +1,31 @@
+$dot-diameter: 150px;
+$circle-border-width: 2px;
+$fault-color: gainsboro;
+$completion-color: $sky-blue;
+
+.circle_container {
+	width: $dot-diameter;
+	height: $dot-diameter;
+	transform: rotate(-90deg);
+}
+
+.circle_container__background {
+	fill: none;
+	stroke: $grey;
+	stroke-width: $circle-border-width;
+}
+
+.circle_container__progress {
+	fill: none;
+	stroke-linecap: round;
+	stroke: $completion-color;
+	stroke-dasharray: 100 100;
+	stroke-linecap: round;
+	stroke-width: $circle-border-width;
+}
+
+.text {
+	fill: $completion-color;
+	font-family: $body-font-family;
+	font-size: 0.3rem;
+}

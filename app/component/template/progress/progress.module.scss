@@ -1,0 +1,13 @@
+.base {
+	box-shadow: $box-shadow;
+	padding: 0 1rem 1rem 1rem;
+	text-align: center;
+}
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1rem;
+}
+.gridItem {
+	color: $secondary;
+}

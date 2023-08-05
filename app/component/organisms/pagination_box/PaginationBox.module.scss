@@ -1,0 +1,15 @@
+.base {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+.btn {
+	border: 1px solid $grey;
+
+	&:hover {
+		border: 1px solid $grey;
+	}
+}
+.currentPage {
+	background-color: $grey;
+}
