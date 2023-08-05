@@ -1,0 +1,18 @@
+.base {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	align-items: center;
+}
+.vertical_divider {
+	margin-top: -1rem;
+	margin-bottom: -1rem;
+}
+.logo_container {
+	color: $purple;
+	font-weight: $fw-semibold;
+}
+
+.nav_icon {
+	text-align: end;
+	height: fit-content;
+}

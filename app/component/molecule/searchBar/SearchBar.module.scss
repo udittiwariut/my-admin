@@ -1,0 +1,17 @@
+.base {
+	display: flex;
+	min-width: 10rem;
+	max-width: 15rem;
+	border: 1px solid $grey;
+	border-radius: 5px;
+}
+.focus {
+	box-shadow: $form-box-shadow;
+}
+.icon_btn {
+	z-index: 2;
+	background-color: $body-bg-color;
+	&:hover {
+		background-color: $body-bg-color;
+	}
+}

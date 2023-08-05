@@ -1,0 +1,42 @@
+@mixin text($size: var(--body-font-size), $weight: var(--body-font-weight)) {
+	color: var(--body-text-color);
+	font-size: $size;
+	font-weight: $weight;
+	font-family: var(--font-family-notoSans);
+}
+
+.text-xl {
+	@include text($fs-xl);
+}
+.text-lg {
+	@include text($fs-lg);
+}
+.text-base {
+	@include text($fs-base);
+}
+.text-sm {
+	@include text($fs-sm);
+}
+
+.text-extraBold {
+	@include text($fw-extrabold);
+}
+.text-bold {
+	@include text($fw-bold);
+}
+.text-semibold {
+	@include text($fw-semibold);
+}
+.text-medium {
+	@include text($fw-medium);
+}
+.text-normal {
+	@include text($fw-normal);
+}
+.text-light {
+	@include text($fw-light);
+}
+
+.underLine {
+	text-decoration: underline;
+}

@@ -1,0 +1,116 @@
+/*=============================================
+=            Color                       =
+=============================================*/
+
+/* brand-color */
+
+$purple: #6650f2;
+
+/* neutral color */
+
+$white: #ffff;
+$grey: #aeadad;
+$dark: #0d0d0d;
+
+/* utility */
+
+$light-purple: #b3b0e7;
+$violet: #b3b0e7;
+$sky-blue: #3b9abf;
+$red: #ff3333;
+
+/*=============================================
+=            TypoGraphy                     =
+=============================================*/
+
+$notoSans: "Noto Sans", sans-serif;
+$roboto: "Roboto", sans-serif;
+
+/* font-size */
+
+$fs-xs: 0.4rem;
+$fs-sm: 0.8rem;
+$fs-base: 1rem;
+$fs-lg: 1.2rem;
+$fs-xl: 1.5rem;
+
+/* Heading-font-size */
+$h-1: 2rem;
+$h-2: 1.5rem;
+$h-3: 1.2rem;
+$h-4: 1rem;
+$h-5: 0.7rem;
+
+/* Font-weight */
+
+$fw-light: 300;
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+$fw-extrabold: 900;
+
+/*=============================================
+=            BreakPoint                       =
+=============================================*/
+
+$breakpoints: (
+	xxm: 320px,
+	xm: 480px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px,
+);
+
+/*=============================================
+=                 Spacing                     =
+=============================================*/
+
+$spacing: (
+	xxxs: 0.25rem,
+	// 4px
+	xxs: 0.5rem,
+	// 8px
+	xs: 0.75rem,
+	// 12px
+	sm: 1rem,
+	// 16px
+	md: 1.5rem,
+	// 24px
+	lg: 2rem,
+	// 32px
+	xl: 3rem,
+	// 48px
+	xxl: 4.5rem,
+	// 72px
+	xxxl: 6rem,
+	// 96px
+) !default;
+
+/*=============================================
+=                Box shadow                   =
+=============================================*/
+
+$box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+$form-box-shadow: 1px 1px 1px $grey;
+@import "./../../../node_modules/bootstrap/scss/functions";
+@import "./../../../node_modules/bootstrap/scss/mixins";
+@import "./../../../node_modules/bootstrap/scss/variables";
+
+:export {
+	$purple: #6650f2;
+
+	/* neutral color */
+
+	$white: #ffff;
+	$grey: #aeadad;
+	$dark: #0d0d0d;
+
+	/* utility */
+
+	$light-purple: #b3b0e7;
+	$violet: #b3b0e7;
+	$sky-blue: #3b9abf;
+	$red: #ff3333;
+}
