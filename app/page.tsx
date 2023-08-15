@@ -7,7 +7,7 @@ import Table from "./component/template/table/TableHomePage";
 
 export default function Home() {
 	return (
-		<>
+		<div className={style.base}>
 			<Stats />
 			<div className={style.homePageLayout}>
 				<div className={style.container}>
@@ -25,6 +25,6 @@ export default function Home() {
 					<Table />
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

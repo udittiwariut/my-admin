@@ -64,7 +64,6 @@ const Stats = () => {
 					/>
 				);
 			})}
-			;
 		</FlexBox>
 	);
 };

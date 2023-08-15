@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import style from "./layout.module.scss";
 import SideBar from "./component/template/side-bar/SideBar";
 import VerticalDivider from "./component/atom/verticalDivider/VerticalDivider";
 import NavBar from "./component/template/nav-bar/NavBar";
 import HorizontalDivider from "./component/atom/horizontalDivider/HorizontalDivider";
+import Providers from "./globalRedux/provider";
+import NotificationBar from "./component/template/notificationBar/NotificationBar";
+import style from "./layout.module.scss";
 import "./globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,19 +24,22 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<div className="App">
-					<div className={style.body}>
-						<div className={style.layout_left}>
-							<SideBar />
-							<VerticalDivider className={style.vertical_divider} />
+				<Providers>
+					<div className={style.app}>
+						<div className={style.body}>
+							<div className={style.layout_left}>
+								<SideBar />
+								<VerticalDivider className={style.vertical_divider} />
+							</div>
+							<div className={style.layout_right}>
+								<NavBar />
+								<HorizontalDivider className={style.horizontal_divider} />
+								<div className={style.children}>{children}</div>
+							</div>
 						</div>
-						<div className={style.layout_right}>
-							<NavBar />
-							<HorizontalDivider className={style.horizontal_divider} />
-							{children}
-						</div>
+						<NotificationBar />
 					</div>
-				</div>
+				</Providers>
 				<div id="portal"></div>
 			</body>
 		</html>

@@ -1,7 +1,16 @@
+$nav-height: 7vh;
+.app {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
 .body {
 	display: grid;
 	grid-template-columns: 1fr 6fr;
 }
+
 .layout_left {
 	padding-top: 1rem;
 	display: grid;
@@ -17,4 +26,8 @@
 }
 .layout_right {
 	flex: 4;
+}
+.children {
+	height: calc(100vh - $nav-height);
+	overflow-y: scroll;
 }

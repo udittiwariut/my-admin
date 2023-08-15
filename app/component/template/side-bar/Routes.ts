@@ -1,3 +1,7 @@
+export const ACTION = {
+	NOTIFICATION: "NOTIFICATION",
+	PROFILE: "PROFILE",
+};
 const MAIN_SUB_ROUTE = [
 	{
 		text: "Users",
@@ -7,7 +11,7 @@ const MAIN_SUB_ROUTE = [
 
 	{
 		text: "Products",
-		link: "/",
+		link: "/product",
 		iconName: "SHOP",
 	},
 	{
@@ -31,13 +35,13 @@ const ROUTES = [
 
 	{
 		text: "Notification",
-		link: "/",
 		iconName: "BELL",
+		action: ACTION.NOTIFICATION,
 	},
 	{
 		text: "Profile",
-		link: "/",
 		iconName: "ADMIN",
+		action: ACTION.PROFILE,
 	},
 	{
 		text: "Logout",
@@ -50,6 +54,8 @@ export interface Route {
 	text: string;
 	link?: string;
 	iconName: string;
+	action?: string;
 	subRoutes?: Route[];
 }
+
 export default ROUTES;

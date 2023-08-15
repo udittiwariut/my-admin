@@ -5,20 +5,20 @@ import style from "./page.module.scss";
 import Text from "../component/atom/text/Text";
 import DropDown from "../component/organisms/drop_down/DropDown";
 import IconText from "../component/molecule/iconText/IconText";
-import User from "./../../data/User.json";
+import Product from "./../../data/Product.json";
 import PaginationBox from "../component/organisms/pagination_box/PaginationBox";
 import Modal from "../component/template/modal/Modal";
 import UserModal from "../component/template/modal/user_modal/UserModal";
 
 const array = [5, 10, 15, 20, 25];
 
-const UserPage = () => {
+const ProductPage = () => {
 	const [paginationValue, setPaginationValue] = useState(5);
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
-		const totalPage = Math.ceil(User.users.length / paginationValue);
+		const totalPage = Math.ceil(Product.products.length / paginationValue);
 		setPages({
 			currentPage:
 				pages.currentPage > totalPage ? totalPage : pages.currentPage,
@@ -28,7 +28,7 @@ const UserPage = () => {
 
 	const filteredUser = useMemo(
 		() =>
-			User.users.filter(
+			Product.products.filter(
 				(_, i) =>
 					i >= paginationValue * (pages.currentPage - 1) &&
 					i < paginationValue * pages.currentPage
@@ -74,4 +74,4 @@ const UserPage = () => {
 	);
 };
 
-export default UserPage;
+export default ProductPage;
