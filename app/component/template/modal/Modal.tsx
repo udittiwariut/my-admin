@@ -31,7 +31,7 @@ const Modal = ({ children, closeModal }: props) => {
 		? createPortal(
 				<div className={style.overlay}>
 					<div ref={modalRef} className={style.modal}>
-						<h1>{children}</h1>
+						{children}
 					</div>
 				</div>,
 				ref.current

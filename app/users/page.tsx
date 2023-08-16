@@ -60,6 +60,7 @@ const UserPage = () => {
 					sNo={paginationValue * (pages.currentPage - 1)}
 					setIsModalOpen={setIsModalOpen}
 					isModalOpen={isModalOpen}
+					fieldNotToInclude={["img"]}
 				/>
 				<div className={style.footer}>
 					<PaginationBox pages={pages} setPages={setPages} />

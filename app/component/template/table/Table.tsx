@@ -3,25 +3,35 @@ import style from "./Table.module.scss";
 
 interface props {
 	tableContent: object[];
-	sNo: number;
-	setIsModalOpen: (value: boolean) => void;
-	isModalOpen: boolean;
+	sNo?: number;
+	setIsModalOpen?: (value: boolean) => void;
+	isModalOpen?: boolean;
+	classNames?: string;
+	fieldNotToInclude: string[];
 }
 
-const TableUser = ({
+const Table = ({
 	tableContent,
-	sNo,
-	setIsModalOpen,
-	isModalOpen,
+	sNo = 0,
+	setIsModalOpen = () => {},
+	isModalOpen = false,
+	classNames = undefined,
+	fieldNotToInclude = [],
 }: props) => {
+	const title = Object.keys(tableContent[0]).filter((th) => {
+		if (!fieldNotToInclude.includes(th)) {
+			return th;
+		}
+	});
+
 	return (
 		tableContent.length > 0 && (
-			<div className={style.base}>
+			<div className={`${style.base}`}>
 				<table className="table">
 					<thead>
 						<tr>
 							<th className="p-3">#</th>
-							{Object.keys(tableContent[0]).map((th) => (
+							{title.map((th) => (
 								<th className="p-3">{th.replace("_", "").toUpperCase()}</th>
 							))}
 						</tr>
@@ -31,7 +41,7 @@ const TableUser = ({
 							return (
 								<tr onClick={() => setIsModalOpen(!isModalOpen)}>
 									<th className="p-3">{sNo + (i + 1)}</th>
-									{Object.keys(ele).map((key) => (
+									{title.map((key) => (
 										<td className="p-3">{ele[key]}</td>
 									))}
 								</tr>
@@ -44,4 +54,4 @@ const TableUser = ({
 	);
 };
 
-export default TableUser;
+export default Table;

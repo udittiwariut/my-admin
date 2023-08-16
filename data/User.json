@@ -9,7 +9,8 @@
 			"address": "123 Main Street",
 			"city": "New York",
 			"country": "USA",
-			"zip_code": "10001"
+			"zip_code": "10001",
+			"img": "https://drive.google.com/file/d/1IhdaIkCWVMyKEF-id4XeHlZoQ9bZ_H99/view?usp=sharing"
 		},
 		{
 			"user_id": 1002,

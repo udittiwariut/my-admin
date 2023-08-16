@@ -23,7 +23,7 @@ const Icon = ({
 	const IconToRender = Icons[IconName];
 
 	return (
-		<div className={`${style.base} ${className} `} onClick={onClick}>
+		<div className={`${style.base} ${className}`} onClick={onClick}>
 			<IconToRender fill={fill} height={height} width={width} />
 		</div>
 	);

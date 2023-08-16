@@ -16,7 +16,7 @@ const MAIN_SUB_ROUTE = [
 	},
 	{
 		text: "Orders",
-		link: "/",
+		link: "/orders",
 		iconName: "CART",
 	},
 ];
