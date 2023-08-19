@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import style from "./Table.module.scss";
 
 interface props {
@@ -7,7 +7,8 @@ interface props {
 	setIsModalOpen?: (value: boolean) => void;
 	isModalOpen?: boolean;
 	classNames?: string;
-	fieldNotToInclude: string[];
+	fieldNotToInclude?: string[];
+	setItem?: Dispatch<SetStateAction<any>>;
 }
 
 const Table = ({
@@ -17,6 +18,7 @@ const Table = ({
 	isModalOpen = false,
 	classNames = undefined,
 	fieldNotToInclude = [],
+	setItem = () => {},
 }: props) => {
 	const title = Object.keys(tableContent[0]).filter((th) => {
 		if (!fieldNotToInclude.includes(th)) {
@@ -39,10 +41,15 @@ const Table = ({
 					<tbody>
 						{tableContent.map((ele, i) => {
 							return (
-								<tr onClick={() => setIsModalOpen(!isModalOpen)}>
+								<tr
+									onClick={() => {
+										setIsModalOpen(!isModalOpen);
+										setItem(ele);
+									}}
+								>
 									<th className="p-3">{sNo + (i + 1)}</th>
 									{title.map((key) => (
-										<td className="p-3">{ele[key]}</td>
+										<td className="p-3">{ele[key as keyof typeof ele]}</td>
 									))}
 								</tr>
 							);

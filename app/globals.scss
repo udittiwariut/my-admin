@@ -15,6 +15,25 @@ $theme-colors: map-merge($theme-colors, $custom-theme-color);
 * {
 	box-sizing: border-box;
 }
+* {
+	scrollbar-width: auto;
+	scrollbar-color: $grey #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+	background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: $grey;
+	border-radius: 10px;
+	border: 3px solid #ffffff;
+}
 body {
 	// overflow-x: hidden;
 }

@@ -89,7 +89,7 @@ const Table = () => {
 														: null
 												}`}
 											>
-												{ele[key]}
+												{ele[key as keyof typeof ele]}
 											</td>
 										) : (
 											<td className="p-3">

@@ -8,5 +8,6 @@ interface USER {
 	city: string;
 	country: string;
 	zip_code: string;
+	img?: string;
 }
 export default USER;

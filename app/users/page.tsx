@@ -9,6 +9,7 @@ import User from "./../../data/User.json";
 import PaginationBox from "../component/organisms/pagination_box/PaginationBox";
 import Modal from "../component/template/modal/Modal";
 import UserModal from "../component/template/modal/user_modal/UserModal";
+import USER from "../Types/User/User";
 
 const array = [5, 10, 15, 20, 25];
 
@@ -16,6 +17,9 @@ const UserPage = () => {
 	const [paginationValue, setPaginationValue] = useState(5);
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [user, setUser] = useState<USER | null>();
+
+	console.log(user);
 
 	useEffect(() => {
 		const totalPage = Math.ceil(User.users.length / paginationValue);
@@ -61,14 +65,15 @@ const UserPage = () => {
 					setIsModalOpen={setIsModalOpen}
 					isModalOpen={isModalOpen}
 					fieldNotToInclude={["img"]}
+					setItem={setUser}
 				/>
 				<div className={style.footer}>
 					<PaginationBox pages={pages} setPages={setPages} />
 				</div>
 			</div>
 			{isModalOpen && (
-				<Modal closeModal={setIsModalOpen}>
-					<UserModal />
+				<Modal closeModal={setIsModalOpen} title="User Detail">
+					<UserModal user={user} />
 				</Modal>
 			)}
 		</>

@@ -9,13 +9,18 @@ import React, {
 import { createPortal } from "react-dom";
 import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
 import style from "./style.module.scss";
+import Title from "../../atom/title/Title";
+import Button from "../../atom/button/Button";
+import Icon from "../../atom/icon/Icon";
+import HorizontalDivider from "../../atom/horizontalDivider/HorizontalDivider";
 
 interface props {
 	children: React.ReactNode;
 	closeModal: Dispatch<SetStateAction<boolean>>;
+	title: string;
 }
 
-const Modal = ({ children, closeModal }: props) => {
+const Modal = ({ children, closeModal, title }: props) => {
 	const ref = useRef<Element | null>(null);
 	const modalRef = useRef<Element | null>(null);
 	const [mounted, setMounted] = useState(false);
@@ -31,7 +36,21 @@ const Modal = ({ children, closeModal }: props) => {
 		? createPortal(
 				<div className={style.overlay}>
 					<div ref={modalRef} className={style.modal}>
-						{children}
+						<div className={style.header}>
+							<Title className="title-2 text-secondary fw-bold pb-2 pt-1">
+								{title}
+							</Title>
+							<Button onClick={() => closeModal(false)}>
+								<Icon
+									className={style.icon}
+									IconName="CLOSE"
+									height="2rem"
+									width="2rem"
+								/>
+							</Button>
+						</div>
+						<HorizontalDivider className={style.margin} />
+						<div className={style.body}>{children}</div>
 					</div>
 				</div>,
 				ref.current
