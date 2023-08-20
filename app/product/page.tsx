@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
-import TableUser from "../component/template/table/Table";
+import Table from "../component/template/table/Table";
 import style from "./page.module.scss";
 import Text from "../component/atom/text/Text";
 import DropDown from "../component/organisms/drop_down/DropDown";
@@ -8,14 +8,15 @@ import IconText from "../component/molecule/iconText/IconText";
 import Product from "./../../data/Product.json";
 import PaginationBox from "../component/organisms/pagination_box/PaginationBox";
 import Modal from "../component/template/modal/Modal";
-import UserModal from "../component/template/modal/user_modal/UserModal";
-
+import ProductModal from "../component/template/modal/product_modal/ProductModal";
+import { PRODUCT } from "../Types/Product/Product";
 const array = [5, 10, 15, 20, 25];
 
 const ProductPage = () => {
 	const [paginationValue, setPaginationValue] = useState(5);
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [product, setProduct] = useState<null | PRODUCT>(null);
 
 	useEffect(() => {
 		const totalPage = Math.ceil(Product.products.length / paginationValue);
@@ -55,19 +56,21 @@ const ProductPage = () => {
 						</IconText>
 					</DropDown>
 				</div>
-				<TableUser
+				<Table
 					tableContent={filteredUser}
 					sNo={paginationValue * (pages.currentPage - 1)}
 					setIsModalOpen={setIsModalOpen}
 					isModalOpen={isModalOpen}
+					setItem={setProduct}
+					fieldNotToInclude={["img"]}
 				/>
 				<div className={style.footer}>
 					<PaginationBox pages={pages} setPages={setPages} />
 				</div>
 			</div>
 			{isModalOpen && (
-				<Modal closeModal={setIsModalOpen}>
-					<UserModal />
+				<Modal closeModal={setIsModalOpen} title="Product Detail">
+					<ProductModal product={product} />
 				</Modal>
 			)}
 		</>
