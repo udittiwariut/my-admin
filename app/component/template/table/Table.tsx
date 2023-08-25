@@ -12,7 +12,7 @@ interface props {
 }
 
 const Table = ({
-	tableContent,
+	tableContent = [],
 	sNo = 0,
 	setIsModalOpen = () => {},
 	isModalOpen = false,

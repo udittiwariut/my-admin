@@ -39,7 +39,7 @@ const ProductModal = ({ product }: props) => {
 					))}
 				</div>
 			</div>
-			<Title className="title-2 text-secondary fw-bold pb-2 pt-1">
+			<Title className="title-2 text-secondary fw-bold pb-2 pt-3">
 				Order History :-
 			</Title>
 			<div className={style.orderDetail}>

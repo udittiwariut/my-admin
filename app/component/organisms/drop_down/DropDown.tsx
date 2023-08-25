@@ -12,6 +12,16 @@ interface props {
 	onOptClick: (e: any) => any;
 }
 
+const dropDownStyleActive = {
+	maxHeight: "20rem",
+	borderRight: "1px solid #aeadad",
+	borderBottom: "1px solid #aeadad",
+	borderLeft: "1px solid #aeadad",
+};
+const dropDownStyleUnActive = {
+	maxHeight: 0,
+};
+
 const DropDown = ({
 	children,
 	optionArray,
@@ -35,7 +45,7 @@ const DropDown = ({
 			</Button>
 			<div
 				className={style.dropDownMenu}
-				style={{ maxHeight: active ? "20rem" : 0 }}
+				style={active ? dropDownStyleActive : dropDownStyleUnActive}
 			>
 				{optionArray.map((ele) => (
 					<div onClick={onOptClick} className={dropDownMenuItemStyle}>
