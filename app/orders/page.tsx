@@ -1,15 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import style from "./orders.module.scss";
-import Order from "./../../data/Orders.json";
 import OrderCard from "./OrderCard";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import type { RootState } from "../globalRedux/store";
 
 const Orders = () => {
 	const [showDetail, setShowDetail] = useState<null | number>(null);
+	const orders = useSelector((state: RootState) => state.orders.orders);
+
 	return (
 		<div className={style.base}>
-			{Order.orders.length &&
-				Order.orders.map((order, i) => (
+			{orders.length &&
+				orders.map((order, i) => (
 					<OrderCard
 						key={order.order_id}
 						order={order}

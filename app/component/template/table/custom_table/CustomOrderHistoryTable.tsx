@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import style from "./CustomOrderHistoryTable.module.scss";
-import { ORDER, ORDER_ITEM } from "@/app/Types/Order/Order";
+import { ORDER } from "@/app/Types/Order/Order";
 import Table from "../Table";
 import HorizontalDivider from "@/app/component/atom/horizontalDivider/HorizontalDivider";
 

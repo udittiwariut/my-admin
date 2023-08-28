@@ -21,7 +21,9 @@ const NotificationBar = () => {
 	};
 	return (
 		<div
-			className={`${style.base} ${isNotificationBarOpen ? style.active : null}`}
+			className={`${style.base} ${
+				isNotificationBarOpen ? style.active : style.un_active
+			}`}
 		>
 			<div className={`${style.header} p-2`}>
 				<Title className="title-2 text-secondary fw-bold">Notification</Title>

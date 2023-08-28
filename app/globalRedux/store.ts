@@ -1,11 +1,11 @@
-"use client";
-
 import { configureStore } from "@reduxjs/toolkit";
 import NotificationReducer from "./notification/notification.slice";
+import OrderReducer from "./orders/order.slice";
 
 const store = configureStore({
 	reducer: {
 		notification: NotificationReducer,
+		orders: OrderReducer,
 	},
 });
 
