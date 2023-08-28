@@ -13,7 +13,7 @@ $custom-theme-color: (
 $theme-colors: map-merge($theme-colors, $custom-theme-color);
 
 * {
-	box-sizing: border-box;
+	box-sizing: border-box !important;
 }
 * {
 	scrollbar-width: auto;

@@ -1,12 +1,12 @@
 .overlay {
-	display: block;
-	position: fixed;
 	padding-top: 100px;
 	left: 0;
 	top: 0;
-	width: 100%;
+	width: inherit;
+	height: inherit;
 	height: 100%;
 	overflow: auto;
+	padding: 1rem;
 }
 .loader {
 	height: 3rem;

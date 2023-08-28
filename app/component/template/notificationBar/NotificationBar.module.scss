@@ -2,7 +2,7 @@
 	position: absolute;
 	right: 0;
 	top: 0;
-	transition: width 300ms ease;
+	transition: width 200ms ease;
 	width: 0;
 	overflow-x: hidden;
 	height: 100%;
@@ -13,7 +13,9 @@
 .active {
 	width: 400px;
 }
-
+.un_active {
+	font-size: $fs-xs;
+}
 .header {
 	height: 7vh;
 	display: flex;

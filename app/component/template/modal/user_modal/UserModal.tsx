@@ -1,20 +1,22 @@
 import React, { useState, useMemo } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import style from "./UserModal.module.scss";
 import Avatar from "./../../../molecule/avatar/Avatar";
 import Title from "@/app/component/atom/title/Title";
 import Order from "./../../../../../data/Orders.json";
 import CustomOrderHistoryTable from "../../table/custom_table/CustomOrderHistoryTable";
 import USER from "@/app/Types/User/User";
-
+import type { RootState } from "@/app/globalRedux/store";
 interface props {
 	user: USER | null;
 }
 const UserModal = ({ user }: props) => {
 	const [isDetailOpen, setIsDetailOpen] = useState<null | number>(null);
 	const fieldNotToInclude = ["img"];
+	const orders = useSelector((state: RootState) => state.orders.orders);
 
 	const userOrder = useMemo(
-		() => Order.orders.filter((order) => order.customer_email === user!.email),
+		() => orders.filter((order) => order.customer_email === user!.email),
 		[]
 	);
 

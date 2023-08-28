@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import ORDER from "./../../../data/Orders.json";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/app/globalRedux/store";
 
 interface ORDER_DETAIL {
 	orderId: string;
@@ -19,10 +21,11 @@ function selectRandomMethod() {
 
 const useGetProductOrderHistory = (productId: number) => {
 	const [orderDetail, setOrderDetail] = useState<ORDER_DETAIL[] | undefined>();
+	const orders = useSelector((state: RootState) => state.orders.orders);
 
 	useEffect(() => {
 		const objArray: ORDER_DETAIL[] = [];
-		ORDER.orders.map((ele) => {
+		orders.map((ele) => {
 			ele.order_items.map((orderItem) => {
 				if (orderItem.product_id === productId) {
 					const obj = {

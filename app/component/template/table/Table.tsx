@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useMemo } from "react";
 import style from "./Table.module.scss";
 
 interface props {
@@ -20,6 +20,9 @@ const Table = ({
 	fieldNotToInclude = [],
 	setItem = () => {},
 }: props) => {
+	if (!tableContent.length) {
+		return;
+	}
 	const title = Object.keys(tableContent[0]).filter((th) => {
 		if (!fieldNotToInclude.includes(th)) {
 			return th;
