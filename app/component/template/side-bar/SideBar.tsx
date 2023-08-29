@@ -10,11 +10,12 @@ import IconText from "../../molecule/iconText/IconText";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsNotificationOpen } from "@/app/globalRedux/notification/notification.slice";
 import { ACTION } from "./Routes";
+import { RootState } from "@/app/globalRedux/store";
 
 const helperFn = (routesArray: Route[]) => {
 	const dispatch = useDispatch();
 	const isNotificationBarOpen = useSelector(
-		(state) => state.notification.isNotificationOpen
+		(state: RootState) => state.notification.isNotificationOpen
 	);
 
 	const [tootleSubRoutes, setToggleSUbRoutes] = useState({
@@ -94,6 +95,15 @@ const SideBar = () => {
 				Admin Plus
 			</Title>
 			<div>{helperFn(ROUTES)}</div>
+			<div>
+				<div className={`${styles.sideBar_link_box}`}>
+					<a className={styles.logout} href="/api/auth/logout">
+						<IconText iconName="LOGOUT" className={styles.sideBar_link}>
+							Logout
+						</IconText>
+					</a>
+				</div>
+			</div>
 		</div>
 	);
 };
