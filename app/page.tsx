@@ -5,6 +5,7 @@ import style from "./pages.module.scss";
 import Title from "./component/atom/title/Title";
 import Table from "./component/template/table/TableHomePage";
 import Text from "./component/atom/text/Text";
+import PageLayout from "./component/template/pageLayout/PageLayout";
 
 export default function Home() {
 	return (

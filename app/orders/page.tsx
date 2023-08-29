@@ -4,6 +4,7 @@ import style from "./orders.module.scss";
 import OrderCard from "./OrderCard";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import type { RootState } from "../globalRedux/store";
+import PageLayout from "../component/template/pageLayout/PageLayout";
 
 const Orders = () => {
 	const [showDetail, setShowDetail] = useState<null | number>(null);

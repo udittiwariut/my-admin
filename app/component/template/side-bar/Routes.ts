@@ -43,11 +43,6 @@ const ROUTES = [
 		iconName: "ADMIN",
 		action: ACTION.PROFILE,
 	},
-	{
-		text: "Logout",
-		link: "/",
-		iconName: "LOGOUT",
-	},
 ];
 
 export interface Route {

@@ -14,6 +14,8 @@ import store from "./globalRedux/store";
 import { setOrders } from "./globalRedux/orders/order.slice";
 import Preloader from "./globalRedux/Preloader";
 import { ORDER, ORDER_ITEM } from "./Types/Order/Order";
+import PageLayout from "./component/template/pageLayout/PageLayout";
+import Auth_Zero from "./utlis/auth0/Auth_Zero";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,57 +29,13 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const user = await fetch("http://localhost:3000/api/auth/me");
-	console.log(user);
-
-	const orders: any = await getFireStoreData(COLLECTION.ORDER);
-	const shortedOrder = orders.map((order: ORDER) => {
-		const oderObj = {
-			order_id: order.order_id,
-			customer_name: order.customer_name,
-			customer_email: order.customer_email,
-			order_date: order.order_date,
-			order_total: order.order_total,
-			order_items: order.order_items.map((orderItem: ORDER_ITEM) => {
-				const objItem = {
-					product_id: orderItem.product_id,
-					product_name: orderItem.product_name,
-					quantity: orderItem.quantity,
-					unit_price: orderItem.unit_price,
-					subtotal: orderItem.subtotal,
-				};
-				return objItem;
-			}),
-		};
-		return oderObj;
-	});
-	shortedOrder.sort(
-		(a: any, b: any) => a.order_id.slice(-2) * 1 - b.order_id.slice(-2) * 1
-	);
-
-	store.dispatch(setOrders(shortedOrder));
-
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<Preloader order={shortedOrder} />
 				<UserProvider>
-					<Providers>
-						<div className={style.app}>
-							<div className={style.body}>
-								<div className={style.layout_left}>
-									<SideBar />
-									<VerticalDivider className={style.vertical_divider} />
-								</div>
-								<div className={style.layout_right}>
-									<NavBar />
-									<HorizontalDivider className={style.horizontal_divider} />
-									<div className={style.children}>{children}</div>
-								</div>
-							</div>
-							<NotificationBar />
-						</div>
-					</Providers>
+					<Auth_Zero>
+						<PageLayout>{children}</PageLayout>
+					</Auth_Zero>
 				</UserProvider>
 				<div id="portal"></div>
 			</body>
