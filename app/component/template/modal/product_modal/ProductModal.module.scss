@@ -1,0 +1,26 @@
+.base {
+	min-width: 900px;
+	padding: 1rem;
+}
+.avatar {
+	max-width: 16rem;
+	max-height: 16rem;
+	min-width: 10rem;
+	min-height: 10rem;
+}
+.body {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1.5rem;
+}
+
+.details {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 1.2rem;
+	column-gap: 2rem;
+}
+.gridItem {
+	font-size: $fs-base;
+}

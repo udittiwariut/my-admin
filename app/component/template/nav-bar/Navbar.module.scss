@@ -1,8 +1,10 @@
 .base {
+	height: 7vh;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	align-items: center;
 }
+
 .vertical_divider {
 	margin-top: -1rem;
 	margin-bottom: -1rem;

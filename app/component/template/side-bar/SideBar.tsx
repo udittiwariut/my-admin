@@ -1,21 +1,35 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./SideBar.module.scss";
-import IconLink from "./../../molecule/iconLink/IconLink";
 import ROUTES, { Route } from "./Routes";
 import Title from "../../atom/title/Title";
 import Icon from "../../atom/icon/Icon";
 import Link from "../../atom/link/Link";
 import { usePathname } from "next/navigation";
 import IconText from "../../molecule/iconText/IconText";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsNotificationOpen } from "@/app/globalRedux/notification/notification.slice";
+import { ACTION } from "./Routes";
+import { RootState } from "@/app/globalRedux/store";
 
 const helperFn = (routesArray: Route[]) => {
+	const dispatch = useDispatch();
+	const isNotificationBarOpen = useSelector(
+		(state: RootState) => state.notification.isNotificationOpen
+	);
+
 	const [tootleSubRoutes, setToggleSUbRoutes] = useState({
 		boolean: false,
 		index: null as any,
 	});
+
+	const handleClick = (route: Route) => {
+		if (route.action === undefined) return;
+		if (route.action === ACTION.NOTIFICATION)
+			dispatch(setIsNotificationOpen(!isNotificationBarOpen));
+	};
+
 	const current_url = usePathname();
-	console.log(current_url);
 
 	return routesArray.map((routes, i) => {
 		return (
@@ -28,12 +42,13 @@ const helperFn = (routesArray: Route[]) => {
 									? "d-flex justify-content-between align-items-center"
 									: null
 							}`}
-							onClick={() =>
+							onClick={() => {
 								setToggleSUbRoutes({
 									boolean: !tootleSubRoutes.boolean,
 									index: i,
-								})
-							}
+								});
+								handleClick(routes);
+							}}
 						>
 							<IconText
 								iconName={routes.iconName}
@@ -80,6 +95,15 @@ const SideBar = () => {
 				Admin Plus
 			</Title>
 			<div>{helperFn(ROUTES)}</div>
+			<div>
+				<div className={`${styles.sideBar_link_box}`}>
+					<a className={styles.logout} href="/api/auth/logout">
+						<IconText iconName="LOGOUT" className={styles.sideBar_link}>
+							Logout
+						</IconText>
+					</a>
+				</div>
+			</div>
 		</div>
 	);
 };
