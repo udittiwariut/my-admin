@@ -1,0 +1,12 @@
+.orderTableHeader {
+	display: grid;
+	font-weight: $fw-bold;
+}
+.orderTableRow {
+	display: grid;
+	border-bottom: 0.5px solid $grey;
+}
+.orderDetail {
+	padding: 1rem;
+	font-size: $fs-sm;
+}

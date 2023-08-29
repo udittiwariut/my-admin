@@ -1,0 +1,31 @@
+.base {
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: width 200ms ease;
+	width: 0;
+	overflow-x: hidden;
+	height: 100%;
+	z-index: 10;
+	background-color: white;
+	border-left: 1px solid $grey;
+}
+.active {
+	width: 400px;
+}
+.un_active {
+	font-size: $fs-xs;
+}
+.header {
+	height: 7vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.icon {
+	fill: $grey;
+}
+.notificationBox {
+	padding: 1rem;
+	cursor: pointer;
+}

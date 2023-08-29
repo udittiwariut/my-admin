@@ -62,7 +62,6 @@ const status = {
 const Table = () => {
 	return (
 		<div className={style.base}>
-			<Text className="text-secondary p-3">Latest Transaction</Text>
 			<table className="table">
 				<thead>
 					<tr>
@@ -89,7 +88,7 @@ const Table = () => {
 														: null
 												}`}
 											>
-												{ele[key]}
+												{ele[key as keyof typeof ele]}
 											</td>
 										) : (
 											<td className="p-3">

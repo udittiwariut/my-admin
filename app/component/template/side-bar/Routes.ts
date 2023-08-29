@@ -1,3 +1,7 @@
+export const ACTION = {
+	NOTIFICATION: "NOTIFICATION",
+	PROFILE: "PROFILE",
+};
 const MAIN_SUB_ROUTE = [
 	{
 		text: "Users",
@@ -7,12 +11,12 @@ const MAIN_SUB_ROUTE = [
 
 	{
 		text: "Products",
-		link: "/",
+		link: "/product",
 		iconName: "SHOP",
 	},
 	{
 		text: "Orders",
-		link: "/",
+		link: "/orders",
 		iconName: "CART",
 	},
 ];
@@ -31,18 +35,13 @@ const ROUTES = [
 
 	{
 		text: "Notification",
-		link: "/",
 		iconName: "BELL",
+		action: ACTION.NOTIFICATION,
 	},
 	{
 		text: "Profile",
-		link: "/",
 		iconName: "ADMIN",
-	},
-	{
-		text: "Logout",
-		link: "/",
-		iconName: "LOGOUT",
+		action: ACTION.PROFILE,
 	},
 ];
 
@@ -50,6 +49,8 @@ export interface Route {
 	text: string;
 	link?: string;
 	iconName: string;
+	action?: string;
 	subRoutes?: Route[];
 }
+
 export default ROUTES;

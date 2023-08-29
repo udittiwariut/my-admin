@@ -1,0 +1,63 @@
+{
+	"complaints": [
+		{
+			"id": "1234567890",
+			"customer_name": "John Doe",
+			"customer_email": "john.doe@example.com",
+			"order_id": "1234567890",
+			"product_name": "iPhone 13 Pro",
+			"complaint_type": "Product defect",
+			"complaint_description": "The iPhone 13 Pro that I received has a cracked screen. I would like a refund or a replacement phone.",
+			"created_at": "2023-08-14T19:17:33Z"
+		},
+		{
+			"id": "2345678901",
+			"customer_name": "Jane Doe",
+			"customer_email": "jane.doe@example.com",
+			"order_id": "2345678901",
+			"product_name": "iPad Pro",
+			"complaint_type": "Wrong item shipped",
+			"complaint_description": "I ordered an iPad Pro, but I received a MacBook Air instead. I would like a refund or the correct item shipped to me.",
+			"created_at": "2023-08-14T19:18:33Z"
+		},
+		{
+			"id": "3456789012",
+			"customer_name": "Peter Smith",
+			"customer_email": "peter.smith@example.com",
+			"order_id": "3456789012",
+			"product_name": "Samsung Galaxy S22 Ultra",
+			"complaint_type": "Delayed shipping",
+			"complaint_description": "I ordered the Samsung Galaxy S22 Ultra on August 1st, but it still hasn't shipped. I would like a refund or a faster shipping option.",
+			"created_at": "2023-08-14T19:19:33Z"
+		},
+		{
+			"id": "4567890123",
+			"customer_name": "Sarah Jones",
+			"customer_email": "sarah.jones@example.com",
+			"order_id": "4567890123",
+			"product_name": "Nintendo Switch OLED",
+			"complaint_type": "Customer service",
+			"complaint_description": "I have been trying to contact customer service for a week, but I haven't been able to get through. I would like to speak to someone about a refund for a defective product.",
+			"created_at": "2023-08-14T19:20:33Z"
+		},
+		{
+			"id": "5678901234",
+			"customer_name": "David Williams",
+			"customer_email": "david.williams@example.com",
+			"order_id": "5678901234",
+			"product_name": "Sony PlayStation 5",
+			"complaint_type": "Price gouging",
+			"complaint_description": "I saw that the Sony PlayStation 5 was on sale for $500, but when I went to checkout, the price had increased to $800. I would like a refund for the difference in price.",
+			"created_at": "2023-08-14T19:21:33Z"
+		},
+		{
+			"id": "6789012345",
+			"customer_name": "Elizabeth Brown",
+			"customer_email": "elizabeth.brown@example.com",
+			"order_id": "6789012345",
+			"product_name": "Google Pixel 6 Pro",
+			"complaint_type": "Refund",
+			"complaint_description": "I am not happy with the Google Pixel 6 Pro. The battery life is terrible and the camera is not as good as I expected. I would like a refund for the product."
+		}
+	]
+}

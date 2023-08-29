@@ -1,0 +1,26 @@
+.base {
+	padding: 1rem;
+	box-shadow: $box-shadow;
+}
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.dropDownBtn {
+	background-color: white;
+	gap: 0.5rem;
+	padding: 0.1rem;
+}
+.dropDownMenuItem {
+	text-align: center;
+	width: 100%;
+	background: white;
+	border-bottom: 1px solid $grey;
+	padding: 0.5rem;
+	cursor: pointer;
+	&:hover {
+		background-color: $grey;
+		color: white;
+	}
+}

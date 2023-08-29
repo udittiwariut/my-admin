@@ -6,7 +6,8 @@
 			"category": "Smartphones",
 			"price_usd": 499,
 			"stock_quantity": 100,
-			"brand": "TechTrends"
+			"brand": "TechTrends",
+			"img": "https://res.cloudinary.com/dmbtc9axm/image/upload/v1692442091/pexels-manav-sharma-3392232_hcrpez.jpg"
 		},
 		{
 			"product_id": 1002,

@@ -3,7 +3,7 @@
 		{
 			"username": "admin_user",
 			"email": "admin@example.com",
-			"privileges": ["manage_products", "manage_orders", "view_reports"]
+			"password": ""
 		},
 		{
 			"username": "super_admin",
