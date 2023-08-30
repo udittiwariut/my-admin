@@ -11,7 +11,6 @@ import UserModal from "../component/template/modal/user_modal/UserModal";
 import { getFireStoreData, COLLECTION } from "../utlis/firebase/fireStore";
 import LoaderHoc from "../component/template/loaderHoc/LoaderHoc";
 import USER from "../Types/User/User";
-
 const array = [5, 10, 15, 20, 25];
 
 const UserPage = () => {
@@ -70,8 +69,6 @@ const UserPage = () => {
 			),
 		[fetchUser.length, paginationValue, pages.currentPage]
 	);
-
-	console.log(pages);
 
 	return (
 		<LoaderHoc arrayToCheck={fetchUser}>

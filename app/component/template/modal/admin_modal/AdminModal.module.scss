@@ -1,0 +1,20 @@
+.details {
+	display: flex;
+	gap: 2rem;
+}
+.flexLeft {
+}
+.list {
+	list-style-position: inside;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.listItem {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	&::before {
+		content: "•";
+		margin-right: 5px;
+	}
+}

@@ -1,10 +1,11 @@
 import React from "react";
-import style from "./ProductModal.module.scss";
 import Avatar from "@/app/component/molecule/avatar/Avatar";
 import { PRODUCT } from "@/app/Types/Product/Product";
 import Title from "@/app/component/atom/title/Title";
 import useGetProductOrderHistory from "@/app/utlis/hooks/useGetProductOrderHistory";
 import Table from "../../table/Table";
+import globalModalStyle from "./../Modal.module.scss";
+import capitalizeFirst from "@/app/utlis/functions/capatalizeFirst";
 
 interface props {
 	product: PRODUCT | null;
@@ -22,27 +23,26 @@ const ProductModal = ({ product }: props) => {
 	const [orderDetail] = useGetProductOrderHistory(product?.product_id!);
 
 	return (
-		<div className={style.base}>
-			<div className={style.body}>
-				<div className={style.avatar}>
+		<div className={globalModalStyle.modal_base}>
+			<div className={globalModalStyle.modal_body}>
+				<div className={globalModalStyle.modal_avatar}>
 					<Avatar link="https://res.cloudinary.com/dmbtc9axm/image/upload/v1692442091/pexels-manav-sharma-3392232_hcrpez.jpg"></Avatar>
 				</div>
-				<div className={style.details}>
+				<div className={globalModalStyle.modal_details}>
 					{title.map((detail) => (
-						<div className={style.gridItem}>
-							<strong>
-								{detail.charAt(0).toUpperCase() +
-									detail.slice(1).replace("_", " ")}
-							</strong>
-							: {"  "} {product![detail as keyof typeof product]}
+						<div className={globalModalStyle.modal_gridItem}>
+							<strong>{capitalizeFirst(detail)}</strong>: {"  "}{" "}
+							{product![detail as keyof typeof product]}
 						</div>
 					))}
 				</div>
 			</div>
-			<Title className="title-2 text-secondary fw-bold pb-2 pt-3">
-				Order History :-
-			</Title>
-			<div className={style.orderDetail}>
+			<div className={globalModalStyle.modal_orderHistory}>
+				<Title className="title-2 text-secondary fw-bold pb-2 pt-3">
+					Order History :-
+				</Title>
+			</div>
+			<div className={globalModalStyle.modal_orderDetail}>
 				{orderDetail?.length && <Table tableContent={orderDetail} />}
 			</div>
 		</div>

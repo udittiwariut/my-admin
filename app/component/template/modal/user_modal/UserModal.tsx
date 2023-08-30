@@ -1,12 +1,14 @@
 import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import style from "./UserModal.module.scss";
 import Avatar from "./../../../molecule/avatar/Avatar";
 import Title from "@/app/component/atom/title/Title";
-import Order from "./../../../../../data/Orders.json";
 import CustomOrderHistoryTable from "../../table/custom_table/CustomOrderHistoryTable";
 import USER from "@/app/Types/User/User";
 import type { RootState } from "@/app/globalRedux/store";
+import style from "./UserModal.module.scss";
+import globalModalStyle from "./../Modal.module.scss";
+import capitalizeFirst from "@/app/utlis/functions/capatalizeFirst";
+
 interface props {
 	user: USER | null;
 }
@@ -27,24 +29,21 @@ const UserModal = ({ user }: props) => {
 	});
 
 	return (
-		<div className={style.base}>
-			<div className={style.body}>
-				<div className={style.avatar}>
+		<div className={globalModalStyle.modal_base}>
+			<div className={globalModalStyle.modal_body}>
+				<div className={globalModalStyle.modal_avatar}>
 					<Avatar link={user?.img!}></Avatar>
 				</div>
-				<div className={style.details}>
+				<div className={globalModalStyle.modal_details}>
 					{title.map((detail) => (
 						<div className={style.gridItem}>
-							<strong>
-								{detail.charAt(0).toUpperCase() +
-									detail.slice(1).replace("_", " ")}
-							</strong>
-							: {"  "} {user![detail as keyof typeof user]}
+							<strong>{capitalizeFirst(detail)}</strong>: {"  "}{" "}
+							{user![detail as keyof typeof user]}
 						</div>
 					))}
 				</div>
 			</div>
-			<div className={style.orderHistory}>
+			<div className={globalModalStyle.modal_orderHistory}>
 				<Title className="title-2 text-secondary fw-bold pb-2 pt-1">
 					Order History :-
 				</Title>
