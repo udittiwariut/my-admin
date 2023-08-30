@@ -1,19 +1,35 @@
 import { db } from "./firebaseConfig";
-import { collection, query, getDocs } from "firebase/firestore";
+import {
+	collection,
+	query,
+	getDocs,
+	where,
+	WhereFilterOp,
+} from "firebase/firestore";
 
 export const COLLECTION = {
 	ORDER: "Orders",
-	ADMIN: "Admin",
+	ADMIN: "Admins",
 	PRODUCT: "Product",
 	USER: "User",
 	COMPLAINTS: "Complaints",
 };
 
-export const getFireStoreData = async (collectionName: string) => {
+export const getFireStoreData = async (
+	collectionName: string,
+	queryArray?: [string, WhereFilterOp, string]
+) => {
 	const data = [];
 	const collectionRef = collection(db, collectionName);
-	const q = query(collectionRef);
-	const querySnapShort = await getDocs(q);
+	let q;
+	if (!queryArray) {
+		q = query(collectionRef);
+	}
+	if (queryArray) {
+		q = query(collectionRef, where(...queryArray));
+	}
+
+	const querySnapShort = await getDocs(q!);
 
 	const array = querySnapShort.docs.map((docSnapShot) => docSnapShot.data());
 

@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import IconText from "../../molecule/iconText/IconText";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsNotificationOpen } from "@/app/globalRedux/notification/notification.slice";
+import { setIsAdminModalOpen } from "@/app/globalRedux/admin/admin.slice";
 import { ACTION } from "./Routes";
 import { RootState } from "@/app/globalRedux/store";
 
@@ -16,6 +17,9 @@ const helperFn = (routesArray: Route[]) => {
 	const dispatch = useDispatch();
 	const isNotificationBarOpen = useSelector(
 		(state: RootState) => state.notification.isNotificationOpen
+	);
+	const isAdminModalOpen = useSelector(
+		(state: RootState) => state.Admin.isAdminModalOpen
 	);
 
 	const [tootleSubRoutes, setToggleSUbRoutes] = useState({
@@ -27,6 +31,8 @@ const helperFn = (routesArray: Route[]) => {
 		if (route.action === undefined) return;
 		if (route.action === ACTION.NOTIFICATION)
 			dispatch(setIsNotificationOpen(!isNotificationBarOpen));
+		if (route.action === ACTION.PROFILE)
+			dispatch(setIsAdminModalOpen(!isAdminModalOpen));
 	};
 
 	const current_url = usePathname();

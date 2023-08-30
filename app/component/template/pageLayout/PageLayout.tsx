@@ -7,42 +7,14 @@ import NavBar from "../nav-bar/NavBar";
 import HorizontalDivider from "../../atom/horizontalDivider/HorizontalDivider";
 import NotificationBar from "../notificationBar/NotificationBar";
 import Preloader from "@/app/globalRedux/Preloader";
-import store from "@/app/globalRedux/store";
-import { setOrders } from "@/app/globalRedux/orders/order.slice";
-import { COLLECTION, getFireStoreData } from "@/app/utlis/firebase/fireStore";
-import { ORDER, ORDER_ITEM } from "@/app/Types/Order/Order";
+import getGlobalData from "@/app/utlis/hooks/getGlobalData";
+import AdminProfile from "../adminProfile/AdminProfile";
 
 const PageLayout = async ({ children }: { children: React.ReactNode }) => {
-	const orders: any = await getFireStoreData(COLLECTION.ORDER);
-	const shortedOrder = orders.map((order: ORDER) => {
-		const oderObj = {
-			order_id: order.order_id,
-			customer_name: order.customer_name,
-			customer_email: order.customer_email,
-			order_date: order.order_date,
-			order_total: order.order_total,
-			order_items: order.order_items.map((orderItem: ORDER_ITEM) => {
-				const objItem = {
-					product_id: orderItem.product_id,
-					product_name: orderItem.product_name,
-					quantity: orderItem.quantity,
-					unit_price: orderItem.unit_price,
-					subtotal: orderItem.subtotal,
-				};
-				return objItem;
-			}),
-		};
-		return oderObj;
-	});
-	shortedOrder.sort(
-		(a: any, b: any) => a.order_id.slice(-2) * 1 - b.order_id.slice(-2) * 1
-	);
-
-	store.dispatch(setOrders(shortedOrder));
-
+	const orders = await getGlobalData();
 	return (
 		<>
-			<Preloader order={shortedOrder} />
+			<Preloader order={orders} />
 			<Providers>
 				<div className={style.app}>
 					<div className={style.body}>
@@ -57,6 +29,7 @@ const PageLayout = async ({ children }: { children: React.ReactNode }) => {
 						</div>
 					</div>
 					<NotificationBar />
+					<AdminProfile />
 				</div>
 			</Providers>
 		</>

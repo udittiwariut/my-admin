@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { createPortal } from "react-dom";
 import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
-import style from "./style.module.scss";
+import style from "./Modal.module.scss";
 import Title from "../../atom/title/Title";
 import Button from "../../atom/button/Button";
 import Icon from "../../atom/icon/Icon";

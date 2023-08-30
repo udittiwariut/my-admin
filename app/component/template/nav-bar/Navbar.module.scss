@@ -14,7 +14,10 @@
 	font-weight: $fw-semibold;
 }
 
-.nav_icon {
+.nav_iconContainer {
 	text-align: end;
 	height: fit-content;
+}
+.nav_icon {
+	cursor: pointer;
 }
