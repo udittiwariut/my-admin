@@ -2,6 +2,8 @@
 	color: $purple;
 	vertical-align: top;
 	font-weight: $fw-semibold;
+	user-select: none;
+	cursor: pointer;
 }
 .horizontal_divider {
 	margin-left: -2rem;

@@ -5,7 +5,6 @@
 	--bs-btn-font-size: 1rem;
 	--bs-btn-font-weight: 400;
 	--bs-btn-line-height: 1.5;
-	--bs-btn-color: var(--bs-body-color);
 	--bs-btn-bg: transparent;
 	--bs-btn-border-width: var(--bs-border-width);
 	--bs-btn-border-color: transparent;
@@ -22,7 +21,6 @@
 	font-size: var(--bs-btn-font-size);
 	font-weight: var(--bs-btn-font-weight);
 	line-height: var(--bs-btn-line-height);
-	color: var(--bs-btn-color);
 	text-align: center;
 	text-decoration: none;
 	vertical-align: middle;
@@ -30,9 +28,6 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-	border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
 	border-radius: var(--bs-btn-border-radius);
-	background-color: var(--bs-btn-bg);
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	background-color: var(--bs-white);
 }

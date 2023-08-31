@@ -1,19 +1,21 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Table from "../component/template/table/Table";
 import style from "./page.module.scss";
 import Text from "../component/atom/text/Text";
 import DropDown from "../component/organisms/drop_down/DropDown";
 import IconText from "../component/molecule/iconText/IconText";
-import Product from "./../../data/Product.json";
 import PaginationBox from "../component/organisms/pagination_box/PaginationBox";
 import Modal from "../component/template/modal/Modal";
 import ProductModal from "../component/template/modal/product_modal/ProductModal";
 import { getFireStoreData, COLLECTION } from "../utlis/firebase/fireStore";
 import { PRODUCT } from "../Types/Product/Product";
 import LoaderHoc from "../component/template/loaderHoc/LoaderHoc";
+import { setProduct as setProductRedux } from "../globalRedux/product/product.slice";
+import Button from "../component/atom/button/Button";
 
-const array = [5, 10, 15, 20, 25];
+const optionArray = [5, 10, 15, 20, 25];
 
 const ProductPage = () => {
 	const [fetchProduct, setFetchProduct] = useState<PRODUCT[]>([]);
@@ -21,6 +23,9 @@ const ProductPage = () => {
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [product, setProduct] = useState<null | PRODUCT>(null);
+	const [activeDropDown, setActiveDropDown] = useState(false);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const totalPage = Math.ceil(fetchProduct.length / paginationValue);
@@ -65,12 +70,30 @@ const ProductPage = () => {
 			productArray.sort((a, b) => a.product_id - b.product_id);
 
 			setFetchProduct(productArray);
+			dispatch(setProductRedux(productArray));
 		};
 		fetchProduct();
 	}, []);
 
-	console.log(filteredProduct);
+	const ComponentProps = () => {
+		return (
+			<Button
+				onClick={() => setActiveDropDown(!activeDropDown)}
+				classNames={style.buttonStyleBaseDropDownP}
+			>
+				<IconText
+					className={style.dropDownBtn}
+					position="right"
+					iconName="DOWN_ARROW"
+				>
+					{paginationValue}
+				</IconText>
+			</Button>
+		);
+	};
 
+	const onOptClick = (e: any) =>
+		setPaginationValue(e.target.childNodes[0].data);
 	return (
 		<LoaderHoc arrayToCheck={fetchProduct}>
 			<>
@@ -78,19 +101,15 @@ const ProductPage = () => {
 					<div className={style.header}>
 						<Text className="text-secondary p-3">All Products</Text>
 						<DropDown
-							onOptClick={(e) =>
-								setPaginationValue(e.target.childNodes[0].data)
-							}
-							dropDownMenuItemStyle={style.dropDownMenuItem}
-							optionArray={array}
+							ActivatingComponent={ComponentProps}
+							activeDropDown={activeDropDown}
+							setActiveDropDown={setActiveDropDown}
 						>
-							<IconText
-								className={style.dropDownBtn}
-								position="right"
-								iconName="DOWN_ARROW"
-							>
-								{paginationValue}
-							</IconText>
+							{optionArray.map((ele) => (
+								<div onClick={onOptClick} className={style.dropDownMenuItem}>
+									{ele}
+								</div>
+							))}
 						</DropDown>
 					</div>
 					<Table

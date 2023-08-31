@@ -12,9 +12,11 @@ import { setIsNotificationOpen } from "@/app/globalRedux/notification/notificati
 import { setIsAdminModalOpen } from "@/app/globalRedux/admin/admin.slice";
 import { ACTION } from "./Routes";
 import { RootState } from "@/app/globalRedux/store";
+import { setNotificationBtnRef } from "@/app/globalRedux/notification/notification.slice";
 
 const helperFn = (routesArray: Route[]) => {
 	const dispatch = useDispatch();
+
 	const isNotificationBarOpen = useSelector(
 		(state: RootState) => state.notification.isNotificationOpen
 	);
@@ -29,8 +31,9 @@ const helperFn = (routesArray: Route[]) => {
 
 	const handleClick = (route: Route) => {
 		if (route.action === undefined) return;
-		if (route.action === ACTION.NOTIFICATION)
+		if (route.action === ACTION.NOTIFICATION) {
 			dispatch(setIsNotificationOpen(!isNotificationBarOpen));
+		}
 		if (route.action === ACTION.PROFILE)
 			dispatch(setIsAdminModalOpen(!isAdminModalOpen));
 	};
@@ -40,7 +43,13 @@ const helperFn = (routesArray: Route[]) => {
 	return routesArray.map((routes, i) => {
 		return (
 			<>
-				<div>
+				<div
+					id={
+						routes.action === ACTION.NOTIFICATION
+							? "notificationBtn"
+							: undefined
+					}
+				>
 					<Link href={routes.link || current_url}>
 						<div
 							className={`${styles.sideBar_link_box} ${
@@ -97,9 +106,11 @@ const helperFn = (routesArray: Route[]) => {
 const SideBar = () => {
 	return (
 		<div className={styles.base}>
-			<Title className={`title-2 ${styles.logo_container} text-center pb-2`}>
-				Admin Plus
-			</Title>
+			<Link href="/">
+				<Title className={`title-2 ${styles.logo_container} text-center pb-2`}>
+					Admin Plus
+				</Title>
+			</Link>
 			<div>{helperFn(ROUTES)}</div>
 			<div>
 				<div className={`${styles.sideBar_link_box}`}>

@@ -9,7 +9,7 @@ interface props {
 
 const Button = ({ classNames = undefined, children, onClick }: props) => {
 	return (
-		<button onClick={onClick} className={`${style.base} ${classNames}`}>
+		<button onClick={onClick} className={`${classNames} ${style.base} `}>
 			{children}
 		</button>
 	);

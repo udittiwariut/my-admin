@@ -2,7 +2,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import HorizontalDivider from "../../atom/horizontalDivider/HorizontalDivider";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsNotificationOpen } from "@/app/globalRedux/notification/notification.slice";
+import {
+	setIsNotificationOpen,
+	setComplaints as setComplaintsRedux,
+} from "@/app/globalRedux/notification/notification.slice";
 import Title from "../../atom/title/Title";
 import Icon from "../../atom/icon/Icon";
 import Text from "../../atom/text/Text";
@@ -15,23 +18,28 @@ import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
 const NotificationBar = () => {
 	const [selected, setSelected] = useState<null | number>(null);
 	const [complaints, setComplaints] = useState<any>([]);
+	const notificationBtnref = document.getElementById("notificationBtn");
+	const dispatch = useDispatch();
+	const barRef = useRef(null);
+
 	useEffect(() => {
 		const getComplaints = async () => {
 			const complaints: any = await getFireStoreData(COLLECTION.COMPLAINTS);
 			setComplaints(complaints);
+			dispatch(setComplaintsRedux(complaints));
 		};
 		getComplaints();
 	}, []);
-	const dispatch = useDispatch();
-	const barRef = useRef(null);
+
 	const isNotificationBarOpen = useSelector(
 		(state: RootState) => state.notification.isNotificationOpen
 	);
+
 	const clickHandler = (val: boolean) => {
 		dispatch(setIsNotificationOpen(val));
 	};
 
-	useOutSideToClose(barRef, clickHandler);
+	useOutSideToClose(barRef, clickHandler, notificationBtnref);
 
 	return (
 		<>
