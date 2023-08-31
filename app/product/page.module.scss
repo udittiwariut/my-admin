@@ -24,3 +24,11 @@
 		color: white;
 	}
 }
+.buttonStyleBaseDropDownP {
+	gap: 1rem;
+	border: 1px solid $grey;
+
+	&:hover {
+		border: 1px solid $grey;
+	}
+}

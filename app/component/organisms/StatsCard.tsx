@@ -25,8 +25,6 @@ const StatsCard = ({
 	iconFill,
 	value,
 }: props) => {
-	console.log(to, linkText);
-
 	return (
 		<div className={`${styles.base} p-3`}>
 			<FlexBox row align_item="stretch">

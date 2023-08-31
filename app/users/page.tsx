@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import TableUser from "../component/template/table/Table";
 import style from "./page.module.scss";
 import Text from "../component/atom/text/Text";
@@ -11,7 +12,10 @@ import UserModal from "../component/template/modal/user_modal/UserModal";
 import { getFireStoreData, COLLECTION } from "../utlis/firebase/fireStore";
 import LoaderHoc from "../component/template/loaderHoc/LoaderHoc";
 import USER from "../Types/User/User";
-const array = [5, 10, 15, 20, 25];
+import { setUser as setUserRedux } from "../globalRedux/user/user.slice";
+import Button from "../component/atom/button/Button";
+
+const optionArray = [5, 10, 15, 20, 25];
 
 const UserPage = () => {
 	const [fetchUser, setFetchUser] = useState<USER[]>([]);
@@ -19,6 +23,9 @@ const UserPage = () => {
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [user, setUser] = useState<USER | null>();
+	const [activeDropDown, setActiveDropDown] = useState(false);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -44,10 +51,14 @@ const UserPage = () => {
 			userArray.sort((a, b) => a.user_id - b.user_id);
 
 			setFetchUser(userArray);
+			dispatch(setUserRedux(userArray));
 		};
 
 		fetchUser();
 	}, []);
+
+	console.log();
+	
 
 	useEffect(() => {
 		const totalPage = Math.ceil(fetchUser.length / paginationValue);
@@ -70,6 +81,26 @@ const UserPage = () => {
 		[fetchUser.length, paginationValue, pages.currentPage]
 	);
 
+	const ComponentProps = () => {
+		return (
+			<Button
+				onClick={() => setActiveDropDown(!activeDropDown)}
+				classNames={style.buttonStyleBaseDropDownU}
+			>
+				<IconText
+					className={style.dropDownBtn}
+					position="right"
+					iconName="DOWN_ARROW"
+				>
+					{paginationValue}
+				</IconText>
+			</Button>
+		);
+	};
+
+	const onOptClick = (e: any) =>
+		setPaginationValue(e.target.childNodes[0].data);
+
 	return (
 		<LoaderHoc arrayToCheck={fetchUser}>
 			{fetchUser.length && (
@@ -78,19 +109,15 @@ const UserPage = () => {
 						<div className={style.header}>
 							<Text className="text-secondary p-3">All Users</Text>
 							<DropDown
-								onOptClick={(e) =>
-									setPaginationValue(e.target.childNodes[0].data)
-								}
-								dropDownMenuItemStyle={style.dropDownMenuItem}
-								optionArray={array}
+								ActivatingComponent={ComponentProps}
+								activeDropDown={activeDropDown}
+								setActiveDropDown={setActiveDropDown}
 							>
-								<IconText
-									className={style.dropDownBtn}
-									position="right"
-									iconName="DOWN_ARROW"
-								>
-									{paginationValue}
-								</IconText>
+								{optionArray.map((ele) => (
+									<div onClick={onOptClick} className={style.dropDownMenuItem}>
+										{ele}
+									</div>
+								))}
 							</DropDown>
 						</div>
 

@@ -9,9 +9,17 @@ import { setIsAdminModalOpen } from "@/app/globalRedux/admin/admin.slice";
 import styles from "./Navbar.module.scss";
 import { ACTION } from "./../side-bar/Routes";
 import { RootState } from "@/app/globalRedux/store";
+import DropDown from "../../organisms/drop_down/DropDown";
+import DropDownItem from "../../molecule/dropDownItem/DropDownItem";
+import useMatchSearchItem from "@/app/utlis/hooks/useMatchSearchItem";
+import { v4 as uuidv4 } from "uuid";
+import Input from "../../atom/input/Input";
 
 const NavBar = () => {
+	const [isFocus, setIsFocus] = useState(false);
+
 	const dispatch = useDispatch();
+
 	const isNotificationBarOpen = useSelector(
 		(state: RootState) => state.notification.isNotificationOpen
 	);
@@ -25,13 +33,23 @@ const NavBar = () => {
 		if (action === ACTION.PROFILE)
 			dispatch(setIsAdminModalOpen(!isAdminModalOpen));
 	};
+
+	// const ComponentProps = () => {
+	// 	return (
+	// 		<SearchBar
+	// 			key={uuidv4()}
+	// 			className="ml-2"
+	// 			isFocus={isFocus}
+	// 			setIsFocus={setIsFocus}
+	// 			value={searchTerm}
+	// 		/>
+	// 	);
+	// };
+
 	return (
 		<nav className={`p-2 pb-0.5 ${styles.base}`}>
 			<div className={`${styles.nav_searchBar}`}>
-				<SearchBar
-					className="ml-2"
-					onChange={(e) => console.log(e.target.value)}
-				/>
+				<SearchBar />
 			</div>
 			<div className={`${styles.nav_iconContainer}`}>
 				<NavIcon>

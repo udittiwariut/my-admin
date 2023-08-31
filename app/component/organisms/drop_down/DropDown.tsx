@@ -1,15 +1,21 @@
 "use client";
-import React, { MouseEvent, useRef, useEffect } from "react";
-import { useState } from "react";
-import Button from "../../atom/button/Button";
+import React, {
+	MouseEvent,
+	useRef,
+	useEffect,
+	Dispatch,
+	SetStateAction,
+} from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import style from "./DropDown.module.scss";
 import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
 
 interface props {
-	children: React.ReactNode;
-	optionArray: React.ReactNode[];
-	dropDownMenuItemStyle: string | undefined;
-	onOptClick: (e: any) => any;
+	ActivatingComponent: any;
+	activeDropDown: boolean;
+	setActiveDropDown: Dispatch<SetStateAction<boolean>>;
+	children: React.ReactNode[];
 }
 
 const dropDownStyleActive = {
@@ -24,34 +30,23 @@ const dropDownStyleUnActive = {
 
 const DropDown = ({
 	children,
-	optionArray,
-	dropDownMenuItemStyle = undefined,
-	onOptClick = () => {},
+	ActivatingComponent,
+	activeDropDown,
+	setActiveDropDown,
 }: props) => {
-	const [active, setActive] = useState(false);
-
 	const menuRef = useRef(null);
 	const buttonRef = useRef(null);
 
-	useOutSideToClose(menuRef, setActive);
+	useOutSideToClose(menuRef, setActiveDropDown);
 
 	return (
 		<div ref={menuRef} className={style.base}>
-			<Button
-				classNames={`${style.buttonStyleBase}`}
-				onClick={() => setActive(!active)}
-			>
-				{children}
-			</Button>
+			<ActivatingComponent key={uuidv4()} />
 			<div
 				className={style.dropDownMenu}
-				style={active ? dropDownStyleActive : dropDownStyleUnActive}
+				style={activeDropDown ? dropDownStyleActive : dropDownStyleUnActive}
 			>
-				{optionArray.map((ele) => (
-					<div onClick={onOptClick} className={dropDownMenuItemStyle}>
-						{ele}
-					</div>
-				))}
+				{children}
 			</div>
 		</div>
 	);

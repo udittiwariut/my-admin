@@ -12,6 +12,14 @@
 	gap: 0.5rem;
 	padding: 0.1rem;
 }
+.buttonStyleBaseDropDownU {
+	gap: 1rem;
+	border: 1px solid $grey;
+
+	&:hover {
+		border: 1px solid $grey;
+	}
+}
 .dropDownMenuItem {
 	text-align: center;
 	width: 100%;
@@ -23,6 +31,4 @@
 		background-color: $grey;
 		color: white;
 	}
-}
-.footer {
 }
