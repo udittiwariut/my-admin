@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Icon from "../../atom/icon/Icon";
 import SearchBar from "../../molecule/searchBar/SearchBar";
 import NavIcon from "../../organisms/nav_icon/NavIcon";
@@ -10,15 +11,34 @@ import styles from "./Navbar.module.scss";
 import { ACTION } from "./../side-bar/Routes";
 import { RootState } from "@/app/globalRedux/store";
 import DropDown from "../../organisms/drop_down/DropDown";
-import DropDownItem from "../../molecule/dropDownItem/DropDownItem";
 import useMatchSearchItem from "@/app/utlis/hooks/useMatchSearchItem";
-import { v4 as uuidv4 } from "uuid";
-import Input from "../../atom/input/Input";
+import DropDownList from "../../molecule/drop_down_list/DropDownList";
+import { RESULT } from "@/app/utlis/hooks/useMatchSearchItem";
+import ProductModal from "../modal/product_modal/ProductModal";
+import Modal from "../modal/Modal";
+import UserModal from "../modal/user_modal/UserModal";
+
+const modalType = {
+	ORDER: "orders",
+	USER: "users",
+	PRODUCT: "product",
+	COMPLAINTS: "complaints",
+};
 
 const NavBar = () => {
-	const [isFocus, setIsFocus] = useState(false);
+	const router = useRouter();
+	const user = useSelector((state: RootState) => state.user.user).slice(0, 3);
+	const orders = useSelector((state: RootState) => state.orders.orders).slice(
+		0,
+		3
+	);
+	const product = useSelector(
+		(state: RootState) => state.product.product
+	).slice(0, 3);
 
-	const dispatch = useDispatch();
+	const complaints = useSelector(
+		(state: RootState) => state.notification.notification
+	).slice(0, 3);
 
 	const isNotificationBarOpen = useSelector(
 		(state: RootState) => state.notification.isNotificationOpen
@@ -27,6 +47,39 @@ const NavBar = () => {
 		(state: RootState) => state.Admin.isAdminModalOpen
 	);
 
+	const [searchTerm, setSearchTerm] = useState("");
+	const [activeDropDown, setActiveDropDown] = useState(false);
+	const [resultFromSearch, setResultFromSearch] = useState<RESULT>({
+		users: user,
+		orders: orders,
+		product: product,
+		complaints: complaints,
+	});
+	const [selectedItem, setSelectedItem] = useState<any>({
+		type: "",
+		item: {},
+	});
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const dispatch = useDispatch();
+
+	const result = useMatchSearchItem(searchTerm);
+
+	useEffect(() => {
+		if (searchTerm) setResultFromSearch(result);
+		if (!searchTerm)
+			setResultFromSearch({
+				users: user,
+				orders: orders,
+				product: product,
+				complaints: complaints,
+			});
+	}, [result, user.length, orders.length, product.length, complaints.length]);
+
+	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchTerm(e.target.value);
+	};
+
 	const clickHandler = (action: string) => {
 		if (action === ACTION.NOTIFICATION)
 			dispatch(setIsNotificationOpen(!isNotificationBarOpen));
@@ -34,58 +87,90 @@ const NavBar = () => {
 			dispatch(setIsAdminModalOpen(!isAdminModalOpen));
 	};
 
-	// const ComponentProps = () => {
-	// 	return (
-	// 		<SearchBar
-	// 			key={uuidv4()}
-	// 			className="ml-2"
-	// 			isFocus={isFocus}
-	// 			setIsFocus={setIsFocus}
-	// 			value={searchTerm}
-	// 		/>
-	// 	);
-	// };
+	const handleDropDownListClick = (selectedItem: any, title: string) => {
+		if (title === modalType.ORDER) {
+			router.push(`/orders?orderId=${selectedItem.order_id}`);
+			return;
+		}
+		setSelectedItem({ type: title, item: selectedItem });
+		setIsModalOpen(true);
+	};
+
+	const searchBarRef = document.getElementById("searchBar");
 
 	return (
-		<nav className={`p-2 pb-0.5 ${styles.base}`}>
-			<div className={`${styles.nav_searchBar}`}>
-				<SearchBar />
-			</div>
-			<div className={`${styles.nav_iconContainer}`}>
-				<NavIcon>
-					<Icon
-						className={styles.nav_icon}
-						IconName="MOON"
-						width="1.5rem"
-						height="100%"
-						fill={"#aeadad"}
+		<>
+			<nav className={`p-2 pb-0.5 ${styles.base}`}>
+				<div id="searchBar" className={`${styles.nav_searchBar}`}>
+					<SearchBar
+						onFocus={() => setActiveDropDown(true)}
+						searchTerm={searchTerm}
+						handleOnChange={handleOnChange}
 					/>
-					<Icon
-						IconName="BELL"
-						width="1.5rem"
-						height="100&"
-						fill={"#aeadad"}
-						onClick={() => clickHandler(ACTION.NOTIFICATION)}
-						className={styles.nav_icon}
-					/>
-					<Icon
-						IconName="USER"
-						width="1.5rem"
-						height="100%"
-						fill={"#aeadad"}
-						className={styles.nav_icon}
-						onClick={() => clickHandler(ACTION.PROFILE)}
-					/>
-					<Icon
-						IconName="SETTING"
-						width="1.5rem"
-						height="100%"
-						fill={"#aeadad"}
-						className={styles.nav_icon}
-					/>
-				</NavIcon>
-			</div>
-		</nav>
+					<DropDown
+						setActiveDropDown={setActiveDropDown}
+						activeDropDown={activeDropDown}
+						secondaryRef={searchBarRef}
+					>
+						{Object.keys(resultFromSearch).map((val) => {
+							return resultFromSearch[val].length ? (
+								<DropDownList
+									array={resultFromSearch[val]}
+									title={val}
+									onClick={(selectedItem: any, title: string) => {
+										handleDropDownListClick(selectedItem, title);
+									}}
+								/>
+							) : null;
+						})}
+					</DropDown>
+				</div>
+				<div className={`${styles.nav_iconContainer}`}>
+					<NavIcon>
+						<Icon
+							className={styles.nav_icon}
+							IconName="MOON"
+							width="1.5rem"
+							height="100%"
+							fill={"#aeadad"}
+						/>
+						<Icon
+							IconName="BELL"
+							width="1.5rem"
+							height="100&"
+							fill={"#aeadad"}
+							onClick={() => clickHandler(ACTION.NOTIFICATION)}
+							className={styles.nav_icon}
+						/>
+						<Icon
+							IconName="USER"
+							width="1.5rem"
+							height="100%"
+							fill={"#aeadad"}
+							className={styles.nav_icon}
+							onClick={() => clickHandler(ACTION.PROFILE)}
+						/>
+						<Icon
+							IconName="SETTING"
+							width="1.5rem"
+							height="100%"
+							fill={"#aeadad"}
+							className={styles.nav_icon}
+						/>
+					</NavIcon>
+				</div>
+			</nav>
+			{isModalOpen && selectedItem.type === modalType.PRODUCT && (
+				<Modal closeModal={setIsModalOpen} title="Product Detail">
+					<ProductModal product={selectedItem.item} />
+				</Modal>
+			)}
+			{isModalOpen && selectedItem.type === modalType.USER && (
+				<Modal closeModal={setIsModalOpen} title="User Detail">
+					<UserModal user={selectedItem.item} />
+				</Modal>
+			)}
+		</>
 	);
 };
 
