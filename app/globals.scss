@@ -34,6 +34,10 @@ $theme-colors: map-merge($theme-colors, $custom-theme-color);
 	border-radius: 10px;
 	border: 3px solid #ffffff;
 }
+
+a {
+	text-decoration: none;
+}
 button {
 	border: 0;
 }

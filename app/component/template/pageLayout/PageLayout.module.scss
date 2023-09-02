@@ -10,23 +10,36 @@ $nav-height: 7vh;
 	display: grid;
 	grid-template-columns: 1fr 6fr;
 }
-
+.title {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	border-bottom: 1px solid $grey;
+	border-right: 1px solid $grey;
+}
+.logo_link {
+	text-decoration: none !important;
+}
+.logo_container {
+	color: $purple;
+	vertical-align: top;
+	font-weight: $fw-semibold;
+	user-select: none;
+	cursor: pointer;
+}
 .layout_left {
 	padding-top: 1rem;
 	display: grid;
 	grid-template-columns: 1fr 0fr;
 	height: 100%;
 }
-.vertical_divider {
-	margin-top: -1rem;
-	margin-bottom: -1rem;
+.sideBar {
+	border-right: 1px solid $grey;
 }
-.horizontal_divider {
-	margin-left: -100%;
+.navBar {
+	border-bottom: 1px solid $grey;
 }
-.layout_right {
-	flex: 4;
-}
+
 .children {
 	height: calc(100vh - $nav-height);
 	overflow-y: scroll;

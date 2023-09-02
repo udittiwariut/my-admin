@@ -9,6 +9,8 @@ import NotificationBar from "../notificationBar/NotificationBar";
 import Preloader from "@/app/globalRedux/Preloader";
 import getGlobalData from "@/app/utlis/hooks/getGlobalData";
 import AdminProfile from "../adminProfile/AdminProfile";
+import Link from "next/link";
+import Title from "../../atom/title/Title";
 
 const PageLayout = async ({ children }: { children: React.ReactNode }) => {
 	const orders = await getGlobalData();
@@ -18,15 +20,22 @@ const PageLayout = async ({ children }: { children: React.ReactNode }) => {
 			<Providers>
 				<div className={style.app}>
 					<div className={style.body}>
-						<div className={style.layout_left}>
-							<SideBar />
-							<VerticalDivider className={style.vertical_divider} />
+						<div className={` ${style.title}`}>
+							<Link href="/" className={`pt-2 ${style.logo_link}`}>
+								<Title
+									className={`title-2 ${style.logo_container} text-center pb-2`}
+								>
+									Admin Plus
+								</Title>
+							</Link>
 						</div>
-						<div className={style.layout_right}>
+						<div className={style.navBar}>
 							<NavBar />
-							<HorizontalDivider className={style.horizontal_divider} />
-							<div className={style.children}>{children}</div>
 						</div>
+						<div className={style.sideBar}>
+							<SideBar />
+						</div>
+						<div className={style.children}>{children}</div>
 					</div>
 					<NotificationBar />
 					<AdminProfile />

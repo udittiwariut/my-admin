@@ -1,5 +1,7 @@
 import StatsCard from "../../organisms/StatsCard";
 import FlexBox from "../../molecule/flexBox/FlexBox";
+import style from "./Stats.style.module.scss";
+
 const data = [
 	{
 		title: "USERS",
@@ -49,7 +51,7 @@ const data = [
 
 const Stats = () => {
 	return (
-		<FlexBox row justify_content="around">
+		<FlexBox row justify_content="around" className={style.base}>
 			{data.map((cardDetail) => {
 				return (
 					<StatsCard

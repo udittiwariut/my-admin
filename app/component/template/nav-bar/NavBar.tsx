@@ -92,6 +92,9 @@ const NavBar = () => {
 			router.push(`/orders?orderId=${selectedItem.order_id}`);
 			return;
 		}
+		if (title === modalType.COMPLAINTS) {
+			dispatch(setIsNotificationOpen(true));
+		}
 		setSelectedItem({ type: title, item: selectedItem });
 		setIsModalOpen(true);
 	};
