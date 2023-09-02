@@ -1,14 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./orders.module.scss";
 import OrderCard from "./OrderCard";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import type { RootState } from "../globalRedux/store";
-import PageLayout from "../component/template/pageLayout/PageLayout";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "next/navigation";
 
 const Orders = () => {
 	const [showDetail, setShowDetail] = useState<null | number>(null);
 	const orders = useSelector((state: RootState) => state.orders.orders);
+
+	const url = useSearchParams();
+
+	const orderId = url.get("orderId");
+
+	useEffect(() => {
+		const scrollToDiv = document.getElementById(orderId);
+		scrollToDiv && scrollToDiv.scrollIntoView({ behavior: "smooth" });
+	}, [orderId]);
+
+	console.log(orderId);
 
 	return (
 		<div className={style.base}>

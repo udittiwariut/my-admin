@@ -40,6 +40,7 @@ const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 
 	return (
 		<div
+			id={order.order_id}
 			className={style.gridItem}
 			style={showDetail === index ? fn() : undefined}
 		>

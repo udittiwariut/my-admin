@@ -75,42 +75,43 @@ const ProductPage = () => {
 		fetchProduct();
 	}, []);
 
-	const ComponentProps = () => {
-		return (
-			<Button
-				onClick={() => setActiveDropDown(!activeDropDown)}
-				classNames={style.buttonStyleBaseDropDownP}
-			>
-				<IconText
-					className={style.dropDownBtn}
-					position="right"
-					iconName="DOWN_ARROW"
-				>
-					{paginationValue}
-				</IconText>
-			</Button>
-		);
-	};
-
 	const onOptClick = (e: any) =>
 		setPaginationValue(e.target.childNodes[0].data);
+
+	const dropDownBtnRef = document.getElementById("dropDownBtnProduct");
 	return (
 		<LoaderHoc arrayToCheck={fetchProduct}>
 			<>
 				<div className={style.base}>
 					<div className={style.header}>
 						<Text className="text-secondary p-3">All Products</Text>
-						<DropDown
-							ActivatingComponent={ComponentProps}
-							activeDropDown={activeDropDown}
-							setActiveDropDown={setActiveDropDown}
-						>
-							{optionArray.map((ele) => (
-								<div onClick={onOptClick} className={style.dropDownMenuItem}>
-									{ele}
-								</div>
-							))}
-						</DropDown>
+						<div>
+							<div id="dropDownBtnProduct">
+								<Button
+									onClick={() => setActiveDropDown(!activeDropDown)}
+									classNames={style.buttonStyleBaseDropDownP}
+								>
+									<IconText
+										className={style.dropDownBtn}
+										position="right"
+										iconName="DOWN_ARROW"
+									>
+										{paginationValue}
+									</IconText>
+								</Button>
+							</div>
+							<DropDown
+								activeDropDown={activeDropDown}
+								setActiveDropDown={setActiveDropDown}
+								secondaryRef={dropDownBtnRef}
+							>
+								{optionArray.map((ele) => (
+									<div onClick={onOptClick} className={style.dropDownMenuItem}>
+										{ele}
+									</div>
+								))}
+							</DropDown>
+						</div>
 					</div>
 					<Table
 						tableContent={filteredProduct}

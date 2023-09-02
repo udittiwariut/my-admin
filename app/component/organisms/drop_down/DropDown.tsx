@@ -12,13 +12,14 @@ import style from "./DropDown.module.scss";
 import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
 
 interface props {
-	ActivatingComponent: any;
 	activeDropDown: boolean;
 	setActiveDropDown: Dispatch<SetStateAction<boolean>>;
 	children: React.ReactNode[];
+	secondaryRef: HTMLElement | null;
 }
 
 const dropDownStyleActive = {
+	overflowY: "scroll",
 	maxHeight: "20rem",
 	borderRight: "1px solid #aeadad",
 	borderBottom: "1px solid #aeadad",
@@ -30,18 +31,17 @@ const dropDownStyleUnActive = {
 
 const DropDown = ({
 	children,
-	ActivatingComponent,
 	activeDropDown,
 	setActiveDropDown,
+	secondaryRef = null,
 }: props) => {
 	const menuRef = useRef(null);
 	const buttonRef = useRef(null);
 
-	useOutSideToClose(menuRef, setActiveDropDown);
+	useOutSideToClose(menuRef, setActiveDropDown, secondaryRef);
 
 	return (
 		<div ref={menuRef} className={style.base}>
-			<ActivatingComponent key={uuidv4()} />
 			<div
 				className={style.dropDownMenu}
 				style={activeDropDown ? dropDownStyleActive : dropDownStyleUnActive}

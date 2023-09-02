@@ -1,7 +1,6 @@
 .base {
 	display: flex;
-	min-width: 10rem;
-	max-width: 15rem;
+	width: 100%;
 	border: 1px solid $grey;
 	border-radius: 5px;
 }

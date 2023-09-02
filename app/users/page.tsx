@@ -58,7 +58,6 @@ const UserPage = () => {
 	}, []);
 
 	console.log();
-	
 
 	useEffect(() => {
 		const totalPage = Math.ceil(fetchUser.length / paginationValue);
@@ -81,25 +80,10 @@ const UserPage = () => {
 		[fetchUser.length, paginationValue, pages.currentPage]
 	);
 
-	const ComponentProps = () => {
-		return (
-			<Button
-				onClick={() => setActiveDropDown(!activeDropDown)}
-				classNames={style.buttonStyleBaseDropDownU}
-			>
-				<IconText
-					className={style.dropDownBtn}
-					position="right"
-					iconName="DOWN_ARROW"
-				>
-					{paginationValue}
-				</IconText>
-			</Button>
-		);
-	};
-
 	const onOptClick = (e: any) =>
 		setPaginationValue(e.target.childNodes[0].data);
+
+	const dropDownBtnRef = document.getElementById("dropDownBtnUser");
 
 	return (
 		<LoaderHoc arrayToCheck={fetchUser}>
@@ -108,17 +92,36 @@ const UserPage = () => {
 					<div className={style.tableBase}>
 						<div className={style.header}>
 							<Text className="text-secondary p-3">All Users</Text>
-							<DropDown
-								ActivatingComponent={ComponentProps}
-								activeDropDown={activeDropDown}
-								setActiveDropDown={setActiveDropDown}
-							>
-								{optionArray.map((ele) => (
-									<div onClick={onOptClick} className={style.dropDownMenuItem}>
-										{ele}
-									</div>
-								))}
-							</DropDown>
+							<div>
+								<div id="dropDownBtnUser">
+									<Button
+										onClick={() => setActiveDropDown(!activeDropDown)}
+										classNames={style.buttonStyleBaseDropDownU}
+									>
+										<IconText
+											className={style.dropDownBtn}
+											position="right"
+											iconName="DOWN_ARROW"
+										>
+											{paginationValue}
+										</IconText>
+									</Button>
+								</div>
+								<DropDown
+									activeDropDown={activeDropDown}
+									setActiveDropDown={setActiveDropDown}
+									secondaryRef={dropDownBtnRef}
+								>
+									{optionArray.map((ele) => (
+										<div
+											onClick={onOptClick}
+											className={style.dropDownMenuItem}
+										>
+											{ele}
+										</div>
+									))}
+								</DropDown>
+							</div>
 						</div>
 
 						<TableUser

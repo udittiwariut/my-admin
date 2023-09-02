@@ -9,7 +9,7 @@ import { COMPLAINT } from "@/app/Types/Notification/Notification";
 const delay = 500;
 let timeOut: string | number | NodeJS.Timeout | undefined;
 
-interface RESULT {
+export interface RESULT {
 	users: USER[] | [];
 	product: PRODUCT[] | [];
 	orders: ORDER[] | [];

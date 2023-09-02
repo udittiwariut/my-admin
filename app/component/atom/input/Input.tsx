@@ -10,6 +10,8 @@ interface props {
 	placeHolder: string;
 	val: string;
 	handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onFocus?: () => void;
+	onBlur?: () => void;
 }
 
 const Input = ({
@@ -18,6 +20,8 @@ const Input = ({
 	placeHolder,
 	val,
 	handleChange,
+	onFocus,
+	onBlur,
 }: props) => {
 	return (
 		<input
@@ -26,6 +30,8 @@ const Input = ({
 			onChange={handleChange}
 			value={val}
 			className={`${styles.base} ${classStringToArray(className, styles)}`}
+			onFocus={onFocus}
+			onBlur={onBlur}
 		></input>
 	);
 };
