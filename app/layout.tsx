@@ -1,21 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { UserProvider, useUser } from "@auth0/nextjs-auth0/client";
-import SideBar from "./component/template/side-bar/SideBar";
-import VerticalDivider from "./component/atom/verticalDivider/VerticalDivider";
-import NavBar from "./component/template/nav-bar/NavBar";
-import HorizontalDivider from "./component/atom/horizontalDivider/HorizontalDivider";
-import Providers from "./globalRedux/provider";
-import NotificationBar from "./component/template/notificationBar/NotificationBar";
-import style from "./layout.module.scss";
-import "./globals.scss";
-import { COLLECTION, getFireStoreData } from "./utlis/firebase/fireStore";
-import store from "./globalRedux/store";
-import { setOrders } from "./globalRedux/orders/order.slice";
-import Preloader from "./globalRedux/Preloader";
-import { ORDER, ORDER_ITEM } from "./Types/Order/Order";
 import PageLayout from "./component/template/pageLayout/PageLayout";
 import Auth_Zero from "./utlis/auth0/Auth_Zero";
+import "./globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 

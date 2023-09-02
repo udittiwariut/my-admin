@@ -106,11 +106,6 @@ const helperFn = (routesArray: Route[]) => {
 const SideBar = () => {
 	return (
 		<div className={styles.base}>
-			<Link href="/">
-				<Title className={`title-2 ${styles.logo_container} text-center pb-2`}>
-					Admin Plus
-				</Title>
-			</Link>
 			<div>{helperFn(ROUTES)}</div>
 			<div>
 				<div className={`${styles.sideBar_link_box}`}>

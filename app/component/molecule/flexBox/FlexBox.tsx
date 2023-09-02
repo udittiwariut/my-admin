@@ -19,12 +19,12 @@ const FlexBox = ({
 }: props) => {
 	return (
 		<div
-			className={`d-flex justify-content-${justify_content} align-items-${align_item} ${classNames(
-				{
-					"flex-column": colum,
-					"flex-row": row,
-				}
-			)} ${classStringToArray(className, styles)}`}
+			className={`d-flex justify-content-${justify_content} align-items-${align_item} ${
+				styles.base
+			} ${classNames({
+				"flex-column": colum,
+				"flex-row": row,
+			})} ${className}`}
 		>
 			{children}
 		</div>
