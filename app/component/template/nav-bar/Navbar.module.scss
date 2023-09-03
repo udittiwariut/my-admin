@@ -23,3 +23,11 @@
 .nav_icon {
 	cursor: pointer;
 }
+.light {
+	@include theme($black, $white);
+	border-bottom: 1px solid $grey;
+}
+.dark {
+	@include theme($white, $dark7);
+	border-bottom: 1px solid $dark4;
+}

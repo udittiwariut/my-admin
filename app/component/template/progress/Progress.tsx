@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Title from "../../atom/title/Title";
 import Progress from "../../atom/progress/Progress";
@@ -5,6 +6,10 @@ import Text from "../../atom/text/Text";
 
 import styles from "./progress.module.scss";
 import IconText from "../../molecule/iconText/IconText";
+import { RootState } from "@/app/globalRedux/store";
+import classHelperFn from "@/app/utlis/functions/themeClass";
+import { useSelector } from "react-redux";
+import style from "styled-jsx/style";
 
 const data = [
 	{ title: "Total Revenue", value: "$12.4k", isIncreased: false },
@@ -13,8 +18,10 @@ const data = [
 ];
 
 const ProgressCard = () => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	return (
-		<div className={styles.base}>
+		<div className={classHelperFn(styles.base, theme, styles)}>
 			<Title className="title-2 text-secondary fw-bold pb-2 pt-1">
 				Total Revenue
 			</Title>

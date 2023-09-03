@@ -1,6 +1,10 @@
 import React from "react";
 import style from "./Table.module.scss";
 import Text from "../../atom/text/Text";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/globalRedux/store";
+import classHelperFn from "@/app/utlis/functions/themeClass";
+import HorizontalDivider from "../../atom/horizontalDivider/HorizontalDivider";
 
 const rows = [
 	{
@@ -60,9 +64,11 @@ const status = {
 	PENDING: "Pending",
 };
 const Table = () => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	return (
-		<div className={style.base}>
-			<table className="table">
+		<div>
+			<table className={classHelperFn(style.base, theme, style)}>
 				<thead>
 					<tr>
 						{Object.keys(rows[0]).map((th) =>
@@ -73,36 +79,38 @@ const Table = () => {
 				<tbody>
 					{rows.map((ele) => {
 						return (
-							<tr>
-								{Object.keys(ele).map((key) =>
-									key != "img" ? (
-										key != "product" ? (
-											<td
-												className={`p-3 ${
-													key === "status" && ele.status === status.APPROVED
-														? "text-success"
-														: null
-												} ${
-													key === "status" && ele.status === status.PENDING
-														? "text-warning"
-														: null
-												}`}
-											>
-												{ele[key as keyof typeof ele]}
-											</td>
-										) : (
-											<td className="p-3">
-												<img
-													src={ele.img}
-													alt="img"
-													className={style.product_img}
-												/>
-												{ele[key]}
-											</td>
-										)
-									) : null
-								)}
-							</tr>
+							<>
+								<tr>
+									{Object.keys(ele).map((key) =>
+										key != "img" ? (
+											key != "product" ? (
+												<td
+													className={`p-3 ${
+														key === "status" && ele.status === status.APPROVED
+															? "text-success"
+															: null
+													} ${
+														key === "status" && ele.status === status.PENDING
+															? "text-warning"
+															: null
+													}`}
+												>
+													{ele[key as keyof typeof ele]}
+												</td>
+											) : (
+												<td className="p-3">
+													<img
+														src={ele.img}
+														alt="img"
+														className={style.product_img}
+													/>
+													{ele[key]}
+												</td>
+											)
+										) : null
+									)}
+								</tr>
+							</>
 						);
 					})}
 				</tbody>

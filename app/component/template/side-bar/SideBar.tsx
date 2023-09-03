@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import styles from "./SideBar.module.scss";
 import ROUTES, { Route } from "./Routes";
-import Title from "../../atom/title/Title";
 import Icon from "../../atom/icon/Icon";
 import Link from "../../atom/link/Link";
 import { usePathname } from "next/navigation";
@@ -12,10 +11,12 @@ import { setIsNotificationOpen } from "@/app/globalRedux/notification/notificati
 import { setIsAdminModalOpen } from "@/app/globalRedux/admin/admin.slice";
 import { ACTION } from "./Routes";
 import { RootState } from "@/app/globalRedux/store";
-import { setNotificationBtnRef } from "@/app/globalRedux/notification/notification.slice";
+import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
 
 const helperFn = (routesArray: Route[]) => {
 	const dispatch = useDispatch();
+
+	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	const isNotificationBarOpen = useSelector(
 		(state: RootState) => state.notification.isNotificationOpen
@@ -66,6 +67,7 @@ const helperFn = (routesArray: Route[]) => {
 							}}
 						>
 							<IconText
+								iconFill={theme === themes.Dark ? "#aeadad" : "black"}
 								iconName={routes.iconName}
 								className={styles.sideBar_link}
 							>
@@ -104,13 +106,18 @@ const helperFn = (routesArray: Route[]) => {
 };
 
 const SideBar = () => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
 	return (
-		<div className={styles.base}>
+		<div className={classHelperFn(styles.base, theme, styles)}>
 			<div>{helperFn(ROUTES)}</div>
 			<div>
 				<div className={`${styles.sideBar_link_box}`}>
 					<a className={styles.logout} href="/api/auth/logout">
-						<IconText iconName="LOGOUT" className={styles.sideBar_link}>
+						<IconText
+							iconFill={theme === themes.Dark ? "#aeadad" : "black"}
+							iconName="LOGOUT"
+							className={styles.sideBar_link}
+						>
 							Logout
 						</IconText>
 					</a>

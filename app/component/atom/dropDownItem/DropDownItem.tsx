@@ -3,6 +3,9 @@ import style from "./DropDownItem.module.scss";
 import capitalizeFirst from "@/app/utlis/functions/capatalizeFirst";
 import USER from "@/app/Types/User/User";
 import Title from "../title/Title";
+import { RootState } from "@/app/globalRedux/store";
+import classHelperFn from "@/app/utlis/functions/themeClass";
+import { useSelector } from "react-redux";
 
 const propertyToShow = 3;
 

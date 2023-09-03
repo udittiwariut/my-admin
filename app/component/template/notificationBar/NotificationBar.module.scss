@@ -8,7 +8,6 @@
 	height: 100%;
 	z-index: 10;
 	background-color: white;
-	border-left: 1px solid $grey;
 }
 .active {
 	width: 400px;
@@ -28,4 +27,20 @@
 .notificationBox {
 	padding: 1rem;
 	cursor: pointer;
+}
+
+.light {
+	@include theme($black, $white);
+	border-left: 1px solid $grey;
+}
+.dark {
+	@include theme($dark-grey, $dark8);
+	border-left: 1px solid $dark5;
+	.horizontal_divider {
+		border-bottom: 1px solid $dark5;
+	}
+
+	.btn {
+		background-color: $dark8;
+	}
 }

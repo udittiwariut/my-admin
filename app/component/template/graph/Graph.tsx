@@ -1,5 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import GraphTitle from "../../atom/title/Title";
+import { useSelector } from "react-redux";
+import style from "./Graph.module.scss";
+import { themes } from "@/app/utlis/functions/themeClass";
+
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -11,9 +16,10 @@ import {
 	Filler,
 	Legend,
 	ScriptableContext,
-	TooltipItem,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { RootState } from "@/app/globalRedux/store";
+import classHelperFn from "@/app/utlis/functions/themeClass";
 
 const mockData = [
 	{ name: "January", Total: 1200 },
@@ -35,6 +41,11 @@ ChartJS.register(
 	Legend
 );
 
+const coloObj = {
+	light: { top: "#b3b0e7", bottom: "#fff" },
+	dark: { top: "#2e2a82", bottom: "#5651a4" },
+};
+
 const options = {
 	responsive: true,
 	plugins: {
@@ -49,35 +60,58 @@ const options = {
 	},
 };
 
-const data = {
-	labels: mockData.map((ele) => ele.name),
-	datasets: [
-		{
-			fill: true,
-			label: "Dataset 2",
-			data: mockData.map((ele) => ele.Total),
-			borderColor: "#b3b0e7",
-			backgroundColor: (context: ScriptableContext<"line">) => {
-				const area = context.chart.chartArea;
-				if (area) {
-					const ctx = context.chart.ctx;
-					const gradient = ctx.createLinearGradient(
-						0,
-						area.top,
-						0,
-						area.bottom
-					);
-					gradient.addColorStop(0, "#b3b0e7");
-					gradient.addColorStop(1, "#fff");
-					return gradient;
-				}
-			},
-		},
-	],
-};
-
 const Graph = () => {
-	return <Line options={options} data={data}></Line>;
+	const [data, setData] = useState<any>();
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
+	useEffect(() => {
+		const data = {
+			labels: mockData.map((ele) => ele.name),
+			datasets: [
+				{
+					fill: true,
+					label: "Dataset 2",
+					data: mockData.map((ele) => ele.Total),
+					borderColor:
+						theme === themes.Dark ? coloObj.dark.top : coloObj.light.top,
+					backgroundColor: (context: ScriptableContext<"line">) => {
+						const area = context.chart.chartArea;
+						if (area) {
+							const ctx = context.chart.ctx;
+							const gradient = ctx.createLinearGradient(
+								0,
+								area.top,
+								0,
+								area.bottom
+							);
+							gradient.addColorStop(
+								0,
+								theme === themes.Dark ? coloObj.dark.top : coloObj.light.top
+							);
+							gradient.addColorStop(
+								1,
+								theme === themes.Dark
+									? coloObj.dark.bottom
+									: coloObj.light.bottom
+							);
+							return gradient;
+						}
+					},
+				},
+			],
+		};
+		setData(data);
+	}, [theme]);
+
+	return (
+		<div className={classHelperFn(style.base, theme, style)}>
+			<GraphTitle className={`title-2 pb-1 pt-1 text-secondary px-5`}>
+				Sale in last six month
+			</GraphTitle>
+
+			{data && <Line options={options} data={data}></Line>}
+		</div>
+	);
 };
 
 export default Graph;

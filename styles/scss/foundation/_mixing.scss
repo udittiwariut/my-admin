@@ -1,59 +1,6 @@
 @import "./variable";
-@mixin mobile {
-	@media (min-width: map-get($breakpoints, "xxm")) and (max-width: map-get($breakpoints ,"xm")) {
-		@content;
-	}
-}
-@mixin tablet {
-	@media (min-width: map-get($breakpoints, "xm")) and (max-width: map-get($breakpoints ,"md")) {
-		@content;
-	}
-}
-@mixin laptop {
-	@media (min-width: map-get($breakpoints, "md")) and (max-width: map-get($breakpoints,"lg")) {
-		@content;
-	}
-}
-@mixin desktop {
-	@media (min-width: map-get($breakpoints, "lg")) and (max-width: map-get($breakpoints ,"xl")) {
-		@content;
-	}
-}
 
-@mixin padding($space) {
-	padding: map-get($spacing, $space);
-}
-@mixin padding-top($space) {
-	padding-top: map-get($spacing, $space);
-}
-@mixin padding-bottom($space) {
-	padding-bottom: map-get($spacing, $space);
-}
-@mixin padding-left($space) {
-	padding-left: map-get($spacing, $space);
-}
-@mixin padding-right($space) {
-	padding-right: map-get($spacing, $space);
-}
-
-@mixin margin($space) {
-	margin: map-get($spacing, $space);
-}
-@mixin margin-top($space) {
-	margin-top: map-get($spacing, $space);
-}
-@mixin margin-bottom($space) {
-	margin-bottom: map-get($spacing, $space);
-}
-@mixin margin-left($space) {
-	margin-left: map-get($spacing, $space);
-}
-@mixin margin-right($space) {
-	margin-right: map-get($spacing, $space);
-}
-
-@mixin flexH {
-	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
+@mixin theme($color, $bg) {
+	color: $color;
+	background-color: $bg;
 }

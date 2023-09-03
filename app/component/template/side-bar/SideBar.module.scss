@@ -1,3 +1,6 @@
+.base {
+	height: 100%;
+}
 .horizontal_divider {
 	margin-left: -2rem;
 }
@@ -32,4 +35,19 @@
 .logout {
 	color: inherit;
 	text-decoration: inherit;
+}
+
+.light {
+	@include theme($black, $white);
+	border-right: 1px solid $grey;
+}
+.dark {
+	@include theme($white, $dark8);
+	border-right: 1px solid $dark5;
+	color: $grey;
+	.sideBar_link_box {
+		&:hover {
+			background-color: rgba($dark2, $alpha: 0.1);
+		}
+	}
 }

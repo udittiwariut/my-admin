@@ -1,0 +1,28 @@
+.base {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+
+	height: 100%;
+	width: 100%;
+}
+.logo_link {
+	text-decoration: none !important;
+}
+.logo_container {
+	color: $purple !important;
+	vertical-align: top;
+	font-weight: $fw-semibold;
+	user-select: none;
+	cursor: pointer;
+}
+.light {
+	@include theme($black, $white);
+	border-bottom: 1px solid $grey;
+	border-right: 1px solid $grey;
+}
+.dark {
+	@include theme($white, $dark8);
+	border-bottom: 1px solid $dark5;
+	border-right: 1px solid $dark5;
+}

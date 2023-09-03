@@ -13,6 +13,9 @@ import Title from "../../atom/title/Title";
 import Button from "../../atom/button/Button";
 import Icon from "../../atom/icon/Icon";
 import HorizontalDivider from "../../atom/horizontalDivider/HorizontalDivider";
+import { RootState } from "@/app/globalRedux/store";
+import { useSelector } from "react-redux";
+import classHelperFn from "@/app/utlis/functions/themeClass";
 
 interface props {
 	children: React.ReactNode;
@@ -32,15 +35,20 @@ const Modal = ({ children, closeModal, title }: props) => {
 		setMounted(true);
 	}, []);
 
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	return mounted && ref.current
 		? createPortal(
 				<div className={style.overlay}>
-					<div ref={modalRef} className={style.modal}>
+					<div
+						ref={modalRef}
+						className={classHelperFn(style.modal, theme, style)}
+					>
 						<div className={style.header}>
 							<Title className="title-2 text-secondary fw-bold pb-2 pt-1">
 								{title}
 							</Title>
-							<Button onClick={() => closeModal(false)}>
+							<Button classNames={style.btn} onClick={() => closeModal(false)}>
 								<Icon
 									className={style.icon}
 									IconName="CLOSE"

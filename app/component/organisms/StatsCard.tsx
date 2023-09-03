@@ -4,6 +4,9 @@ import Text from "./../atom/text/Text";
 import Route from "./../atom/link/Link";
 import Icon from "./../atom/icon/Icon";
 import FlexBox from "./../molecule/flexBox/FlexBox";
+import classHelperFn from "@/app/utlis/functions/themeClass";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/globalRedux/store";
 
 interface props {
 	className?: string;
@@ -25,14 +28,16 @@ const StatsCard = ({
 	iconFill,
 	value,
 }: props) => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	return (
-		<div className={`${styles.base} p-3`}>
+		<div className={`${classHelperFn(styles.base, theme, styles)} p-3`}>
 			<FlexBox row align_item="stretch">
 				<FlexBox colum align_item="start">
 					<Title className="title-3 text-secondary">{title}</Title>
 					<Text className="text-xl text-bold pb-2 mb-2 mt-2">{value}</Text>
 					<Route href={to}>
-						<Text className="text-sm text-bold underLine tex">{linkText}</Text>
+						<Text className="text-sm text-bold underLine">{linkText}</Text>
 					</Route>
 				</FlexBox>
 				<FlexBox colum align_item="center" justify_content="between">

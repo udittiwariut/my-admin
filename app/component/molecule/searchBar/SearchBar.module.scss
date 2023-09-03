@@ -14,3 +14,10 @@
 		background-color: $body-bg-color;
 	}
 }
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	@include theme($white, $dark6);
+	border-color: $dark6;
+}

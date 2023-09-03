@@ -1,7 +1,6 @@
 .base {
 	position: relative;
 	z-index: 3;
-	background-color: white;
 }
 .dropDownMenu {
 	overflow-y: scroll;
@@ -21,5 +20,29 @@
 
 	&:hover {
 		border: 1px solid $grey;
+	}
+}
+.dropDownStyleActive {
+	overflow-y: scroll;
+	max-height: 20rem;
+}
+.dropDownStyleUnActive {
+	max-height: 0;
+}
+
+.light {
+	@include theme($black, $white);
+	.dropDownStyleActive {
+		border-right: 1px solid $grey;
+		border-bottom: 1px solid $grey;
+		border-left: 1px solid $grey;
+	}
+}
+.dark {
+	@include theme($grey, $dark8);
+	.dropDownStyleActive {
+		border-right: 1px solid $dark5;
+		border-bottom: 1px solid $dark5;
+		border-left: 1px solid $dark5;
 	}
 }

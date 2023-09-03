@@ -1,5 +1,4 @@
 .base {
-	box-shadow: $box-shadow;
 	padding: 0 1rem 1rem 1rem;
 	text-align: center;
 }
@@ -10,4 +9,11 @@
 }
 .gridItem {
 	color: $secondary;
+}
+
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	@include theme($white, $dark7);
 }

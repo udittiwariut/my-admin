@@ -69,3 +69,30 @@
 .modal_orderHistory {
 	margin-top: 1.5rem;
 }
+
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	@include theme($grey, $dark7);
+
+	.btn {
+		background-color: $dark7;
+	}
+
+	.margin {
+		border-bottom: 1px solid $dark5;
+	}
+
+	.body {
+		&::-webkit-scrollbar-track {
+			background: $dark7;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: $grey;
+			border-radius: 10px;
+			border: 3px solid $dark7;
+		}
+	}
+}
