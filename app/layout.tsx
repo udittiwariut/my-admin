@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { UserProvider, useUser } from "@auth0/nextjs-auth0/client";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import PageLayout from "./component/template/pageLayout/PageLayout";
 import Auth_Zero from "./utlis/auth0/Auth_Zero";
 import "./globals.scss";

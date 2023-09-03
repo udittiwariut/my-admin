@@ -1,0 +1,6 @@
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	@include theme($white, $dark7);
+}

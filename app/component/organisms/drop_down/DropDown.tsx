@@ -1,15 +1,10 @@
 "use client";
-import React, {
-	MouseEvent,
-	useRef,
-	useEffect,
-	Dispatch,
-	SetStateAction,
-} from "react";
-import { v4 as uuidv4 } from "uuid";
-
+import React, { useRef, Dispatch, SetStateAction } from "react";
 import style from "./DropDown.module.scss";
 import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
+import classHelperFn from "@/app/utlis/functions/themeClass";
+import { RootState } from "@/app/globalRedux/store";
+import { useSelector } from "react-redux";
 
 interface props {
 	activeDropDown: boolean;
@@ -17,17 +12,6 @@ interface props {
 	children: React.ReactNode[];
 	secondaryRef: HTMLElement | null;
 }
-
-const dropDownStyleActive = {
-	overflowY: "scroll",
-	maxHeight: "20rem",
-	borderRight: "1px solid #aeadad",
-	borderBottom: "1px solid #aeadad",
-	borderLeft: "1px solid #aeadad",
-};
-const dropDownStyleUnActive = {
-	maxHeight: 0,
-};
 
 const DropDown = ({
 	children,
@@ -38,13 +22,18 @@ const DropDown = ({
 	const menuRef = useRef(null);
 	const buttonRef = useRef(null);
 
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	useOutSideToClose(menuRef, setActiveDropDown, secondaryRef);
 
 	return (
-		<div ref={menuRef} className={style.base}>
+		<div ref={menuRef} className={classHelperFn(style.base, theme, style)}>
 			<div
-				className={style.dropDownMenu}
-				style={activeDropDown ? dropDownStyleActive : dropDownStyleUnActive}
+				className={`${style.dropDownMenu} ${
+					style[
+						activeDropDown ? "dropDownStyleActive" : "dropDownStyleUnActive"
+					]
+				}`}
 			>
 				{children}
 			</div>

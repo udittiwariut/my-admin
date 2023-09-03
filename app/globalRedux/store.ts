@@ -4,6 +4,7 @@ import OrderReducer from "./orders/order.slice";
 import AdminReducer from "./admin/admin.slice";
 import userReducer from "./user/user.slice";
 import productReducer from "./product/product.slice";
+import themeReducer from "./theme/theme.slice";
 
 const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
 		Admin: AdminReducer,
 		product: productReducer,
 		user: userReducer,
+		theme: themeReducer,
 	},
 });
 

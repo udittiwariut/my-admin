@@ -14,6 +14,7 @@ import ADMIN from "./svg/ADMIN.js";
 import LOGOUT from "./svg/LOGOUT.js";
 import DOWN_ARROW from "./svg/DOWN_ARROW.js";
 import CLOSE from "./svg/CLOSE.js";
+import SUN from "./svg/SUN.js";
 
 let Icons: any = {};
 
@@ -33,5 +34,6 @@ Icons["ADMIN"] = ADMIN;
 Icons["LOGOUT"] = LOGOUT;
 Icons["DOWN_ARROW"] = DOWN_ARROW;
 Icons["CLOSE"] = CLOSE;
+Icons["SUN"] = SUN;
 
 export default Icons;

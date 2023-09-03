@@ -14,8 +14,11 @@ import Button from "../../atom/button/Button";
 import { getFireStoreData, COLLECTION } from "@/app/utlis/firebase/fireStore";
 import { RootState } from "@/app/globalRedux/store";
 import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
+import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
 
 const NotificationBar = () => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	const [selected, setSelected] = useState<null | number>(null);
 	const [complaints, setComplaints] = useState<any>([]);
 	const notificationBtnref = document.getElementById("notificationBtn");
@@ -45,7 +48,7 @@ const NotificationBar = () => {
 		<>
 			{complaints.length && (
 				<div
-					className={`${style.base} ${
+					className={`${classHelperFn(style.base, theme, style)} ${
 						isNotificationBarOpen ? style.active : style.un_active
 					}`}
 					ref={barRef}
@@ -54,7 +57,7 @@ const NotificationBar = () => {
 						<Title className="title-2 text-secondary fw-bold">
 							Notification
 						</Title>
-						<Button onClick={() => clickHandler(false)}>
+						<Button classNames={style.btn} onClick={() => clickHandler(false)}>
 							<Icon
 								className={style.icon}
 								IconName="CLOSE"
@@ -63,7 +66,7 @@ const NotificationBar = () => {
 							/>
 						</Button>
 					</div>
-					<HorizontalDivider />
+					<HorizontalDivider className={style.horizontal_divider} />
 
 					<div className={style.body}>
 						{complaints.map((complaint, i) => {
@@ -78,7 +81,11 @@ const NotificationBar = () => {
 										<Title className="title-4 fw-bold">
 											{complaint.complaint_type}
 										</Title>
-										<Text className="text-muted">
+										<Text
+											className={
+												theme === themes.LIGHT ? "text-muted" : undefined
+											}
+										>
 											Complaint Id : {complaint.id}
 										</Text>
 									</div>

@@ -1,6 +1,7 @@
 export const ACTION = {
 	NOTIFICATION: "NOTIFICATION",
 	PROFILE: "PROFILE",
+	THEME: "THEME",
 };
 const MAIN_SUB_ROUTE = [
 	{

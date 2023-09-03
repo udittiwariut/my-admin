@@ -1,3 +1,8 @@
-.base {
-	background-color: black;
+@import "./../../../../styles/scss/foundation/mixing";
+
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	@include theme($white, $dark8);
 }

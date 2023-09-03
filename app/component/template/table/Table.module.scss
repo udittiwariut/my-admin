@@ -5,3 +5,22 @@
 	width: 2rem;
 	margin-right: 10px;
 }
+.base {
+	width: 100%;
+	margin-bottom: 1rem;
+	vertical-align: top;
+}
+
+.light {
+	@include theme($black, $white);
+
+	tr {
+		border-bottom: 1px solid #dee2e6;
+	}
+}
+.dark {
+	@include theme($grey, $dark7);
+	tr {
+		border-bottom: 1px solid $dark6;
+	}
+}

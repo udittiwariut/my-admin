@@ -17,6 +17,8 @@ import { RESULT } from "@/app/utlis/hooks/useMatchSearchItem";
 import ProductModal from "../modal/product_modal/ProductModal";
 import Modal from "../modal/Modal";
 import UserModal from "../modal/user_modal/UserModal";
+import { setTheme } from "@/app/globalRedux/theme/theme.slice";
+import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
 
 const modalType = {
 	ORDER: "orders",
@@ -39,6 +41,8 @@ const NavBar = () => {
 	const complaints = useSelector(
 		(state: RootState) => state.notification.notification
 	).slice(0, 3);
+
+	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	const isNotificationBarOpen = useSelector(
 		(state: RootState) => state.notification.isNotificationOpen
@@ -85,6 +89,9 @@ const NavBar = () => {
 			dispatch(setIsNotificationOpen(!isNotificationBarOpen));
 		if (action === ACTION.PROFILE)
 			dispatch(setIsAdminModalOpen(!isAdminModalOpen));
+		if (action === ACTION.THEME) {
+			dispatch(setTheme(theme === themes.Dark ? themes.LIGHT : themes.Dark));
+		}
 	};
 
 	const handleDropDownListClick = (selectedItem: any, title: string) => {
@@ -103,7 +110,9 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className={`p-2 pb-0.5 ${styles.base}`}>
+			<nav
+				className={`p-2 pb-0.5  ${classHelperFn(styles.base, theme, styles)}`}
+			>
 				<div id="searchBar" className={`${styles.nav_searchBar}`}>
 					<SearchBar
 						onFocus={() => setActiveDropDown(true)}
@@ -132,15 +141,16 @@ const NavBar = () => {
 					<NavIcon>
 						<Icon
 							className={styles.nav_icon}
-							IconName="MOON"
+							IconName={theme === themes.Dark ? "SUN" : "MOON"}
 							width="1.5rem"
 							height="100%"
-							fill={"#aeadad"}
+							onClick={() => clickHandler(ACTION.THEME)}
+							fill={theme === themes.Dark ? "#FCC419" : "#aeadad"}
 						/>
 						<Icon
 							IconName="BELL"
 							width="1.5rem"
-							height="100&"
+							height="100%"
 							fill={"#aeadad"}
 							onClick={() => clickHandler(ACTION.NOTIFICATION)}
 							className={styles.nav_icon}

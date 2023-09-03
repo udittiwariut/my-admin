@@ -31,7 +31,7 @@ const Table = ({
 
 	return (
 		tableContent.length > 0 && (
-			<div className={`${style.base}`}>
+			<div className={`${style.base} ${style.light}`}>
 				<table className="table">
 					<thead>
 						<tr>

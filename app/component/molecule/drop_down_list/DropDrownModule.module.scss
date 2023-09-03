@@ -1,5 +1,21 @@
+.base {
+	height: 100%;
+}
 .title {
-	background-color: $very-light-grey;
-	color: $dark-grey;
 	padding: 0.3rem 0.5rem;
+}
+
+.light {
+	@include theme($black, $white);
+	.title {
+		background-color: $very-light-grey;
+		color: $dark-grey;
+	}
+}
+.dark {
+	@include theme($dark-grey, $dark7);
+	.title {
+		background-color: $dark6;
+		color: $grey;
+	}
 }

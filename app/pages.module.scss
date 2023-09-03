@@ -1,3 +1,5 @@
+.base {
+}
 .container {
 	display: flex;
 	gap: 1rem;
@@ -5,6 +7,7 @@
 
 .progress {
 	flex: 1;
+	box-shadow: $box-shadow;
 }
 .graph {
 	flex: 2.2;
@@ -13,6 +16,16 @@
 .homePageLayout {
 	padding: 1rem;
 }
-.table {
-	margin-top: 1.4rem;
+
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	@include theme($white, $dark8);
+	.progress {
+		box-shadow: none;
+	}
+	.graph {
+		box-shadow: none;
+	}
 }
