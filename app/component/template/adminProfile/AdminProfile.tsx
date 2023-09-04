@@ -28,12 +28,13 @@ const AdminProfile = () => {
 				"==",
 				user?.email!,
 			]);
+
 			const [admin] = fireBaseAdmin;
 
 			const unSortedAdmin = { ...admin, ...user };
 
 			const sortedAdmin = {
-				avatar: unSortedAdmin.avatar,
+				avatar: unSortedAdmin.img,
 				sid: unSortedAdmin.sid,
 				email: unSortedAdmin.email,
 				userName: unSortedAdmin.username,

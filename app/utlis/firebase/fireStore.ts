@@ -9,7 +9,7 @@ import {
 
 export const COLLECTION = {
 	ORDER: "Orders",
-	ADMIN: "Admins",
+	ADMIN: "Admin",
 	PRODUCT: "Product",
 	USER: "User",
 	COMPLAINTS: "Complaints",
