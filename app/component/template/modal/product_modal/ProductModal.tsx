@@ -26,7 +26,7 @@ const ProductModal = ({ product }: props) => {
 		<div className={globalModalStyle.modal_base}>
 			<div className={globalModalStyle.modal_body}>
 				<div className={globalModalStyle.modal_avatar}>
-					<Avatar link="https://res.cloudinary.com/dmbtc9axm/image/upload/v1692442091/pexels-manav-sharma-3392232_hcrpez.jpg"></Avatar>
+					<Avatar link={product?.img!}></Avatar>
 				</div>
 				<div className={globalModalStyle.modal_details}>
 					{title.map((detail) => (

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Table from "../component/template/table/Table";
 import style from "./page.module.scss";
 import Text from "../component/atom/text/Text";
@@ -14,21 +14,23 @@ import { PRODUCT } from "../Types/Product/Product";
 import LoaderHoc from "../component/template/loaderHoc/LoaderHoc";
 import { setProduct as setProductRedux } from "../globalRedux/product/product.slice";
 import Button from "../component/atom/button/Button";
+import { RootState } from "../globalRedux/store";
 
 const optionArray = [5, 10, 15, 20, 25];
 
 const ProductPage = () => {
-	const [fetchProduct, setFetchProduct] = useState<PRODUCT[]>([]);
 	const [paginationValue, setPaginationValue] = useState(5);
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [product, setProduct] = useState<null | PRODUCT>(null);
 	const [activeDropDown, setActiveDropDown] = useState(false);
 
-	const dispatch = useDispatch();
+	const products: PRODUCT[] = useSelector(
+		(state: RootState) => state.product.product
+	);
 
 	useEffect(() => {
-		const totalPage = Math.ceil(fetchProduct.length / paginationValue);
+		const totalPage = Math.ceil(products.length / paginationValue);
 		if (totalPage) {
 			setPages({
 				currentPage:
@@ -36,51 +38,24 @@ const ProductPage = () => {
 				totalPages: totalPage,
 			});
 		}
-	}, [paginationValue, fetchProduct.length]);
+	}, [paginationValue, products.length]);
 
 	const filteredProduct = useMemo(
 		() =>
-			fetchProduct?.filter(
+			products?.filter(
 				(_, i) =>
 					i >= paginationValue * (pages.currentPage - 1) &&
 					i < paginationValue * pages.currentPage
 			),
-		[paginationValue, pages.currentPage, fetchProduct.length]
+		[paginationValue, pages.currentPage, products.length]
 	);
-
-	useEffect(() => {
-		const fetchProduct = async () => {
-			const productArray: PRODUCT[] = [];
-			const product: any = await getFireStoreData(COLLECTION.PRODUCT);
-
-			product.forEach((product: PRODUCT) => {
-				const obj = {
-					product_id: product.product_id,
-					product_name: product.product_name,
-					category: product.category,
-					price_usd: product.price_usd,
-					stock_quantity: product.stock_quantity,
-					brand: product.brand,
-					img:
-						product.img ||
-						"https://res.cloudinary.com/dmbtc9axm/image/upload/v1692442091/pexels-manav-sharma-3392232_hcrpez.jpg",
-				};
-				productArray.push(obj);
-			});
-			productArray.sort((a, b) => a.product_id - b.product_id);
-
-			setFetchProduct(productArray);
-			dispatch(setProductRedux(productArray));
-		};
-		fetchProduct();
-	}, []);
 
 	const onOptClick = (e: any) =>
 		setPaginationValue(e.target.childNodes[0].data);
 
 	const dropDownBtnRef = document.getElementById("dropDownBtnProduct");
 	return (
-		<LoaderHoc arrayToCheck={fetchProduct}>
+		<LoaderHoc arrayToCheck={products}>
 			<>
 				<div className={style.base}>
 					<div className={style.header}>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Icon from "../../atom/icon/Icon";
 import SearchBar from "../../molecule/searchBar/SearchBar";
 import NavIcon from "../../organisms/nav_icon/NavIcon";
@@ -19,6 +19,7 @@ import Modal from "../modal/Modal";
 import UserModal from "../modal/user_modal/UserModal";
 import { setTheme } from "@/app/globalRedux/theme/theme.slice";
 import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
+import { setSelectedOrder } from "@/app/globalRedux/orders/order.slice";
 
 const modalType = {
 	ORDER: "orders",
@@ -28,6 +29,8 @@ const modalType = {
 };
 
 const NavBar = () => {
+	const url = usePathname();
+
 	const router = useRouter();
 	const user = useSelector((state: RootState) => state.user.user).slice(0, 3);
 	const orders = useSelector((state: RootState) => state.orders.orders).slice(
@@ -84,6 +87,8 @@ const NavBar = () => {
 		setSearchTerm(e.target.value);
 	};
 
+	console.log(url);
+
 	const clickHandler = (action: string) => {
 		if (action === ACTION.NOTIFICATION)
 			dispatch(setIsNotificationOpen(!isNotificationBarOpen));
@@ -96,8 +101,11 @@ const NavBar = () => {
 
 	const handleDropDownListClick = (selectedItem: any, title: string) => {
 		if (title === modalType.ORDER) {
-			router.push(`/orders?orderId=${selectedItem.order_id}`);
-			return;
+			dispatch(setSelectedOrder(selectedItem.order_id));
+			if (!url.includes("orders")) {
+				router.push(`/orders?orderId=${selectedItem.order_id}`);
+				return;
+			}
 		}
 		if (title === modalType.COMPLAINTS) {
 			dispatch(setIsNotificationOpen(true));

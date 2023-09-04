@@ -6,6 +6,12 @@
 	min-width: 16rem;
 }
 
+.linkText {
+	cursor: pointer;
+	text-decoration: underline;
+	font-size: $fs-sm;
+}
+
 .light {
 	@include theme($black, $white);
 }
