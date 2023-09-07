@@ -1,5 +1,8 @@
 import React, { Dispatch, SetStateAction, useMemo } from "react";
 import style from "./Table.module.scss";
+import { RootState } from "@/app/globalRedux/store";
+import classHelperFn from "@/app/utlis/functions/themeClass";
+import { useSelector } from "react-redux";
 
 interface props {
 	tableContent: object[];
@@ -23,6 +26,8 @@ const Table = ({
 	if (!tableContent.length) {
 		return;
 	}
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	const title = Object.keys(tableContent[0]).filter((th) => {
 		if (!fieldNotToInclude.includes(th)) {
 			return th;
@@ -31,8 +36,8 @@ const Table = ({
 
 	return (
 		tableContent.length > 0 && (
-			<div className={`${style.base} ${style.light}`}>
-				<table className="table">
+			<div>
+				<table className={classHelperFn(style.base, theme, style)}>
 					<thead>
 						<tr>
 							<th className="p-3">#</th>

@@ -11,6 +11,9 @@
 	vertical-align: top;
 }
 
+.wrapper {
+}
+
 .light {
 	@include theme($black, $white);
 

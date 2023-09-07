@@ -7,7 +7,11 @@ interface props {
 }
 
 const LoaderHoc = ({ children, arrayToCheck }: props) => {
-	return <div>{arrayToCheck.length ? children : <Loader />}</div>;
+	return (
+		<div style={{ height: "100%", width: "100%" }}>
+			{arrayToCheck.length ? children : <Loader />}
+		</div>
+	);
 };
 
 export default LoaderHoc;

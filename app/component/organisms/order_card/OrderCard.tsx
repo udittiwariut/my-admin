@@ -1,15 +1,16 @@
 "use client";
 import React, { useState, Dispatch, SetStateAction } from "react";
-import Title from "../component/atom/title/Title";
-import HorizontalDivider from "../component/atom/horizontalDivider/HorizontalDivider";
+import Title from "../../atom/title/Title";
+import HorizontalDivider from "../../atom/horizontalDivider/HorizontalDivider";
 import moment from "moment";
-import style from "./orders.module.scss";
-import Text from "../component/atom/text/Text";
-import Icon from "../component/atom/icon/Icon";
-import Table from "../component/template/table/Table";
-import { ORDER } from "../Types/Order/Order";
+import style from "./OrderCard.module.scss";
+import Text from "../../atom/text/Text";
+import Icon from "../../atom/icon/Icon";
+import Table from "../../template/table/Table";
+import { ORDER } from "./../../../Types/Order/Order";
 import { useSelector } from "react-redux";
-import { RootState } from "../globalRedux/store";
+import { RootState } from "./../../../globalRedux/store";
+import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
 
 interface props {
 	order: ORDER;
@@ -45,7 +46,7 @@ const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 	return (
 		<div
 			id={order.order_id}
-			className={`${style.gridItem} gridItem`}
+			className={classHelperFn(style.gridItem, theme, style)}
 			style={showDetail === index ? fn() : undefined}
 		>
 			<div className={`${style.cover}`}>
@@ -56,7 +57,8 @@ const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 					}
 				>
 					<Icon
-						className="d-flex justify-content-center align-items-center"
+						fill={theme === themes.Dark ? "#5c5f66" : "black"}
+						className={`d-flex justify-content-center align-items-center `}
 						IconName={showDetail === index ? "UP_ARROW" : "DOWN_ARROW"}
 					></Icon>
 				</div>

@@ -2,14 +2,28 @@
 	display: flex;
 	justify-content: flex-end;
 	gap: 1rem;
+	padding: 0 0.5rem;
 }
 .btn {
 	border: 1px solid $grey;
-
 	&:hover {
 		border: 1px solid $grey;
 	}
 }
 .currentPage {
 	background-color: $grey;
+}
+
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	.btn {
+		border-color: $dark6;
+		@include theme($grey, $dark6);
+	}
+	.currentPage {
+		background-color: $dark2;
+		color: $dark;
+	}
 }

@@ -15,10 +15,13 @@ import LoaderHoc from "../component/template/loaderHoc/LoaderHoc";
 import { setProduct as setProductRedux } from "../globalRedux/product/product.slice";
 import Button from "../component/atom/button/Button";
 import { RootState } from "../globalRedux/store";
+import classHelperFn, { themes } from "../utlis/functions/themeClass";
 
 const optionArray = [5, 10, 15, 20, 25];
 
 const ProductPage = () => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	const [paginationValue, setPaginationValue] = useState(5);
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,56 +59,55 @@ const ProductPage = () => {
 	const dropDownBtnRef = document.getElementById("dropDownBtnProduct");
 	return (
 		<LoaderHoc arrayToCheck={products}>
-			<>
-				<div className={style.base}>
-					<div className={style.header}>
-						<Text className="text-secondary p-3">All Products</Text>
-						<div>
-							<div id="dropDownBtnProduct">
-								<Button
-									onClick={() => setActiveDropDown(!activeDropDown)}
-									classNames={style.buttonStyleBaseDropDownP}
-								>
-									<IconText
-										className={style.dropDownBtn}
-										position="right"
-										iconName="DOWN_ARROW"
-									>
-										{paginationValue}
-									</IconText>
-								</Button>
-							</div>
-							<DropDown
-								activeDropDown={activeDropDown}
-								setActiveDropDown={setActiveDropDown}
-								secondaryRef={dropDownBtnRef}
+			<div className={classHelperFn(style.base, theme, style)}>
+				<div className={style.header}>
+					<Text className="text-secondary p-3">All Products</Text>
+					<div>
+						<div id="dropDownBtnProduct">
+							<Button
+								onClick={() => setActiveDropDown(!activeDropDown)}
+								classNames={style.buttonStyleBaseDropDownP}
 							>
-								{optionArray.map((ele) => (
-									<div onClick={onOptClick} className={style.dropDownMenuItem}>
-										{ele}
-									</div>
-								))}
-							</DropDown>
+								<IconText
+									iconFill={theme === themes.Dark ? "#aeadad" : "black"}
+									className={style.dropDownBtn}
+									position="right"
+									iconName="DOWN_ARROW"
+								>
+									{paginationValue}
+								</IconText>
+							</Button>
 						</div>
-					</div>
-					<Table
-						tableContent={filteredProduct}
-						sNo={paginationValue * (pages.currentPage - 1)}
-						setIsModalOpen={setIsModalOpen}
-						isModalOpen={isModalOpen}
-						setItem={setProduct}
-						fieldNotToInclude={["img"]}
-					/>
-					<div className={style.footer}>
-						<PaginationBox pages={pages} setPages={setPages} />
+						<DropDown
+							activeDropDown={activeDropDown}
+							setActiveDropDown={setActiveDropDown}
+							secondaryRef={dropDownBtnRef}
+						>
+							{optionArray.map((ele) => (
+								<div onClick={onOptClick} className={style.dropDownMenuItem}>
+									{ele}
+								</div>
+							))}
+						</DropDown>
 					</div>
 				</div>
-				{isModalOpen && (
-					<Modal closeModal={setIsModalOpen} title="Product Detail">
-						<ProductModal product={product} />
-					</Modal>
-				)}
-			</>
+				<Table
+					tableContent={filteredProduct}
+					sNo={paginationValue * (pages.currentPage - 1)}
+					setIsModalOpen={setIsModalOpen}
+					isModalOpen={isModalOpen}
+					setItem={setProduct}
+					fieldNotToInclude={["img"]}
+				/>
+				<div className={style.footer}>
+					<PaginationBox pages={pages} setPages={setPages} />
+				</div>
+			</div>
+			{isModalOpen && (
+				<Modal closeModal={setIsModalOpen} title="Product Detail">
+					<ProductModal product={product} />
+				</Modal>
+			)}
 		</LoaderHoc>
 	);
 };
