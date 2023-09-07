@@ -21,21 +21,9 @@ $theme-colors: map-merge($theme-colors, $custom-theme-color);
 }
 
 /* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-	width: 1rem;
+* {
+	@include scrollBar();
 }
-
-*::-webkit-scrollbar-track {
-	background: #ffffff;
-	
-}
-
-*::-webkit-scrollbar-thumb {
-	background-color: $grey;
-	border-radius: 10px;
-	border: 3px solid #ffffff;
-}
-
 a {
 	text-decoration: none;
 }

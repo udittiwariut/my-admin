@@ -4,6 +4,13 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import PageLayout from "./component/template/pageLayout/PageLayout";
 import Auth_Zero from "./utlis/auth0/Auth_Zero";
 import "./globals.scss";
+import Preloader from "./globalRedux/Preloader";
+import Providers from "./globalRedux/provider";
+import {
+	getGlobalData_Order,
+	getGlobalData_Users,
+	getGlobalData_Products,
+} from "./utlis/hooks/getGlobalData";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +24,19 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const orders = await getGlobalData_Order();
+	const users = await getGlobalData_Users();
+	const products = await getGlobalData_Products();
+
 	return (
 		<html lang="en">
 			<body className={inter.className}>
 				<UserProvider>
 					<Auth_Zero>
-						<PageLayout>{children}</PageLayout>
+						<Preloader order={orders} users={users} products={products} />
+						<Providers>
+							<PageLayout>{children}</PageLayout>
+						</Providers>
 					</Auth_Zero>
 				</UserProvider>
 				<div id="portal"></div>

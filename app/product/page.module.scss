@@ -1,11 +1,14 @@
 .base {
-	padding: 1rem;
-	box-shadow: $box-shadow;
+	padding: 0.5rem 0;
+	max-width: 100%;
+	height: 100dvh - $nav-height;
+	overflow-y: auto;
 }
 .header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 0 0.5rem;
 }
 .dropDownBtn {
 	background-color: white;
@@ -30,5 +33,29 @@
 
 	&:hover {
 		border: 1px solid $grey;
+	}
+}
+
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	@include theme($white, $dark8);
+	@include scrollBar($dark8);
+	.buttonStyleBaseDropDownP {
+		background-color: $dark6;
+		border-color: $dark6;
+	}
+	.dropDownMenuItem {
+		@include theme($grey, $dark7);
+		border-bottom-color: $dark5;
+
+		&:hover {
+			background-color: $dark3;
+			color: white;
+		}
+	}
+	.dropDownBtn {
+		@include theme($grey, $dark6);
 	}
 }

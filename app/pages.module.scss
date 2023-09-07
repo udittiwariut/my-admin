@@ -1,4 +1,8 @@
 .base {
+	padding: 0.5rem 0;
+	max-width: 100%;
+	height: 100dvh - $nav-height;
+	overflow-y: auto;
 }
 .container {
 	display: flex;
@@ -22,6 +26,7 @@
 }
 .dark {
 	@include theme($white, $dark8);
+	@include scrollBar($dark8);
 	.progress {
 		box-shadow: none;
 	}

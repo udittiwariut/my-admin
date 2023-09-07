@@ -1,0 +1,110 @@
+.gridItem {
+	max-width: 400px;
+}
+.cover {
+	padding: 0.4rem;
+	position: relative;
+}
+
+.expandIcon {
+	position: absolute;
+	bottom: 0;
+	background-color: white;
+	height: 1.2rem;
+	width: 1.2rem;
+	border-radius: 50%;
+	border: 1px solid $light-dark;
+	left: 50%;
+	transform: translateX(-50%);
+	&:hover {
+		cursor: pointer;
+	}
+}
+.card {
+	border: 1px solid $grey;
+	margin: 5px;
+}
+.title {
+	text-align: center;
+	color: $light-dark;
+	font-weight: $fw-semibold;
+	font-size: $fs-lg;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+.body {
+	padding: 1.2rem 0.7rem 0.7rem 0.7rem;
+	position: relative;
+}
+.detailSection {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.6rem;
+	grid-row-gap: 1.2rem;
+	margin-bottom: 10px;
+	padding-bottom: 1.2rem;
+}
+.details {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: $fs-sm;
+}
+.extraDetail {
+	position: absolute;
+	overflow-x: scroll;
+	overflow-y: scroll;
+	padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+	box-sizing: content-box;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	width: 100%;
+	left: 0;
+}
+
+.margin {
+	border-bottom: 2px dotted $light-dark;
+	border-radius: 4px;
+}
+.total {
+	text-align: right;
+}
+
+.orderDetail {
+	overflow-y: scroll;
+	padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+	box-sizing: content-box;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	font-size: $fs-sm;
+}
+.showDetail {
+	color: $light-dark;
+}
+
+.light {
+	@include theme($black, $white);
+}
+.dark {
+	.title {
+		color: $dark2;
+	}
+	.total {
+		color: $dark2;
+	}
+	.showDetail {
+		color: $dark2;
+	}
+	.expandIcon {
+		background-color: $dark6;
+	}
+
+	.card {
+		@include theme($white, $dark7);
+		border-color: $dark6;
+	}
+}

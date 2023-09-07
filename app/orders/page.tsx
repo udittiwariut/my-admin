@@ -1,19 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import style from "./orders.module.scss";
-import OrderCard from "./OrderCard";
+import OrderCard from "../component/organisms/order_card/OrderCard";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import type { RootState } from "../globalRedux/store";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "next/navigation";
 import { setSelectedOrder } from "../globalRedux/orders/order.slice";
 import { log } from "console";
+import classHelperFn from "../utlis/functions/themeClass";
 
 let timeOut: string | number | NodeJS.Timeout | undefined;
 
 let delay = 300;
 
 const Orders = () => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	const orderMain = document.getElementById("children");
 	const dispatch = useDispatch();
 	const [showDetail, setShowDetail] = useState<null | number>(null);
@@ -51,7 +54,7 @@ const Orders = () => {
 	}, [orderId, selectedOrder]);
 
 	return (
-		<div className={style.base} id="orderMain">
+		<div className={classHelperFn(style.base, theme, style)} id="orderMain">
 			{orders.length &&
 				orders.map((order, i) => (
 					<OrderCard

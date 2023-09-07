@@ -13,11 +13,13 @@ import USER from "../Types/User/User";
 import Button from "../component/atom/button/Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../globalRedux/store";
+import classHelperFn, { themes } from "../utlis/functions/themeClass";
 
 const optionArray = [5, 10, 15, 20, 25];
 
 const UserPage = () => {
 	const users: USER[] = useSelector((state: RootState) => state.user.user);
+	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	const [paginationValue, setPaginationValue] = useState(5);
 	const [pages, setPages] = useState({ currentPage: 1, totalPages: 0 });
@@ -55,7 +57,7 @@ const UserPage = () => {
 		<LoaderHoc arrayToCheck={users}>
 			{users.length && (
 				<>
-					<div className={style.tableBase}>
+					<div className={classHelperFn(style.tableBase, theme, style)}>
 						<div className={style.header}>
 							<Text className="text-secondary p-3">All Users</Text>
 							<div>
@@ -65,6 +67,7 @@ const UserPage = () => {
 										classNames={style.buttonStyleBaseDropDownU}
 									>
 										<IconText
+											iconFill={theme === themes.Dark ? "#aeadad" : "black"}
 											className={style.dropDownBtn}
 											position="right"
 											iconName="DOWN_ARROW"

@@ -76,6 +76,7 @@ const helperFn = (routesArray: Route[]) => {
 							{routes.subRoutes ? (
 								<div>
 									<Icon
+										fill={theme === themes.Dark ? "#aeadad" : "black"}
 										IconName={
 											tootleSubRoutes.boolean && tootleSubRoutes.index === i
 												? "UP_ARROW"
