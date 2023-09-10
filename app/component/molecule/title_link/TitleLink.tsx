@@ -11,10 +11,10 @@ const TitleLink = () => {
 	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	return (
-		<div className={classHelperFn(style.base, theme, style)}>
+		<div className={`p-2 pb-0.5 ${classHelperFn(style.base, theme, style)}`}>
 			<Link href="/" classNames={`pt-2 ${style.logo_link}`}>
 				<Title className={`title-2 ${style.logo_container} text-center pb-2`}>
-					Admin Plus
+					AP
 				</Title>
 			</Link>
 		</div>

@@ -8,22 +8,19 @@ import NotificationBar from "../notificationBar/NotificationBar";
 import AdminProfile from "../adminProfile/AdminProfile";
 import TitleLink from "../../molecule/title_link/TitleLink";
 
-const PageLayout = async ({ children }: { children: React.ReactNode }) => {
+const PageLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<>
 			<div className={style.app}>
 				<div className={style.body}>
-					<div className={style.logoDiv}>
+					<div id="SideBar" className={style.sideBar}>
 						<TitleLink />
+						<SideBar />
 					</div>
 					<div className={style.navBar}>
 						<NavBar />
+						{children}
 					</div>
-					<div>
-						<SideBar />
-					</div>
-
-					{children}
 				</div>
 				<NotificationBar />
 				<AdminProfile />

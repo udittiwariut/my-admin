@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { Inter } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import PageLayout from "./component/template/pageLayout/PageLayout";
@@ -30,6 +31,9 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
+			<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+			</head>
 			<body className={inter.className}>
 				<UserProvider>
 					<Auth_Zero>

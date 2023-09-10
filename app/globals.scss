@@ -1,23 +1,12 @@
 @import "./../styles/scss/foundation/all";
 @import "./../node_modules/bootstrap/scss/functions";
 @import "./../node_modules/bootstrap/scss/variables";
-
-$primary: $dark;
-$secondary: $grey;
-
-$custom-theme-color: (
-	"primary": $primary,
-	"secondary": $secondary,
-);
-
-$theme-colors: map-merge($theme-colors, $custom-theme-color);
+html {
+	font-size: 100%;
+}
 
 * {
 	box-sizing: border-box !important;
-}
-* {
-	scrollbar-width: auto;
-	scrollbar-color: $grey #ffffff;
 }
 
 /* Chrome, Edge, and Safari */
@@ -32,6 +21,33 @@ button {
 }
 body {
 	// overflow-x: hidden;
+}
+
+@media only screen and (max-width: $xl) {
+	html {
+		font-size: 90%;
+	}
+}
+@media only screen and (max-width: $lg) {
+	html {
+		font-size: 60%;
+	}
+}
+@media only screen and (max-width: $md) {
+	html {
+		font-size: 50%;
+	}
+}
+
+@media only screen and (max-width: $l-mad) {
+	html {
+		font-size: 50%;
+	}
+}
+@media only screen and (max-width: $xm) {
+	html {
+		font-size: 40%;
+	}
 }
 
 @import "./../node_modules/bootstrap/scss/bootstrap";

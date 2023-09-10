@@ -6,12 +6,16 @@
 	margin-right: 10px;
 }
 .base {
-	width: 100%;
+	border-collapse: collapse;
 	margin-bottom: 1rem;
 	vertical-align: top;
+	width: 100%;
+	font-size: $fs-sm;
+	overflow-x: hidden;
 }
 
-.wrapper {
+.tableData {
+	padding: 1rem;
 }
 
 .light {
@@ -25,5 +29,37 @@
 	@include theme($grey, $dark7);
 	tr {
 		border-bottom: 1px solid $dark6;
+	}
+}
+@media only screen and (max-width: 650px) and (min-width: $xm) {
+	.base {
+		font-size: 0.65rem;
+	}
+}
+
+@media only screen and (max-width: $xm) {
+	.base {
+		th {
+			display: none;
+		}
+		tr {
+			display: grid;
+			grid-template-columns: minmax(70px, 100px) minmax(70px, 100px) minmax(
+					70px,
+					100px
+				);
+			padding: 0.5rem 1rem;
+		}
+		td {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			display: block;
+			font-size: 1rem;
+			&::before {
+				content: attr(data-cell) ": ";
+				font-weight: 700;
+			}
+		}
 	}
 }

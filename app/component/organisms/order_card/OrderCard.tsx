@@ -11,15 +11,23 @@ import { ORDER } from "./../../../Types/Order/Order";
 import { useSelector } from "react-redux";
 import { RootState } from "./../../../globalRedux/store";
 import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
+import { breakPoint } from "@/app/utlis/hooks/useGetClientWidth";
 
 interface props {
 	order: ORDER;
 	showDetail: number | null;
 	setShowDetail: Dispatch<SetStateAction<number | null>>;
 	index: number;
+	clientWidth: number;
 }
 
-const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
+const OrderCard = ({
+	order,
+	setShowDetail,
+	showDetail,
+	index,
+	clientWidth,
+}: props) => {
 	let gridRowStyle = {
 		gridRow: "0",
 		gridColumn: "0",
@@ -27,7 +35,11 @@ const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	const fn = () => {
-		const NUMBER_OF_ITEM_IN_COL = 3;
+		let NUMBER_OF_ITEM_IN_COL = 1;
+		if (clientWidth > breakPoint.xm) {
+			NUMBER_OF_ITEM_IN_COL = 2;
+		}
+
 		const rowNum = Math.ceil((index + 1) / NUMBER_OF_ITEM_IN_COL);
 		const colNum = index + 1 - (rowNum - 1) * NUMBER_OF_ITEM_IN_COL;
 
@@ -80,14 +92,6 @@ const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 								Order vol: x{order.order_items.length}
 							</Title>
 						</div>
-						{showDetail === index && (
-							<div className={style.orderDetail}>
-								<Table
-									tableContent={order.order_items}
-									classNames={style.table}
-								/>
-							</div>
-						)}
 
 						<HorizontalDivider className={style.margin} />
 						<Text className={`text-xl text-bold mb-1 mt-2 ${style.total}`}>
@@ -97,6 +101,17 @@ const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 							{showDetail === index ? "Show less" : "Show Detail"}
 						</Text>
 					</div>
+					{showDetail === index && (
+						<div
+							className={style.orderDetail}
+							style={{ height: "fit-content" }}
+						>
+							<Table
+								tableContent={order.order_items}
+								classNames={style.table}
+							/>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

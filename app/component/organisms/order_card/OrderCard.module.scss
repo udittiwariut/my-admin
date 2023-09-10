@@ -1,5 +1,4 @@
 .gridItem {
-	max-width: 400px;
 }
 .cover {
 	padding: 0.4rem;
@@ -19,10 +18,12 @@
 	&:hover {
 		cursor: pointer;
 	}
+	z-index: 15;
 }
 .card {
 	border: 1px solid $grey;
 	margin: 5px;
+	position: relative;
 }
 .title {
 	text-align: center;
@@ -34,7 +35,6 @@
 }
 .body {
 	padding: 1.2rem 0.7rem 0.7rem 0.7rem;
-	position: relative;
 }
 .detailSection {
 	display: grid;
@@ -50,19 +50,6 @@
 	text-overflow: ellipsis;
 	font-size: $fs-sm;
 }
-.extraDetail {
-	position: absolute;
-	overflow-x: scroll;
-	overflow-y: scroll;
-	padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
-	box-sizing: content-box;
-	scrollbar-width: none;
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	width: 100%;
-	left: 0;
-}
 
 .margin {
 	border-bottom: 2px dotted $light-dark;
@@ -74,6 +61,7 @@
 
 .orderDetail {
 	overflow-y: scroll;
+	max-width: 100%;
 	padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
 	box-sizing: content-box;
 	scrollbar-width: none;

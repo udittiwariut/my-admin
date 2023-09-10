@@ -10,6 +10,7 @@ import Table from "../component/template/table/Table";
 import { ORDER } from "../Types/Order/Order";
 import { useSelector } from "react-redux";
 import { RootState } from "../globalRedux/store";
+import useGetClientWidth from "../utlis/hooks/useGetClientWidth";
 
 interface props {
 	order: ORDER;
@@ -17,7 +18,6 @@ interface props {
 	setShowDetail: Dispatch<SetStateAction<number | null>>;
 	index: number;
 }
-
 const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 	let gridRowStyle = {
 		gridRow: "0",

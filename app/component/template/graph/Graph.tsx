@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import GraphTitle from "../../atom/title/Title";
 import { useSelector } from "react-redux";
 import style from "./Graph.module.scss";
@@ -60,9 +60,33 @@ const options = {
 	},
 };
 
+let timeout: string | number | NodeJS.Timeout | undefined;
+let delay = 300;
+
 const Graph = () => {
 	const [data, setData] = useState<any>();
+	const [chartDivWidth, setChartDivWidth] = useState<string>("50rem");
+
 	const theme = useSelector((state: RootState) => state.theme.theme);
+
+	const ProgressCardRefDiv = document.getElementById("ProgressCard");
+
+	const debounce = () => {
+		if (!ProgressCardRefDiv) {
+			return;
+		}
+		clearTimeout(timeout);
+
+		timeout = setTimeout(() => {
+			setChartDivWidth((ProgressCardRefDiv.offsetWidth * 2).toString() + "px");
+		}, delay);
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", debounce);
+	}, [ProgressCardRefDiv]);
+
+	console.log(chartDivWidth);
 
 	useEffect(() => {
 		const data = {
@@ -103,13 +127,26 @@ const Graph = () => {
 		setData(data);
 	}, [theme]);
 
+	// console.log(chartDivWidth);
+
 	return (
 		<div className={classHelperFn(style.base, theme, style)}>
 			<GraphTitle className={`title-2 pb-1 pt-1 text-secondary px-5`}>
 				Sale in last six month
 			</GraphTitle>
-
-			{data && <Line options={options} data={data}></Line>}
+			<div
+				className={style.chartBox}
+				style={{ width: chartDivWidth, height: "24rem" }}
+			>
+				{data && (
+					<Line
+						updateMode="resize"
+						options={{ ...options, maintainAspectRatio: false, aspectRatio: 1 }}
+						data={data}
+						className={style.chart}
+					></Line>
+				)}
+			</div>
 		</div>
 	);
 };
