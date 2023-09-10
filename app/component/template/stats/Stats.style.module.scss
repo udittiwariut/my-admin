@@ -1,8 +1,34 @@
-@import "./../../../../styles/scss/foundation/mixing";
+.base {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-inline: auto;
+	gap: 1rem;
+	padding: 0 1rem;
+
+	> div:nth-child(even) {
+		justify-self: right;
+	}
+	> div:nth-child(odd) {
+		justify-self: left;
+	}
+}
 
 .light {
 	@include theme($black, $white);
 }
 .dark {
 	@include theme($white, $dark8);
+}
+
+@include md-breakpoint {
+	.base {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+}
+@include custom-breakPoint(700px) {
+	.base {
+		> div {
+			justify-self: center !important;
+		}
+	}
 }

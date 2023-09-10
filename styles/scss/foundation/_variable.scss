@@ -9,6 +9,7 @@ $purple: #6650f2;
 /* neutral color */
 
 $white: #ffff;
+$dark-white: #d7d7cf;
 $grey: #aeadad;
 $dark: #0d0d0d;
 $dark-grey: #555555;
@@ -69,19 +70,19 @@ $fw-extrabold: 900;
 =            BreakPoint                       =
 =============================================*/
 
-$breakpoints: (
-	xxm: 320px,
-	xm: 480px,
-	md: 768px,
-	lg: 1024px,
-	xl: 1280px,
-);
+$xxm: 320px;
+$xm: 480px;
+$l-mad: 600px;
+$md: 800px;
+$lg: 1024px;
+$xl: 1280px;
 
 /*=============================================
 =                 Spacing                     =
 =============================================*/
 
-$nav-height: 7dvh;
+$nav-height: max(7dvh, 46px);
+$nav-width: min(7dvw, 50px);
 
 $spacing: (
 	xxxs: 0.25rem,

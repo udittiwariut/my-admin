@@ -14,6 +14,7 @@ import Button from "../component/atom/button/Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../globalRedux/store";
 import classHelperFn, { themes } from "../utlis/functions/themeClass";
+import useGetClientWidth from "../utlis/hooks/useGetClientWidth";
 
 const optionArray = [5, 10, 15, 20, 25];
 
@@ -26,6 +27,9 @@ const UserPage = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [user, setUser] = useState<USER | null>();
 	const [activeDropDown, setActiveDropDown] = useState(false);
+
+	const clientWidth = useGetClientWidth();
+	console.log(clientWidth);
 
 	useEffect(() => {
 		const totalPage = Math.ceil(users.length / paginationValue);
@@ -100,6 +104,7 @@ const UserPage = () => {
 							isModalOpen={isModalOpen}
 							fieldNotToInclude={["img"]}
 							setItem={setUser}
+							classNames={style.tableWrapper}
 						/>
 
 						<div className={style.footer}>

@@ -5,11 +5,27 @@
 }
 
 .body {
-	display: grid;
-	grid-template-columns: 1fr 6fr;
+	display: flex;
+	align-items: flex-start;
 }
 
-.children {
-	height: calc(100dvh - $nav-height);
-	overflow-y: scroll;
+.sideBar {
+	width: 37px;
+	height: 100dvh;
+}
+.navBar {
+	max-width: 100%;
+	flex-grow: 1;
+}
+
+@include md-breakpoint {
+	.sideBar {
+		min-width: 120px;
+	}
+}
+
+@include lg-breakpoint {
+	.sideBar {
+		min-width: 216px;
+	}
 }

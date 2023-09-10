@@ -9,8 +9,10 @@ import { useSearchParams } from "next/navigation";
 import { setSelectedOrder } from "../globalRedux/orders/order.slice";
 import { log } from "console";
 import classHelperFn from "../utlis/functions/themeClass";
+import useGetClientWidth from "../utlis/hooks/useGetClientWidth";
 
 let timeOut: string | number | NodeJS.Timeout | undefined;
+let timeOut2: string | number | NodeJS.Timeout | undefined;
 
 let delay = 300;
 
@@ -25,7 +27,7 @@ const Orders = () => {
 		(state: RootState) => state.orders.selectedOrder
 	);
 
-	console.log(selectedOrder);
+	const clientWidth = useGetClientWidth(timeOut2);
 
 	const url = useSearchParams();
 
@@ -63,6 +65,7 @@ const Orders = () => {
 						setShowDetail={setShowDetail}
 						showDetail={showDetail}
 						index={i}
+						clientWidth={clientWidth}
 					/>
 				))}
 		</div>

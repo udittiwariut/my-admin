@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../../atom/icon/Icon";
 import Text from "../../atom/text/Text";
+import useGetClientWidth, {
+	breakPoint,
+} from "@/app/utlis/hooks/useGetClientWidth";
 
 interface props {
 	className?: string;
@@ -18,12 +21,15 @@ const IconText = ({
 	iconFill = "black",
 	position = "left",
 }: props) => {
+	const screenWidth = useGetClientWidth();
+
 	return (
 		<div className={`d-flex align-items-start  ${className}`}>
 			{position === "left" && (
 				<Icon IconName={iconName} fill={iconFill} width="1rem" height="1rem" />
 			)}
-			<Text>{children}</Text>
+
+			{screenWidth > breakPoint.md && <Text>{children}</Text>}
 			{position === "right" && (
 				<Icon IconName={iconName} fill={iconFill} width="1rem" height="1rem" />
 			)}

@@ -2,8 +2,8 @@
 
 .base {
 	box-shadow: $box-shadow;
-	max-width: 20rem;
 	min-width: 16rem;
+	width: 70%;
 }
 
 .linkText {
@@ -18,4 +18,9 @@
 .dark {
 	@include theme($grey, $dark7);
 	box-shadow: none;
+}
+@include md-breakpoint {
+	.base {
+		width: 100%;
+	}
 }

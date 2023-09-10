@@ -10,16 +10,21 @@ import PageLayout from "./component/template/pageLayout/PageLayout";
 import { useSelector } from "react-redux";
 import { RootState } from "./globalRedux/store";
 import classHelperFn from "./utlis/functions/themeClass";
+import useGetClientWidth from "./utlis/hooks/useGetClientWidth";
+
+let timeOut: string | number | NodeJS.Timeout | undefined;
 
 export default function Home() {
 	const theme = useSelector((state: RootState) => state.theme.theme);
+
+	const clientWidth = useGetClientWidth(timeOut);
 
 	return (
 		<div className={classHelperFn(style.base, theme, style)}>
 			<Stats />
 			<div className={style.homePageLayout}>
 				<div className={style.container}>
-					<div className={style.progress}>
+					<div className={style.progress} id="ProgressCard">
 						<ProgressCard />
 					</div>
 					<div className={style.graph}>

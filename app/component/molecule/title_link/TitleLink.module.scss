@@ -1,10 +1,9 @@
 .base {
-	display: flex;
-	align-items: flex-end;
+	display: grid;
+	grid-template-columns: 1fr;
 	justify-content: center;
-
-	height: 100%;
-	width: 100%;
+	align-items: center;
+	height: $nav-height;
 }
 .logo_link {
 	text-decoration: none !important;

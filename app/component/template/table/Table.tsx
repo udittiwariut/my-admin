@@ -26,6 +26,7 @@ const Table = ({
 	if (!tableContent.length) {
 		return;
 	}
+
 	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	const title = Object.keys(tableContent[0]).filter((th) => {
@@ -36,8 +37,10 @@ const Table = ({
 
 	return (
 		tableContent.length > 0 && (
-			<div>
-				<table className={classHelperFn(style.base, theme, style)}>
+			<div className={style.wrapper}>
+				<table
+					className={`${classHelperFn(style.base, theme, style)} ${classNames}`}
+				>
 					<thead>
 						<tr>
 							<th className="p-3">#</th>
@@ -57,7 +60,12 @@ const Table = ({
 								>
 									<th className="p-3">{sNo + (i + 1)}</th>
 									{title.map((key) => (
-										<td className="p-3">{ele[key as keyof typeof ele]}</td>
+										<td
+											data-cell={key.replace("_", "").toUpperCase()}
+											className={style.tableData}
+										>
+											{ele[key as keyof typeof ele]}
+										</td>
 									))}
 								</tr>
 							);

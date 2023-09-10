@@ -20,3 +20,39 @@
 		border: 3px solid $track;
 	}
 }
+
+@mixin xxm-breakpoint {
+	@media only screen and (max-width: $xxm) {
+		@content;
+	}
+}
+
+@mixin xm-breakpoint {
+	@media only screen and (min-width: $xm) {
+		@content;
+	}
+}
+
+@mixin md-breakpoint {
+	@media only screen and (min-width: $md) {
+		@content;
+	}
+}
+
+@mixin lg-breakpoint {
+	@media only screen and (min-width: $lg) {
+		@content;
+	}
+}
+
+@mixin xl-breakpoint {
+	@media only screen and (min-width: $xl) {
+		@content;
+	}
+}
+
+@mixin custom-breakPoint($screenSize) {
+	@media only screen and (min-width: $screenSize) {
+		@content;
+	}
+}

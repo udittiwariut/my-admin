@@ -4,6 +4,7 @@ import FlexBox from "../../molecule/flexBox/FlexBox";
 import { ACTION } from "../side-bar/Routes";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "@/app/globalRedux/store";
+import style from "./Stats.style.module.scss";
 
 interface STATS_DATA {
 	title: string;
@@ -65,10 +66,10 @@ const Stats = () => {
 			},
 		];
 		setStatsData(data);
-	}, []);
+	}, [user, order, complaints]);
 
 	return (
-		<FlexBox row justify_content="around">
+		<div className={style.base} id="stats_id">
 			{statsData.map((cardDetail) => {
 				return (
 					<StatsCard
@@ -82,7 +83,7 @@ const Stats = () => {
 					/>
 				);
 			})}
-		</FlexBox>
+		</div>
 	);
 };
 
