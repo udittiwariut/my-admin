@@ -3,8 +3,16 @@
 	max-width: 100%;
 	height: calc(100dvh - $nav-height);
 	overflow-y: auto;
-	display: grid;
-	grid-template-columns: 1fr;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.even {
+	max-width: 100%;
+}
+.odd {
+	max-width: 100%;
 }
 
 .light {
@@ -21,12 +29,13 @@
 
 @include xm-breakpoint {
 	.base {
-		grid-template-columns: 1fr 1fr;
+		flex-direction: row;
+		flex-wrap: wrap;
 	}
-}
-
-@include custom-breakPoint($l-mad) {
-	.base {
-		grid-template-columns: 1fr 1fr;
+	.even {
+		max-width: calc(50%);
+	}
+	.odd {
+		max-width: calc(50%);
 	}
 }
