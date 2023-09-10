@@ -58,8 +58,8 @@ const OrderCard = ({
 	return (
 		<div
 			id={order.order_id}
-			className={classHelperFn(style.gridItem, theme, style)}
-			style={showDetail === index ? fn() : undefined}
+			className={classHelperFn(style.flexItem, theme, style)}
+			style={showDetail === index ? { flex: "2" } : undefined}
 		>
 			<div className={`${style.cover}`}>
 				<div

@@ -1,4 +1,6 @@
-.gridItem {
+.flexItem {
+	display: inline;
+	align-self: flex-start;
 }
 .cover {
 	padding: 0.4rem;
@@ -52,7 +54,7 @@
 }
 
 .margin {
-	border-bottom: 2px dotted $light-dark;
+	border-bottom: 0.125rem dotted $light-dark;
 	border-radius: 4px;
 }
 .total {
