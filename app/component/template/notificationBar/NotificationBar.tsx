@@ -53,8 +53,8 @@ const NotificationBar = () => {
 					}`}
 					ref={barRef}
 				>
-					<div className={`${style.header} p-2`}>
-						<Title className="title-2 text-secondary fw-bold">
+					<div className={`${style.header}`}>
+						<Title className="title-2 text-secondary fw-bold ">
 							Notification
 						</Title>
 						<Button classNames={style.btn} onClick={() => clickHandler(false)}>

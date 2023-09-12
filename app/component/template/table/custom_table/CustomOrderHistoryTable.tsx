@@ -3,6 +3,9 @@ import style from "./CustomOrderHistoryTable.module.scss";
 import { ORDER } from "@/app/Types/Order/Order";
 import Table from "../Table";
 import HorizontalDivider from "@/app/component/atom/horizontalDivider/HorizontalDivider";
+import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
+import { RootState } from "@/app/globalRedux/store";
+import { useSelector } from "react-redux";
 
 interface props {
 	tableContent: ORDER[];
@@ -21,6 +24,8 @@ const CustomOrderHistoryTable = ({
 	classNames = undefined,
 	fieldNotToInclude = [],
 }: props) => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	const title = Object.keys(tableContent[0]).filter((th) => {
 		if (!fieldNotToInclude.includes(th)) {
 			return th;
@@ -37,7 +42,7 @@ const CustomOrderHistoryTable = ({
 
 	return (
 		tableContent.length > 0 && (
-			<div className={`${style.base}`}>
+			<div className={classHelperFn(style.base, theme, style)}>
 				<div>
 					<div
 						className={style.orderTableHeader}

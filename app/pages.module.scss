@@ -1,8 +1,9 @@
 .base {
-	max-width: calc(100% - 5rem);
-	padding: 0 5rem;
+	padding: 0 3rem;
+	max-width: 100%;
 	height: calc(100dvh - $nav-height);
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 .container {
 	width: 100%;
@@ -42,7 +43,6 @@
 @include custom-breakPoint(700px) {
 	.base {
 		padding: 0.5rem 0;
-		max-width: 100%;
 	}
 	.container {
 		display: inline-grid;

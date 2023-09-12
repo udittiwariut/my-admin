@@ -9,10 +9,8 @@ import IconText from "../component/molecule/iconText/IconText";
 import PaginationBox from "../component/organisms/pagination_box/PaginationBox";
 import Modal from "../component/template/modal/Modal";
 import ProductModal from "../component/template/modal/product_modal/ProductModal";
-import { getFireStoreData, COLLECTION } from "../utlis/firebase/fireStore";
 import { PRODUCT } from "../Types/Product/Product";
 import LoaderHoc from "../component/template/loaderHoc/LoaderHoc";
-import { setProduct as setProductRedux } from "../globalRedux/product/product.slice";
 import Button from "../component/atom/button/Button";
 import { RootState } from "../globalRedux/store";
 import classHelperFn, { themes } from "../utlis/functions/themeClass";
@@ -73,6 +71,7 @@ const ProductPage = () => {
 									className={style.dropDownBtn}
 									position="right"
 									iconName="DOWN_ARROW"
+									textImportant
 								>
 									{paginationValue}
 								</IconText>
@@ -98,6 +97,7 @@ const ProductPage = () => {
 					isModalOpen={isModalOpen}
 					setItem={setProduct}
 					fieldNotToInclude={["img"]}
+					isDetailPresent={true}
 				/>
 				<div className={style.footer}>
 					<PaginationBox pages={pages} setPages={setPages} />

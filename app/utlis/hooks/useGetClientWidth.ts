@@ -4,11 +4,12 @@ export const breakPoint = {
 	xxm: 320,
 	xm: 480,
 	lmad: 600,
+	smd: 700,
 	md: 800,
 	lg: 1024,
 	xl: 1280,
 };
-const delay = 500;
+const delay = 200;
 
 const useGetClientWidth = (
 	timeout: string | number | NodeJS.Timeout | undefined

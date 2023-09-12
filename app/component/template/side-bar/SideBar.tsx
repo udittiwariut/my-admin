@@ -12,9 +12,7 @@ import styles from "./SideBar.module.scss";
 
 function SideBar() {
 	const theme = useSelector((state: RootState) => state.theme.theme);
-	let timeout;
 
-	const clientWidth = useGetClientWidth(timeout);
 	return (
 		<div className={classHelperFn(styles.base, theme, styles)}>
 			<div>{<RouteBuilder routesArray={ROUTES} />}</div>

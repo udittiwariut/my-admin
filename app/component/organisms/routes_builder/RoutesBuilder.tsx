@@ -2,7 +2,9 @@ import { setIsAdminModalOpen } from "@/app/globalRedux/admin/admin.slice";
 import { setIsNotificationOpen } from "@/app/globalRedux/notification/notification.slice";
 import { RootState } from "@/app/globalRedux/store";
 import { themes } from "@/app/utlis/functions/themeClass";
-import { breakPoint } from "@/app/utlis/hooks/useGetClientWidth";
+import useGetClientWidth, {
+	breakPoint,
+} from "@/app/utlis/hooks/useGetClientWidth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -12,12 +14,27 @@ import IconText from "../../molecule/iconText/IconText";
 import styles from "./RoutesBuilder.module.scss";
 import { ACTION, Route } from "../../template/side-bar/Routes";
 
+const helperFn = (routesArray: Route[]) => {
+	let obj = {};
+	routesArray.forEach((route, i) => {
+		if (route.subRoutes) {
+			obj[i] = [styles.subRoutesHeightOpen, styles.subRoutesHeightClose];
+		}
+	});
+	return obj;
+};
+
 interface props {
 	routesArray: Route[];
 }
 
+let timeout: any;
+
 const RouterBuilder = ({ routesArray }: props) => {
 	const dispatch = useDispatch();
+	const clientWidth = useGetClientWidth(timeout);
+
+	const [toggleSubRoutes, setToggleSUbRoutes] = useState(helperFn(routesArray));
 
 	const theme = useSelector((state: RootState) => state.theme.theme);
 
@@ -28,11 +45,6 @@ const RouterBuilder = ({ routesArray }: props) => {
 		(state: RootState) => state.Admin.isAdminModalOpen
 	);
 
-	const [tootleSubRoutes, setToggleSUbRoutes] = useState({
-		boolean: false,
-		index: null as any,
-	});
-
 	const handleClick = (route: Route) => {
 		if (route.action === undefined) return;
 		if (route.action === ACTION.NOTIFICATION) {
@@ -40,6 +52,15 @@ const RouterBuilder = ({ routesArray }: props) => {
 		}
 		if (route.action === ACTION.PROFILE)
 			dispatch(setIsAdminModalOpen(!isAdminModalOpen));
+	};
+
+	const handleSubRoutToggle = (index: number) => {
+		if (Object.hasOwn(toggleSubRoutes, index)) {
+			setToggleSUbRoutes({
+				...toggleSubRoutes,
+				index: toggleSubRoutes[index].reverse(),
+			});
+		}
 	};
 
 	const current_url = usePathname();
@@ -54,18 +75,17 @@ const RouterBuilder = ({ routesArray }: props) => {
 							: undefined
 					}
 				>
-					<Link href={routes.link || current_url}>
+					<Link href={routes.link || current_url} className={styles.link}>
 						<div
 							className={`${styles.sideBar_link_box} ${
-								routes.subRoutes
+								routes.subRoutes && clientWidth > breakPoint.md
 									? "d-flex justify-content-between align-items-center"
+									: routes.subRoutes
+									? "pb-2"
 									: null
 							}`}
 							onClick={() => {
-								setToggleSUbRoutes({
-									boolean: !tootleSubRoutes.boolean,
-									index: i,
-								});
+								handleSubRoutToggle(i);
 								handleClick(routes);
 							}}
 						>
@@ -81,7 +101,7 @@ const RouterBuilder = ({ routesArray }: props) => {
 									<Icon
 										fill={theme === themes.Dark ? "#aeadad" : "black"}
 										IconName={
-											tootleSubRoutes.boolean && tootleSubRoutes.index === i
+											toggleSubRoutes[i][0] === styles.subRoutesHeightOpen
 												? "UP_ARROW"
 												: "DOWN_ARROW"
 										}
@@ -93,13 +113,7 @@ const RouterBuilder = ({ routesArray }: props) => {
 						</div>
 					</Link>
 					{routes.subRoutes ? (
-						<div
-							className={`${styles.subRoutes} ${
-								tootleSubRoutes.boolean && tootleSubRoutes.index === i
-									? styles.subRoutesHeight
-									: null
-							}`}
-						>
+						<div className={toggleSubRoutes[i][0]}>
 							{<RouterBuilder routesArray={routes.subRoutes} />}
 						</div>
 					) : null}

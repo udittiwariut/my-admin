@@ -35,12 +35,12 @@
 	fill: $grey;
 }
 .body {
-	max-height: 650px;
+	max-height: 70dvh;
 	overflow-y: scroll;
 }
 
 .modal_base {
-	min-width: 900px;
+	min-width: 80dvw;
 	padding: 1rem;
 }
 .modal_avatar {

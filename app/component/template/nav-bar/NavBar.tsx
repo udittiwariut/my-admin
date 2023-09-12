@@ -87,8 +87,6 @@ const NavBar = () => {
 		setSearchTerm(e.target.value);
 	};
 
-	console.log(url);
-
 	const clickHandler = (action: string) => {
 		if (action === ACTION.NOTIFICATION)
 			dispatch(setIsNotificationOpen(!isNotificationBarOpen));
