@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ORDER from "./../../../data/Orders.json";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/app/globalRedux/store";
 
