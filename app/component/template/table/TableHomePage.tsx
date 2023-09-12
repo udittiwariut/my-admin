@@ -4,7 +4,6 @@ import Text from "../../atom/text/Text";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/globalRedux/store";
 import classHelperFn from "@/app/utlis/functions/themeClass";
-import HorizontalDivider from "../../atom/horizontalDivider/HorizontalDivider";
 
 const rows = [
 	{
@@ -85,6 +84,7 @@ const Table = () => {
 										key != "img" ? (
 											key != "product" ? (
 												<td
+													data-cell={key}
 													className={`p-3 ${
 														key === "status" && ele.status === status.APPROVED
 															? "text-success"
@@ -98,7 +98,7 @@ const Table = () => {
 													{ele[key as keyof typeof ele]}
 												</td>
 											) : (
-												<td className="p-3">
+												<td className="p-3" data-cell={`${key}   `}>
 													<img
 														src={ele.img}
 														alt="img"

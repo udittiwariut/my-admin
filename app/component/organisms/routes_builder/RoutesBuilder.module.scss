@@ -4,34 +4,35 @@
 .horizontal_divider {
 	margin-left: -2rem;
 }
+.link {
+	text-decoration: none;
+	color: inherit;
+}
 
 .sideBar_link_box {
 	cursor: pointer;
-	padding: 16px 16px;
+	padding: 1.5rem 16px;
 	border-radius: 1.5rem;
 	&:hover {
 		background-color: rgba($dark, $alpha: 0.1);
 	}
 }
-.subRoutes {
-	padding: 0;
+.subRoutesHeightOpen {
 	transition: height 0.3s ease-in-out;
 	&:last-of-type {
 		padding-bottom: 0;
 	}
-	height: 11rem;
+	height: 13.5rem;
 	overflow: hidden;
+}
+.subRoutesHeightClose {
+	@extend .subRoutesHeightOpen;
+	height: 0;
 }
 .sideBar_link {
 	gap: 1.8rem;
 }
-.subRoutesHeight {
-	overflow: hidden;
-	padding-top: 0;
-	padding-bottom: 0;
-	height: 0;
-	transition: height 300ms ease;
-}
+
 .logout {
 	color: inherit;
 	text-decoration: inherit;
@@ -43,8 +44,7 @@
 }
 .dark {
 	@include theme($white, $dark8);
-	border-right: 1px solid $dark5;
-	color: $grey;
+
 	.sideBar_link_box {
 		&:hover {
 			background-color: rgba($dark2, $alpha: 0.1);
@@ -53,9 +53,14 @@
 }
 
 @include md-breakpoint {
-	.subRoutes {
+	.subRoutesHeightOpen {
 		padding: 0.4rem 1.8rem;
+		height: 11rem;
 	}
+	.subRoutesHeightClose {
+		height: 0;
+	}
+
 	.sideBar_link_box {
 		padding: 1rem 1.5rem;
 	}

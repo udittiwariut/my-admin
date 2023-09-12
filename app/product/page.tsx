@@ -73,6 +73,7 @@ const ProductPage = () => {
 									className={style.dropDownBtn}
 									position="right"
 									iconName="DOWN_ARROW"
+									textImportant
 								>
 									{paginationValue}
 								</IconText>
@@ -98,6 +99,7 @@ const ProductPage = () => {
 					isModalOpen={isModalOpen}
 					setItem={setProduct}
 					fieldNotToInclude={["img"]}
+					isDetailPresent={true}
 				/>
 				<div className={style.footer}>
 					<PaginationBox pages={pages} setPages={setPages} />

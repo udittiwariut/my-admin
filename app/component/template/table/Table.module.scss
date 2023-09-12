@@ -24,11 +24,17 @@
 	tr {
 		border-bottom: 1px solid #dee2e6;
 	}
+	.hoverRow {
+		@include hoverColorLight($white);
+	}
 }
 .dark {
 	@include theme($grey, $dark7);
 	tr {
 		border-bottom: 1px solid $dark6;
+	}
+	.hoverRow {
+		@include hoverColorDark($dark7);
 	}
 }
 @media only screen and (max-width: 650px) and (min-width: $xm) {

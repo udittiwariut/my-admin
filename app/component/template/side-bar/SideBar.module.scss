@@ -1,40 +1,21 @@
 .base {
 	height: 100%;
 }
-.horizontal_divider {
-	margin-left: -2rem;
+.sideBar_link {
+	gap: 1.8rem;
 }
-
 .sideBar_link_box {
 	cursor: pointer;
-	padding: 16px 16px;
+	padding: 1.5rem 16px;
 	border-radius: 1.5rem;
 	&:hover {
 		background-color: rgba($dark, $alpha: 0.1);
 	}
 }
-.subRoutes {
-	padding: 0;
-	transition: height 0.3s ease-in-out;
-	&:last-of-type {
-		padding-bottom: 0;
-	}
-	height: 11rem;
-	overflow: hidden;
-}
-.sideBar_link {
-	gap: 1.8rem;
-}
-.subRoutesHeight {
-	overflow: hidden;
-	padding-top: 0;
-	padding-bottom: 0;
-	height: 0;
-	transition: height 300ms ease;
-}
+
 .logout {
+	text-decoration: none;
 	color: inherit;
-	text-decoration: inherit;
 }
 
 .light {
@@ -51,12 +32,8 @@
 		}
 	}
 }
-
 @include md-breakpoint {
-	.subRoutes {
-		padding: 0.4rem 1.8rem;
-	}
 	.sideBar_link_box {
-		padding: 1rem 1.5rem;
+		padding: 0.7rem 1.5rem;
 	}
 }

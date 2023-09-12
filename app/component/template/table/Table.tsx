@@ -12,6 +12,7 @@ interface props {
 	classNames?: string;
 	fieldNotToInclude?: string[];
 	setItem?: Dispatch<SetStateAction<any>>;
+	isDetailPresent?: boolean;
 }
 
 const Table = ({
@@ -22,6 +23,7 @@ const Table = ({
 	classNames = undefined,
 	fieldNotToInclude = [],
 	setItem = () => {},
+	isDetailPresent = false,
 }: props) => {
 	if (!tableContent.length) {
 		return;
@@ -57,6 +59,7 @@ const Table = ({
 										setIsModalOpen(!isModalOpen);
 										setItem(ele);
 									}}
+									className={isDetailPresent ? style.hoverRow : undefined}
 								>
 									<th className="p-3">{sNo + (i + 1)}</th>
 									{title.map((key) => (

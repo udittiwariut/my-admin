@@ -10,13 +10,14 @@
 	background-color: white;
 }
 .active {
-	width: 400px;
+	width: 60%;
 }
 .un_active {
 	font-size: $fs-xs;
 }
 .header {
-	height: 7vh;
+	padding-left: 1rem;
+	height: calc($nav-height - 1px);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -42,5 +43,17 @@
 
 	.btn {
 		background-color: $dark8;
+	}
+}
+
+@include xm-breakpoint {
+	.active {
+		width: 50%;
+	}
+}
+
+@include custom-breakPoint($md) {
+	.active {
+		width: 30%;
 	}
 }
