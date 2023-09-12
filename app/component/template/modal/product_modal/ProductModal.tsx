@@ -6,6 +6,7 @@ import useGetProductOrderHistory from "@/app/utlis/hooks/useGetProductOrderHisto
 import Table from "../../table/Table";
 import globalModalStyle from "./../Modal.module.scss";
 import capitalizeFirst from "@/app/utlis/functions/capatalizeFirst";
+import { v4 as uuid } from "uuid";
 
 interface props {
 	product: PRODUCT | null;
@@ -30,7 +31,7 @@ const ProductModal = ({ product }: props) => {
 				</div>
 				<div className={globalModalStyle.modal_details}>
 					{title.map((detail) => (
-						<div className={globalModalStyle.modal_gridItem}>
+						<div className={globalModalStyle.modal_gridItem} key={uuid()}>
 							<strong>{capitalizeFirst(detail)}</strong>: {"  "}{" "}
 							{product![detail as keyof typeof product]}
 						</div>

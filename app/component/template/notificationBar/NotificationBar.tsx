@@ -15,6 +15,7 @@ import { getFireStoreData, COLLECTION } from "@/app/utlis/firebase/fireStore";
 import { RootState } from "@/app/globalRedux/store";
 import useOutSideToClose from "@/app/utlis/hooks/useOutSideToClose";
 import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
+import { v4 as uuid } from "uuid";
 
 const NotificationBar = () => {
 	const theme = useSelector((state: RootState) => state.theme.theme);
@@ -72,6 +73,7 @@ const NotificationBar = () => {
 						{complaints.map((complaint, i) => {
 							return (
 								<div
+									key={uuid()}
 									className={style.notificationBox}
 									onClick={() =>
 										selected === i ? setSelected(null) : setSelected(i)

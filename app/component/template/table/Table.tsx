@@ -3,6 +3,7 @@ import style from "./Table.module.scss";
 import { RootState } from "@/app/globalRedux/store";
 import classHelperFn from "@/app/utlis/functions/themeClass";
 import { useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
 
 interface props {
 	tableContent: object[];
@@ -47,7 +48,9 @@ const Table = ({
 						<tr>
 							<th className="p-3">#</th>
 							{title.map((th) => (
-								<th className="p-3">{th.replace("_", "").toUpperCase()}</th>
+								<th key={uuid()} className="p-3">
+									{th.replace("_", "").toUpperCase()}
+								</th>
 							))}
 						</tr>
 					</thead>
@@ -55,6 +58,7 @@ const Table = ({
 						{tableContent.map((ele, i) => {
 							return (
 								<tr
+									key={uuid()}
 									onClick={() => {
 										setIsModalOpen(!isModalOpen);
 										setItem(ele);
@@ -64,6 +68,7 @@ const Table = ({
 									<th className="p-3">{sNo + (i + 1)}</th>
 									{title.map((key) => (
 										<td
+											key={uuid()}
 											data-cell={key.replace("_", "").toUpperCase()}
 											className={style.tableData}
 										>

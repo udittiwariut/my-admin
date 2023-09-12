@@ -3,9 +3,10 @@ import style from "./CustomOrderHistoryTable.module.scss";
 import { ORDER } from "@/app/Types/Order/Order";
 import Table from "../Table";
 import HorizontalDivider from "@/app/component/atom/horizontalDivider/HorizontalDivider";
-import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
+import classHelperFn from "@/app/utlis/functions/themeClass";
 import { RootState } from "@/app/globalRedux/store";
 import { useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
 
 interface props {
 	tableContent: ORDER[];
@@ -50,7 +51,9 @@ const CustomOrderHistoryTable = ({
 					>
 						<div className="p-3">#</div>
 						{title.map((th) => (
-							<div className="p-3">{th.replace("_", "").toUpperCase()}</div>
+							<div key={uuid()} className="p-3">
+								{th.replace("_", "").toUpperCase()}
+							</div>
 						))}
 					</div>
 					<HorizontalDivider />
@@ -59,13 +62,16 @@ const CustomOrderHistoryTable = ({
 							return (
 								<>
 									<div
+										key={uuid()}
 										onClick={() => handleClick(i)}
 										className={style.orderTableRow}
 										style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr" }}
 									>
 										<div className={`p-3`}>{sNo + (i + 1)}</div>
 										{title.map((key) => (
-											<div className={`p-3`}>{ele[key]}</div>
+											<div key={uuid()} className={`p-3`}>
+												{ele[key]}
+											</div>
 										))}
 									</div>
 									{isDetailOpen === i ? (

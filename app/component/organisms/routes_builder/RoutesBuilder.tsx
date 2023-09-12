@@ -13,6 +13,7 @@ import Icon from "../../atom/icon/Icon";
 import IconText from "../../molecule/iconText/IconText";
 import styles from "./RoutesBuilder.module.scss";
 import { ACTION, Route } from "../../template/side-bar/Routes";
+import { v4 as uuid } from "uuid";
 
 const helperFn = (routesArray: Route[]) => {
 	let obj = {};
@@ -69,6 +70,7 @@ const RouterBuilder = ({ routesArray }: props) => {
 		return (
 			<>
 				<div
+					key={uuid()}
 					id={
 						routes.action === ACTION.NOTIFICATION
 							? "notificationBtn"

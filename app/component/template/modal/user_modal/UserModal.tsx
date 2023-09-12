@@ -7,6 +7,7 @@ import USER from "@/app/Types/User/User";
 import type { RootState } from "@/app/globalRedux/store";
 import style from "./UserModal.module.scss";
 import globalModalStyle from "./../Modal.module.scss";
+import { v4 as uuid } from "uuid";
 import capitalizeFirst from "@/app/utlis/functions/capatalizeFirst";
 
 interface props {
@@ -36,7 +37,7 @@ const UserModal = ({ user }: props) => {
 				</div>
 				<div className={globalModalStyle.modal_details}>
 					{title.map((detail) => (
-						<div className={style.gridItem}>
+						<div className={style.gridItem} key={uuid()}>
 							<strong>{capitalizeFirst(detail)}</strong>: {"  "}{" "}
 							{user![detail as keyof typeof user]}
 						</div>

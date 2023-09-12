@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Table from "../component/template/table/Table";
 import style from "./page.module.scss";
 import Text from "../component/atom/text/Text";
@@ -14,6 +14,7 @@ import LoaderHoc from "../component/template/loaderHoc/LoaderHoc";
 import Button from "../component/atom/button/Button";
 import { RootState } from "../globalRedux/store";
 import classHelperFn, { themes } from "../utlis/functions/themeClass";
+import { v4 as uuid } from "uuid";
 
 const optionArray = [5, 10, 15, 20, 25];
 
@@ -83,7 +84,11 @@ const ProductPage = () => {
 							secondaryRef={dropDownBtnRef}
 						>
 							{optionArray.map((ele) => (
-								<div onClick={onOptClick} className={style.dropDownMenuItem}>
+								<div
+									key={uuid()}
+									onClick={onOptClick}
+									className={style.dropDownMenuItem}
+								>
 									{ele}
 								</div>
 							))}

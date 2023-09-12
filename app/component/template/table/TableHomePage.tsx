@@ -4,6 +4,7 @@ import Text from "../../atom/text/Text";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/globalRedux/store";
 import classHelperFn from "@/app/utlis/functions/themeClass";
+import { v4 as uuid } from "uuid";
 
 const rows = [
 	{
@@ -71,7 +72,11 @@ const Table = () => {
 				<thead>
 					<tr>
 						{Object.keys(rows[0]).map((th) =>
-							th != "img" ? <th className="p-3">{th.toUpperCase()}</th> : null
+							th != "img" ? (
+								<th key={uuid()} className="p-3">
+									{th.toUpperCase()}
+								</th>
+							) : null
 						)}
 					</tr>
 				</thead>
@@ -79,11 +84,12 @@ const Table = () => {
 					{rows.map((ele) => {
 						return (
 							<>
-								<tr>
+								<tr key={uuid()}>
 									{Object.keys(ele).map((key) =>
 										key != "img" ? (
 											key != "product" ? (
 												<td
+													key={uuid()}
 													data-cell={key}
 													className={`p-3 ${
 														key === "status" && ele.status === status.APPROVED

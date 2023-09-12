@@ -10,6 +10,7 @@ import { RootState } from "@/app/globalRedux/store";
 import classHelperFn from "@/app/utlis/functions/themeClass";
 import { useSelector } from "react-redux";
 import style from "styled-jsx/style";
+import { v4 as uuid } from "uuid";
 
 const data = [
 	{ title: "Total Revenue", value: "$12.4k", isIncreased: false },
@@ -40,7 +41,7 @@ const ProgressCard = () => {
 			<div className={`${styles.grid} pt-4`}>
 				{data.map((ele) => {
 					return (
-						<div className={`${styles.gridItem}`}>
+						<div className={`${styles.gridItem}`} key={uuid()}>
 							<Title className="title-4 text-secondary fw-normal">
 								{ele.title}
 							</Title>

@@ -1,11 +1,8 @@
 import React, { useMemo } from "react";
 import style from "./DropDownItem.module.scss";
 import capitalizeFirst from "@/app/utlis/functions/capatalizeFirst";
-import USER from "@/app/Types/User/User";
 import Title from "../title/Title";
-import { RootState } from "@/app/globalRedux/store";
-import classHelperFn from "@/app/utlis/functions/themeClass";
-import { useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
 
 const propertyToShow = 3;
 
@@ -21,7 +18,7 @@ const DropDownItem = ({ item: itemProp, onClick }) => {
 	return (
 		<div className={style.base} onClick={() => onClick(itemProp)}>
 			{firstFour.map((ele) => (
-				<div className={style.gridItem}>
+				<div className={style.gridItem} key={uuid()}>
 					<Title
 						className={`title-5 text-secondary fw-normal text-nowrap text-truncate ${style.text}`}
 					>

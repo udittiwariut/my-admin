@@ -14,6 +14,7 @@ import Button from "../component/atom/button/Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../globalRedux/store";
 import classHelperFn, { themes } from "../utlis/functions/themeClass";
+import { v4 as uuid } from "uuid";
 
 const optionArray = [5, 10, 15, 20, 25];
 
@@ -84,6 +85,7 @@ const UserPage = () => {
 								>
 									{optionArray.map((ele) => (
 										<div
+											key={uuid()}
 											onClick={onOptClick}
 											className={style.dropDownMenuItem}
 										>

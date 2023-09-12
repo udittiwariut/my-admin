@@ -20,6 +20,7 @@ import UserModal from "../modal/user_modal/UserModal";
 import { setTheme } from "@/app/globalRedux/theme/theme.slice";
 import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
 import { setSelectedOrder } from "@/app/globalRedux/orders/order.slice";
+import { v4 as uuid } from "uuid";
 
 const modalType = {
 	ORDER: "orders",
@@ -133,6 +134,7 @@ const NavBar = () => {
 						{Object.keys(resultFromSearch).map((val) => {
 							return resultFromSearch[val].length ? (
 								<DropDownList
+									key={uuid()}
 									array={resultFromSearch[val]}
 									title={val}
 									onClick={(selectedItem: any, title: string) => {
