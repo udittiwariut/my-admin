@@ -28,10 +28,6 @@ const Orders = () => {
 	const selectedOrder = useSelector(
 		(state: RootState) => state.orders.selectedOrder
 	);
-	const [{ oddList, evenList }, setOrderList] = useState({
-		oddList: [],
-		evenList: [],
-	});
 
 	const clientWidth = useGetClientWidth(timeOut2);
 
@@ -58,7 +54,12 @@ const Orders = () => {
 
 	useEffect(() => {
 		const scrollToDiv = document.getElementById(selectedOrder);
-		scrollToDiv && scrollToDiv.scrollIntoView({ behavior: "smooth" });
+		scrollToDiv &&
+			scrollToDiv.scrollIntoView({
+				behavior: "smooth",
+				block: "end",
+				inline: "end",
+			});
 	}, [orderId, selectedOrder]);
 
 	return (
@@ -75,7 +76,6 @@ const Orders = () => {
 										setShowDetail={setShowDetail}
 										showDetail={showDetail}
 										index={i}
-										clientWidth={clientWidth}
 									/>
 								);
 						})}
@@ -90,7 +90,6 @@ const Orders = () => {
 										setShowDetail={setShowDetail}
 										showDetail={showDetail}
 										index={i}
-										clientWidth={clientWidth}
 									/>
 								);
 						})}
@@ -106,7 +105,6 @@ const Orders = () => {
 								setShowDetail={setShowDetail}
 								showDetail={showDetail}
 								index={i}
-								clientWidth={clientWidth}
 							/>
 						);
 					})}

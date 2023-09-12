@@ -4,6 +4,9 @@ import GraphTitle from "../../atom/title/Title";
 import { useSelector } from "react-redux";
 import style from "./Graph.module.scss";
 import { themes } from "@/app/utlis/functions/themeClass";
+import useGetClientWidth, {
+	breakPoint,
+} from "@/app/utlis/hooks/useGetClientWidth";
 
 import {
 	Chart as ChartJS,
@@ -61,11 +64,14 @@ const options = {
 };
 
 let timeout: string | number | NodeJS.Timeout | undefined;
-let delay = 300;
+let timeOut2: string | number | NodeJS.Timeout | undefined;
+
+let delay = 200;
 
 const Graph = () => {
 	const [data, setData] = useState<any>();
-	const [chartDivWidth, setChartDivWidth] = useState<string>("50rem");
+	const [chartDivWidth, setChartDivWidth] = useState<string>("98%");
+	const clientWidth = useGetClientWidth(timeOut2);
 
 	const theme = useSelector((state: RootState) => state.theme.theme);
 
@@ -78,15 +84,20 @@ const Graph = () => {
 		clearTimeout(timeout);
 
 		timeout = setTimeout(() => {
-			setChartDivWidth((ProgressCardRefDiv.offsetWidth * 2).toString() + "px");
+			if (clientWidth > 700) {
+				setChartDivWidth(
+					(ProgressCardRefDiv.offsetWidth * 2).toString() + "px"
+				);
+			}
+			if (clientWidth < 700) {
+				setChartDivWidth("95%");
+			}
 		}, delay);
 	};
 
 	useEffect(() => {
 		window.addEventListener("resize", debounce);
 	}, [ProgressCardRefDiv]);
-
-	console.log(chartDivWidth);
 
 	useEffect(() => {
 		const data = {
@@ -127,8 +138,6 @@ const Graph = () => {
 		setData(data);
 	}, [theme]);
 
-	// console.log(chartDivWidth);
-
 	return (
 		<div className={classHelperFn(style.base, theme, style)}>
 			<GraphTitle className={`title-2 pb-1 pt-1 text-secondary px-5`}>
@@ -136,7 +145,7 @@ const Graph = () => {
 			</GraphTitle>
 			<div
 				className={style.chartBox}
-				style={{ width: chartDivWidth, height: "24rem" }}
+				style={{ maxWidth: "99%", height: "24rem" }}
 			>
 				{data && (
 					<Line

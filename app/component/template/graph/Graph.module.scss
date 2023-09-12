@@ -1,13 +1,10 @@
 .base {
-	height: 100%;
-	width: 100%;
 	display: flex;
 	flex-direction: column;
 	font-size: 100%;
 }
 .chartBox {
 	flex-grow: 1;
-	max-width: 100%;
 }
 .chart {
 }

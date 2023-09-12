@@ -56,3 +56,16 @@
 		@content;
 	}
 }
+
+@mixin hoverColorLight($bg) {
+	&:hover {
+		background-color: darken($bg, 5%);
+		cursor: pointer;
+	}
+}
+@mixin hoverColorDark($bg) {
+	&:hover {
+		background-color: lighten($bg, 5%);
+		cursor: pointer;
+	}
+}

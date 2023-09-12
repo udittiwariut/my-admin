@@ -18,48 +18,15 @@ interface props {
 	showDetail: number | null;
 	setShowDetail: Dispatch<SetStateAction<number | null>>;
 	index: number;
-	clientWidth: number;
 }
 
-const OrderCard = ({
-	order,
-	setShowDetail,
-	showDetail,
-	index,
-	clientWidth,
-}: props) => {
-	let gridRowStyle = {
-		gridRow: "0",
-		gridColumn: "0",
-	};
+const OrderCard = ({ order, setShowDetail, showDetail, index }: props) => {
 	const theme = useSelector((state: RootState) => state.theme.theme);
-
-	const fn = () => {
-		let NUMBER_OF_ITEM_IN_COL = 1;
-		if (clientWidth > breakPoint.xm) {
-			NUMBER_OF_ITEM_IN_COL = 2;
-		}
-
-		const rowNum = Math.ceil((index + 1) / NUMBER_OF_ITEM_IN_COL);
-		const colNum = index + 1 - (rowNum - 1) * NUMBER_OF_ITEM_IN_COL;
-
-		if (showDetail === 0 && index === 0) {
-			gridRowStyle.gridRow = "1/3";
-			gridRowStyle.gridColumn = "1/2";
-			return gridRowStyle;
-		}
-		if (showDetail === index) {
-			gridRowStyle.gridRow = `${rowNum}/${rowNum + 2}`;
-			gridRowStyle.gridColumn = `${colNum}/${colNum + 1}`;
-			return gridRowStyle;
-		}
-	};
 
 	return (
 		<div
 			id={order.order_id}
 			className={classHelperFn(style.flexItem, theme, style)}
-			style={showDetail === index ? { flex: "2" } : undefined}
 		>
 			<div className={`${style.cover}`}>
 				<div

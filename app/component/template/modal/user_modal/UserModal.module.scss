@@ -1,5 +1,8 @@
 .gridItem {
 	font-size: $fs-base;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .gridItem:nth-child(3) {
 	grid-row: 3;

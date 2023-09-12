@@ -10,3 +10,13 @@
 	padding: 1rem;
 	font-size: $fs-sm;
 }
+.light {
+	.orderTableRow {
+		@include hoverColorLight($white);
+	}
+}
+.dark {
+	.orderTableRow {
+		@include hoverColorDark($dark7);
+	}
+}

@@ -17,6 +17,10 @@ const data = [
 	{ title: "Total Revenue", value: "$12.4k", isIncreased: false },
 ];
 
+function randomInteger(min: number, max: number) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const ProgressCard = () => {
 	const theme = useSelector((state: RootState) => state.theme.theme);
 
@@ -25,7 +29,7 @@ const ProgressCard = () => {
 			<Title className="title-2 text-secondary fw-bold pb-2 pt-1">
 				Total Revenue
 			</Title>
-			<Progress progress={70} />
+			<Progress progress={randomInteger(40, 100)} />
 			<Title className="title-3 text-secondary fw-normal">
 				Total sale made today
 			</Title>
