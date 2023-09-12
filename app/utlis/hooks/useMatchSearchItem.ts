@@ -19,14 +19,19 @@ export interface RESULT {
 const BreakError = {};
 
 const filteredData = (
-	data: USER[] | PRODUCT[] | ORDER[] | COMPLAINT[],
+	data: USER[] | PRODUCT[] | ORDER[] | COMPLAINT[] | any,
 	search: string
 ) =>
-	data.filter((ele) => {
+	data.filter((ele: any) => {
 		let match: any;
 		try {
 			Object.keys(ele).forEach((val) => {
-				if (ele[val].toString().toLowerCase().includes(search.toLowerCase())) {
+				if (
+					ele[val as keyof typeof ele]
+						.toString()
+						.toLowerCase()
+						.includes(search.toLowerCase())
+				) {
 					match = ele;
 					throw BreakError;
 				}
