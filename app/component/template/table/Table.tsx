@@ -26,11 +26,11 @@ const Table = ({
 	setItem = () => {},
 	isDetailPresent = false,
 }: props) => {
+	const theme = useSelector((state: RootState) => state.theme.theme);
+
 	if (!tableContent.length) {
 		return;
 	}
-
-	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	const title = Object.keys(tableContent[0]).filter((th) => {
 		if (!fieldNotToInclude.includes(th)) {
