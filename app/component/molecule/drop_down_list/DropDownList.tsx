@@ -7,18 +7,18 @@ import classHelperFn from "@/app/utlis/functions/themeClass";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/globalRedux/store";
 
-const DropDownList = ({ array, onClick, title }) => {
+const DropDownList = ({ array, onClick, title }: any) => {
 	const theme = useSelector((state: RootState) => state.theme.theme);
 
 	return (
 		<div className={classHelperFn(style.base, theme, style)}>
 			<Title className={`title-5 fw-normal  ${style.title}`}>{title}</Title>
 			{array.length &&
-				array.map((item) => (
+				array.map((item: any) => (
 					<DropDownItem
 						key={uuid()}
 						item={item}
-						onClick={(selectedItem) => onClick(selectedItem, title)}
+						onClick={(selectedItem: any) => onClick(selectedItem, title)}
 					/>
 				))}
 		</div>

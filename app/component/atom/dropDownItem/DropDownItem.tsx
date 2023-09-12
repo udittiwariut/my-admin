@@ -6,7 +6,12 @@ import { v4 as uuid } from "uuid";
 
 const propertyToShow = 3;
 
-const DropDownItem = ({ item: itemProp, onClick }) => {
+interface props {
+	item: any;
+	onClick: any;
+}
+
+const DropDownItem = ({ item: itemProp, onClick }: props) => {
 	const firstFour = useMemo(() => {
 		const firstFour: any = [];
 		Object.keys(itemProp).forEach((val, i) => {
@@ -17,7 +22,7 @@ const DropDownItem = ({ item: itemProp, onClick }) => {
 
 	return (
 		<div className={style.base} onClick={() => onClick(itemProp)}>
-			{firstFour.map((ele) => (
+			{firstFour.map((ele: any) => (
 				<div className={style.gridItem} key={uuid()}>
 					<Title
 						className={`title-5 text-secondary fw-normal text-nowrap text-truncate ${style.text}`}

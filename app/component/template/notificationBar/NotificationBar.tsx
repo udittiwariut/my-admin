@@ -70,7 +70,7 @@ const NotificationBar = () => {
 					<HorizontalDivider className={style.horizontal_divider} />
 
 					<div className={style.body}>
-						{complaints.map((complaint, i) => {
+						{complaints.map((complaint: any, i: number) => {
 							return (
 								<div
 									key={uuid()}

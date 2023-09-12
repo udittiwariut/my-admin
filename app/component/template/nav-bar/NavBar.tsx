@@ -132,10 +132,11 @@ const NavBar = () => {
 						secondaryRef={searchBarRef}
 					>
 						{Object.keys(resultFromSearch).map((val) => {
-							return resultFromSearch[val].length ? (
+							return resultFromSearch[val as keyof typeof resultFromSearch]
+								.length ? (
 								<DropDownList
 									key={uuid()}
-									array={resultFromSearch[val]}
+									array={resultFromSearch[val as keyof typeof resultFromSearch]}
 									title={val}
 									onClick={(selectedItem: any, title: string) => {
 										handleDropDownListClick(selectedItem, title);

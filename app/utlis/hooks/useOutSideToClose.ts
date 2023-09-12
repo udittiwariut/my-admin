@@ -1,12 +1,12 @@
 import React, { useEffect, MouseEvent } from "react";
 
 const useOutSideToClose = (
-	menuRef: React.RefObject<HTMLDivElement> | nu,
+	menuRef: any,
 	setActive: any,
-	secondaryRef = undefined
+	secondaryRef: any = undefined
 ) => {
 	useEffect(() => {
-		const clickHandler = (e: MouseEvent<HTMLDivElement> | TouchEvent): void => {
+		const clickHandler = (e: any): any => {
 			if (secondaryRef) {
 				if (
 					menuRef.current &&

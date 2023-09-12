@@ -16,10 +16,13 @@ import { ACTION, Route } from "../../template/side-bar/Routes";
 import { v4 as uuid } from "uuid";
 
 const helperFn = (routesArray: Route[]) => {
-	let obj = {};
+	let obj: any = {};
 	routesArray.forEach((route, i) => {
 		if (route.subRoutes) {
-			obj[i] = [styles.subRoutesHeightOpen, styles.subRoutesHeightClose];
+			obj[i as keyof typeof obj] = [
+				styles.subRoutesHeightOpen,
+				styles.subRoutesHeightClose,
+			];
 		}
 	});
 	return obj;

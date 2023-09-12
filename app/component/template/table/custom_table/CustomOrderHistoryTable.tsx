@@ -58,7 +58,7 @@ const CustomOrderHistoryTable = ({
 					</div>
 					<HorizontalDivider />
 					<div>
-						{tableContent.map((ele, i) => {
+						{tableContent.map((ele: any, i) => {
 							return (
 								<>
 									<div
@@ -70,7 +70,7 @@ const CustomOrderHistoryTable = ({
 										<div className={`p-3`}>{sNo + (i + 1)}</div>
 										{title.map((key) => (
 											<div key={uuid()} className={`p-3`}>
-												{ele[key]}
+												{ele[key as keyof typeof ele]}
 											</div>
 										))}
 									</div>

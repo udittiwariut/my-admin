@@ -11,7 +11,7 @@ import { v4 as uuid } from "uuid";
 import capitalizeFirst from "@/app/utlis/functions/capatalizeFirst";
 
 interface props {
-	user: USER | null;
+	user: USER | null | undefined;
 }
 const UserModal = ({ user }: props) => {
 	const [isDetailOpen, setIsDetailOpen] = useState<null | number>(null);

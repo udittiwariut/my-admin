@@ -25,7 +25,7 @@ interface props {
 
 const Modal = ({ children, closeModal, title }: props) => {
 	const ref = useRef<Element | null>(null);
-	const modalRef = useRef<Element | null>(null);
+	const modalRef = useRef<HTMLDivElement | null>(null);
 	const [mounted, setMounted] = useState(false);
 
 	useOutSideToClose(modalRef, closeModal);
