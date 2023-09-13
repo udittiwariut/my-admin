@@ -18,7 +18,8 @@ let timeOut2: string | number | NodeJS.Timeout | undefined;
 let delay = 300;
 
 const Orders = () => {
-	const orderMain = document.getElementById("children");
+	const orderMain = document.getElementById("orderMain");
+
 	const dispatch = useDispatch();
 
 	const theme = useSelector((state: RootState) => state.theme.theme);
@@ -38,6 +39,8 @@ const Orders = () => {
 	const dispatcher = () => {
 		dispatch(setSelectedOrder(""));
 	};
+
+	console.log(selectedOrder);
 
 	useEffect(() => {
 		const debounce = () => {
