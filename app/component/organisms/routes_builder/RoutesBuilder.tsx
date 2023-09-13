@@ -1,7 +1,7 @@
 import { setIsAdminModalOpen } from "@/app/globalRedux/admin/admin.slice";
 import { setIsNotificationOpen } from "@/app/globalRedux/notification/notification.slice";
 import { RootState } from "@/app/globalRedux/store";
-import { themes } from "@/app/utlis/functions/themeClass";
+import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
 import useGetClientWidth, {
 	breakPoint,
 } from "@/app/utlis/hooks/useGetClientWidth";
@@ -73,6 +73,7 @@ const RouterBuilder = ({ routesArray }: props) => {
 		return (
 			<>
 				<div
+					className={theme === themes.LIGHT ? styles.light : styles.dark}
 					key={uuid()}
 					id={
 						routes.action === ACTION.NOTIFICATION

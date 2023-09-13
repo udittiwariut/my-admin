@@ -7,8 +7,6 @@ import AdminProfile from "../adminProfile/AdminProfile";
 import TitleLink from "../../molecule/title_link/TitleLink";
 
 const PageLayout = ({ children }: { children: React.ReactNode }) => {
-	console.log("meee");
-
 	return (
 		<>
 			<div className={style.app}>

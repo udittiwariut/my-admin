@@ -27,6 +27,6 @@ const useOutSideToClose = (
 		return () => {
 			document.removeEventListener("mousedown", clickHandler);
 		};
-	}, [secondaryRef]);
+	}, [secondaryRef, menuRef]);
 };
 export default useOutSideToClose;

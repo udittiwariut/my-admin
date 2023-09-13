@@ -11,7 +11,6 @@ import { ORDER } from "./../../../Types/Order/Order";
 import { useSelector } from "react-redux";
 import { RootState } from "./../../../globalRedux/store";
 import classHelperFn, { themes } from "@/app/utlis/functions/themeClass";
-import { breakPoint } from "@/app/utlis/hooks/useGetClientWidth";
 
 interface props {
 	order: ORDER;

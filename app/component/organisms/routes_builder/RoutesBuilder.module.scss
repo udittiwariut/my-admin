@@ -13,9 +13,6 @@
 	cursor: pointer;
 	padding: 1.5rem 16px;
 	border-radius: 1.5rem;
-	&:hover {
-		background-color: rgba($dark, $alpha: 0.1);
-	}
 }
 .subRoutesHeightOpen {
 	transition: height 0.3s ease-in-out;
@@ -40,11 +37,14 @@
 
 .light {
 	@include theme($black, $white);
-	border-right: 1px solid $grey;
+	.sideBar_link_box {
+		&:hover {
+			background-color: rgba($dark, $alpha: 0.1);
+		}
+	}
 }
 .dark {
-	@include theme($white, $dark8);
-
+	@include theme($grey, $dark8);
 	.sideBar_link_box {
 		&:hover {
 			background-color: rgba($dark2, $alpha: 0.1);

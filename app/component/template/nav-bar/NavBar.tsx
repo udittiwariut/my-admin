@@ -67,7 +67,7 @@ const NavBar = () => {
 		type: "",
 		item: {},
 	});
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(true);
 
 	const dispatch = useDispatch();
 
@@ -105,12 +105,15 @@ const NavBar = () => {
 				router.push(`/orders?orderId=${selectedItem.order_id}`);
 				return;
 			}
+			return;
 		}
 		if (title === modalType.COMPLAINTS) {
 			dispatch(setIsNotificationOpen(true));
+			return;
 		}
 		setSelectedItem({ type: title, item: selectedItem });
 		setIsModalOpen(true);
+		setActiveDropDown(false);
 	};
 
 	const searchBarRef = document.getElementById("searchBar");

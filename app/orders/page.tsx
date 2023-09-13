@@ -63,7 +63,7 @@ const Orders = () => {
 				block: "end",
 				inline: "end",
 			});
-	}, [orderId, selectedOrder]);
+	}, [orderId, selectedOrder, orderMain]);
 
 	return (
 		<div className={classHelperFn(style.base, theme, style)} id="orderMain">

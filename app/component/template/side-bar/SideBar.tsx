@@ -17,7 +17,7 @@ function SideBar() {
 		<div className={classHelperFn(styles.base, theme, styles)}>
 			<div>{<RouteBuilder routesArray={ROUTES} />}</div>
 			<div>
-				<div className={`${styles.sideBar_link_box}`}>
+				<div className={styles.sideBar_link_box}>
 					<a className={styles.logout} href="/api/auth/logout">
 						<IconText
 							iconFill={theme === themes.Dark ? "#aeadad" : "black"}

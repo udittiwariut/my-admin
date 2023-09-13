@@ -8,9 +8,6 @@
 	cursor: pointer;
 	padding: 1.5rem 16px;
 	border-radius: 1.5rem;
-	&:hover {
-		background-color: rgba($dark, $alpha: 0.1);
-	}
 }
 
 .logout {
@@ -21,6 +18,11 @@
 .light {
 	@include theme($black, $white);
 	border-right: 1px solid $grey;
+	.sideBar_link_box {
+		&:hover {
+			background-color: rgba($dark, $alpha: 0.1);
+		}
+	}
 }
 .dark {
 	@include theme($white, $dark8);
@@ -34,6 +36,6 @@
 }
 @include md-breakpoint {
 	.sideBar_link_box {
-		padding: 0.7rem 1.5rem;
+		padding: 1rem 1.5rem;
 	}
 }
